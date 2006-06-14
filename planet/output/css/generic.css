@@ -1,0 +1,12 @@
+a img {
+	border: 0px;
+}
+
+pre {
+	overflow: auto;
+}
+
+a:link { color: #06c; }
+a:visited { color: #636; }
+a:hover { color: #666; }
+a:active { color: #666; }

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+### Fancy Planet HTML template.
+### 
+### When combined with the stylesheet and images in the output/ directory
+### of the Planet source, this gives you a much prettier result than the
+### default examples template and demonstrates how to use the config file
+### to support things like faces
+### 
+### For documentation on the more boring template elements, see
+### examples/config.ini and examples/index.html.tmpl in the Planet source.
+
+<head>
+<title><TMPL_VAR name></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/planet.css" type="text/css">
+<link rel="stylesheet" href="css/visual.css" type="text/css">
+<link rel="stylesheet" href="css/layout.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="PlanetEclipse News Feed" href="http://www.planeteclipse.org/planet/rss20.xml">
+</head>
+
+<body>
+
+<div id="header">
+	<a href="/">
+		<img src="images/header_logo.gif" alt="Eclipse Logo" border="0" height="68" width="163" />
+	</a>
+</div>
+
+<div id="body">
+<h1>Welcome to Planet Eclipse</h1>
+<TMPL_LOOP Items>
+<TMPL_IF new_date>
+<h2 class="date"><TMPL_VAR new_date></h2>
+</TMPL_IF>
+
+<div class="entry">
+### Planet provides template variables for *all* configuration options for
+### the channel (and defaults), even if it doesn't know about them.  We
+### exploit this here to add hackergotchi faces to our channels.  Planet
+### doesn't know about the "face", "facewidth" and "faceheight" configuration
+### variables, but makes them available to us anyway.
+<div class="person-info">
+	<a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">"><TMPL_VAR channel_name></a>
+	<TMPL_IF channel_face>
+		<img class="face" src="images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="">
+	</TMPL_IF>
+</div>
+
+<TMPL_IF title>
+<div class="homeitem">
+	<h3 class="post-title"><a href="<TMPL_VAR link ESCAPE="HTML">"><TMPL_VAR title></a></h3>
+</TMPL_IF>
+	<div class="post-contents">
+		<p>
+			<TMPL_VAR content>
+		</p>
+	</div>
+	<div class="post-footer">
+		<p><a href="<TMPL_VAR link ESCAPE="HTML">"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF><TMPL_VAR date></a></p>
+	</div>
+</div>
+</div>
+</TMPL_LOOP>
+</div>
+
+<div id="sidebar">
+<div class="section">
+<h3>Information</h3>
+	<p>
+		Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.
+		<table>
+			<tr>
+				<td><a href="rss10.xml"><img alt="RSS 1.0" src="images/rss10.png"></a></td>
+				<td><a href="rss20.xml"><img alt="RSS 2.0" src="images/rss20.png"></a></td>
+			</tr>
+			<tr>
+				<td><a href="foaf.xml"><img alt="FOAF" src="images/foaf.png"></a></td>
+				<td><a href="opml.xml"><img alt="OPML" src="images/opml.png"></a></td>
+			</tr>
+		</table>
+	</p>
+	<p>
+		Looking for an RSS Newsreader?  Try RSSOwl, it is built on Eclipse!
+		<a href="http://www.rssowl.org/" 
+		title="Get RSSOwl - Free RSS / RDF / Atom Newsreader.">
+		<img src="images/rssowl.gif" 
+		style="border:0;" width="80" height="15" alt="Get RSSOwl">
+		</a>
+	</p>
+	<p>
+		Last updated: <TMPL_VAR date> (UTC)
+	</p>
+	<p>
+		Powered by:<br>
+		<a href="http://www.planetplanet.org/"><img src="images/planet.png" width="80" height="15" alt="Planet" border="0"></a>
+	</p>
+</div>
+
+<div class="section">
+<h3>Subscriptions</h3>
+<ul>
+<TMPL_LOOP Channels>
+<li><a href="<TMPL_VAR link ESCAPE="HTML">" title="<TMPL_VAR title ESCAPE="HTML">"><TMPL_VAR name></a> <a href="<TMPL_VAR url ESCAPE="HTML">">(feed)</a></li>
+</TMPL_LOOP>
+</ul>
+</div>
+
+<div class="section">
+<h3>About</h3>
+<p>
+If you would like your blog added to the feed, please file a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&component=PlanetEclipse.org">bug</a> against the planet with your feed specific information.
+</p>
+<p>
+Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins">admins</a>.
+</p>
+</div>
+
+</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+body {
+	color: #555;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: .75em;
+}
+
+.homeitem h3 {
+        background-color: #fff;
+        background-image: url(../images/leftcol_sideitem_bg.gif);
+        background-position: top left;
+        background-repeat: repeat-x;
+	font-size: 1.5em;
+	padding-left: 5px;
+}
+
+
+div.entry {
+	clear: both;
+	margin-bottom: 2em;
+	margin-right: 1em;
+}
+
+div.person-info {
+	float: left;
+	position: relative;
+	left: 4px;
+	margin-top: 25px!important;
+	padding: 0 20px 30px 0;
+	width: 120px;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+div.person-info a {
+	text-decoration: none;
+	color: #666;
+}
+
+div.post-contents {
+	padding: 0 25px 0 25px;
+	margin-right: 10px;
+}
+
+div.post-contents p {
+	line-height: 120%;
+	margin-top: 1em!important;
+}
+
+div.post-contents blockquote {
+	color: #666;
+	line-height: 150%;
+}
+
+div.post-contents:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+div.post-title span {
+	display: block;
+	height: 20px;
+	font-size: 100%;
+}
+
+div.post-title {
+	display: block;
+}
+
+div.post-footer p {
+	margin: 0;
+}
+
+div.post-footer p a {
+	display: block;
+	padding: 15px 20px 20px 25px;
+	text-align: right;
+	color: #999;
+	font-size: .95em;
+	text-decoration: none;
+}
+
+div.post-footer p a:hover {
+	color: inherit;
+	text-decoration: underline;
+}
+
+h2.date {
+	background-image: url(../images/h1_bg.gif);
+	background-repeat: no-repeat;
+	background-position: 5px 0.1em;
+	color: #392863;
+	font-size: 1.5em;
+	font-weight: normal;
+	padding-left: 20px;
+}

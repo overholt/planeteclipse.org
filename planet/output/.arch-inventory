@@ -1,0 +1,1 @@
+precious ^(index.html|(rss10|rss20|opml|foafroll)\.xml)$

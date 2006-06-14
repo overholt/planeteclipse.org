@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<channel>
+	<title>Planet Eclipse</title>
+	<link>http://planeteclipse.org/planet/</link>
+	<language>en</language>
+	<description>Planet Eclipse - http://planeteclipse.org/planet/</description>
+
+<item>
+	<title>Denis Roy: Callisto bandwidth - how much will it cost?</title>
+	<guid>tag:blogger.com,1999:blog-15140216.post-115012339262915622</guid>
+	<link>http://eclipsewebmaster.blogspot.com/2006/06/callisto-bandwidth-how-much-will-it.html</link>
+	<description>&lt;div&gt;Last year, when Eclipse 3.1 was released, we added our own mirror server with a dedicated 100 Mbps Internet connection to ease the bandwidth problems we were having. At the time, &lt;a href=&quot;http://www.eclipsezone.com/forums/thread.jspa?messageID=91847710%E3%98%9F&quot;&gt;Ed Burnette and many others could only guess&lt;/a&gt; as to how much it costs to enable this, and this year we're adding 240 Mbps of bandwidth to our regular connection.  So how much does it cost?&lt;br /&gt;
+&lt;br /&gt;Two words: &lt;span&gt;a lot&lt;/span&gt;.  Each 100 Mbps connection requires one firewall and one switch port, and each connection is doubled up through two routers for failover (don't underestimate the monthly costs of using expensive Cisco router ports). Then there's bandwidth. Although we get volume discounts on bandwidth usage (the more we use, the cheaper each Mbps is) it adds up really fast when you're sustaining 150+ Mbps.&lt;br /&gt;
+&lt;br /&gt;In other words, Callisto won't be free.  But it will be free for you and I, and thanks goes to the &lt;a href=&quot;http://www.eclipse.org/membership/&quot;&gt;Eclipse Foundation members&lt;/a&gt;. This&lt;span&gt; is a good example of how their membership dues are used to help support the projects.&lt;br /&gt;
+&lt;/span&gt;
+&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 14:43:20 +0000</pubDate>
+	<dc:creator>Denis Roy</dc:creator>
+</item>
+<item>
+	<title>Denis Roy: More bandwidth for Callisto</title>
+	<guid>tag:blogger.com,1999:blog-15140216.post-115012207688147540</guid>
+	<link>http://eclipsewebmaster.blogspot.com/2006/06/more-bandwidth-for-callisto.html</link>
+	<description>&lt;div&gt;
+&lt;a href=&quot;http://www.eclipse.org/callisto/&quot;&gt;Callisto&lt;/a&gt; is approaching fast, and we received our new 100 Mbps network connections last week. To survive the Big Event, we'll be removing the 60 Mbps cap on our existing 100 Mbps and use these two 100 Mbps connections dedicated to downloads.  The net sum of usable bandwidth should be about 280 Mbps, routed through three different Cisco 7200 routers for maximum performance/failover.&lt;br /&gt;
+&lt;br /&gt;On the server side, the eclipse.org cluster will handle the usual web pages, CVS, e-mail and RSYNC using its beefed up connection, while downloads will be redirected to the two dedicated 100 Mbps connections, served by an IBM eSeries P5 550 server with 16 GB of RAM.  We managed to get 3,500 simultaneous web connections to this IBM server alone, with plenty of room to spare.  All tolled, we successfully tested our infrastructure to support 11,000 concurrent web connections, and if need be, we can balloon to 15,000 (our daily average usually floats between 400 and 800.)&lt;br /&gt;
+&lt;br /&gt;All this new bandwidth isn't available to us -- yet. We still need to do some testing first.  Sometime next week we'll host a &quot;Mirror Site Appreciation Day&quot; where, for the duration of a day, eclipse.org will attempt to host *all* its download traffic. The idea here is to load our systems with massive amounts of traffic to test our server performance and routing setup. Stay tuned...&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 14:21:16 +0000</pubDate>
+	<dc:creator>Denis Roy</dc:creator>
+</item>
+<item>
+	<title>Philipp Tiedt: Decorated Fields in Eclipse</title>
+	<guid>tag:blogger.com,1999:blog-22488470.post-114986011567496293</guid>
+	<link>http://philipptiedt.blogspot.com/2006/06/decorated-fields-in-eclipse.html</link>
+	<description>&lt;div&gt;With Eclipse 3.2 a new JFace API is released addressing decorated fields. Everyone knows the little yellow light bulb that comes up if you want to create a new Java type and do not specify any package name.&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/4563/2287/1600/newtype.jpg&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/4563/2287/320/newtype.jpg&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;Also a content assistant is provide that helps you choosing a package name. In Eclipse 3.2 this is now API and developers can use the feature to improve the user experience, especially in the area of validating user input.&lt;br /&gt;
+&lt;br /&gt;I have put some sample code together that simply creates a decorated text field with a message. The user should provide a name. The name must not start with a blank though. In case it does, I show a little error sign that is augmented with a message.&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/4563/2287/1600/error.1.jpg&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/4563/2287/320/error.1.jpg&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;If the user presses F1 in the field a content assitant pops up and proposes funny old german names that even google does not know :)&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/4563/2287/1600/names.jpg&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/4563/2287/320/names.jpg&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;Here is the code snippet:&lt;br /&gt;
+&lt;span&gt;
+&lt;br /&gt;// a new shell&lt;br /&gt;      Shell shell = new Shell();&lt;br /&gt;      shell.setLayout(new FillLayout());&lt;br /&gt;      shell.setText(&quot;Name&quot;);&lt;br /&gt;      shell.setBounds(200, 200, 200, 200);&lt;br /&gt;
+&lt;br /&gt;      // a parent&lt;br /&gt;      Composite parentComposite = new Composite(shell, SWT.NONE);&lt;br /&gt;      parentComposite.setLayout(new GridLayout(2, false));&lt;br /&gt;
+&lt;br /&gt;      // a label&lt;br /&gt;      Label nameLabel = new Label(parentComposite, SWT.NONE);&lt;br /&gt;      nameLabel.setText(&quot;Type a name:&quot;);&lt;br /&gt;
+&lt;br /&gt;      // a field&lt;br /&gt;      final DecoratedField field = new DecoratedField(parentComposite,&lt;br /&gt;              SWT.NONE, new IControlCreator() {&lt;br /&gt;
+&lt;br /&gt;                  public Control createControl(Composite parent, int style) {&lt;br /&gt;                      // create a simple text control&lt;br /&gt;                      Text nameText = new Text(parent, SWT.BORDER);&lt;br /&gt;                      nameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));&lt;br /&gt;                      return nameText;&lt;br /&gt;                  }&lt;br /&gt;              });&lt;br /&gt;      final Text text = (Text) field.getControl();     &lt;br /&gt;
+&lt;br /&gt;      // create an error decoration&lt;br /&gt;      final FieldDecoration decoration = FieldDecorationRegistry.getDefault()&lt;br /&gt;              .getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);&lt;br /&gt;      decoration.setDescription(&quot;A name must not start with a blank.&quot;);&lt;br /&gt;      field.addFieldDecoration(decoration, SWT.LEFT | SWT.TOP, true);&lt;br /&gt;
+&lt;br /&gt;      // create a content proposal provider that simply provides some funny old German&lt;br /&gt;      // names&lt;br /&gt;      SimpleContentProposalProvider sampleNames = new SimpleContentProposalProvider(&lt;br /&gt;              new String[] { &quot;Wernfried&quot;, &quot;Irmhelm&quot;, &quot;Hernmut&quot;, &quot;Gottlob&quot; });&lt;br /&gt;      // create a F1 keystroke, this can probably be done more elegant&lt;br /&gt;      KeyStroke f1Stroke = null;&lt;br /&gt;      try {&lt;br /&gt;          f1Stroke = KeyStroke.getInstance(&quot;F1&quot;);&lt;br /&gt;      } catch (ParseException e1) {&lt;br /&gt;          // hope the KeyStroke.getInstance() works :)&lt;br /&gt;      }&lt;br /&gt;
+&lt;br /&gt;      // add a proposal adapter to our text field&lt;br /&gt;      ContentProposalAdapter adapter = new ContentProposalAdapter(text,&lt;br /&gt;              new TextContentAdapter(), sampleNames, f1Stroke, null);&lt;br /&gt;
+&lt;br /&gt;      // react on text changes and show error if needed&lt;br /&gt;      text.addModifyListener(new ModifyListener() {&lt;br /&gt;
+&lt;br /&gt;          public void modifyText(ModifyEvent e) {&lt;br /&gt;              if (text.getText().startsWith(&quot; &quot;)) {&lt;br /&gt;                  field.showDecoration(decoration);&lt;br /&gt;                  return;&lt;br /&gt;              }&lt;br /&gt;              field.hideDecoration(decoration);&lt;br /&gt;
+&lt;br /&gt;          }&lt;br /&gt;      });&lt;br /&gt;      field.hideDecoration(decoration);&lt;br /&gt;      shell.open();&lt;br /&gt;
+&lt;/span&gt;
+&lt;br /&gt;The code above really just covers a simple implementation. There is much more behind the concept of decorated fields and much more flexibility. I am planing on writing a more in detail article or HOWTO about decorated fields.&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 11:51:49 +0000</pubDate>
+	<dc:creator>Philipp</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: The Monkey Listens</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114986168156733086</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/monkey-listens.html</link>
+	<description>&lt;div&gt;EclipseMonkey uses declarations in comments to specify when a script runs. The various triggers include menu selection, hot keys and now the pub/sub event handling that java calls &quot;listening&quot;.&lt;br /&gt;
+&lt;br /&gt;Say we had a script with metadata something like this:&lt;br /&gt;
+&lt;blockquote&gt;
+&lt;span&gt;/*&lt;br /&gt;* Listener: workspace().addResourceChangeListener(this)&lt;br /&gt;&amp;gt;*&lt;br /&gt;&amp;gt;*&lt;br /&gt;*/&lt;br /&gt;
+&lt;/span&gt;
+&lt;/blockquote&gt;The metadata processing finds two names in this mock expression: a script function name and a java method name. The rest is syntactic sugar to remind us how these names are used, which will be best understood by continuing our example. The declaration above presumes our script has two functions:&lt;br /&gt;
+&lt;blockquote&gt;
+&lt;span&gt;function workspace () {&lt;br /&gt;return Packages.org.eclipse.core.resources.ResourcesPlugin.getWorkspace();&lt;br /&gt;&amp;gt;}&amp;lt;br&amp;gt;&amp;lt;br/&amp;gt;}&lt;br /&gt;
+&lt;br /&gt;function resourceChanged (event) {&lt;br /&gt;&amp;gt;countOfChanges++;&amp;lt;br&amp;gt;&amp;lt;br/&amp;gt;countOfChanges++;&lt;br /&gt;}&lt;/span&gt;
+&lt;br /&gt;
+&lt;/blockquote&gt;The first function provides the publishing object while the second function handles the updates it publishes. In this example it just counts updates but it could do more with the event that is passed along.&lt;br /&gt;
+&lt;br /&gt;How does this work? EclipseMonkey uses reflection to find out what kind of object the listener expects and makes a proxy that will substitute. The proxy forwards messages to the script when it can find a function of the same name and ignores the rest. The monkey keeps the subscriptions current while we move or edit scripts. Thank you monkey.&lt;br /&gt;
+&lt;br /&gt;(And thank you Wayne Beaton, who pair-programmed the proxy sample code into the subscription abstraction that makes all this work. Wayne, come back soon.)&lt;br /&gt;
+&lt;br /&gt;You will find this capability in the version 0.1.8 of &lt;a href=&quot;http://www.eclipse.org/dash/monkey-help.php?key=installing&quot;&gt;EclipseMonkey&lt;/a&gt;. Eclipse reports a lot of activity through listeners and now the monkey's listening.&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 05:10:21 +0000</pubDate>
+	<dc:creator>Ward Cunningham</dc:creator>
+</item>
+<item>
+	<title>EZ Tips and Tricks: Use the SWT Development Tools</title>
+	<guid>http://www.eclipsezone.com/eclipse/forums/t73999.rhtml</guid>
+	<link>http://www.eclipsezone.com/eclipse/forums/t73999.rhtml</link>
+	<description>GUI development is not without its frustrations, quirks, and confusions. That's true for SWT just like any other UI library, and as such it's nice to have debug tools available to understand what is going on.
+
+			361 words.  &lt;a href=&quot;http://www.eclipsezone.com/eclipse/forums/t73999.rhtml&quot;&gt;Read More at EclipseZone&lt;/a&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 04:36:38 +0000</pubDate>
+	<dc:creator>R.J. Lorimer</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Why Callisto and not "3.2"?</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928992663665867</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/why-callisto-and-not-32.html</link>
+	<description>&lt;div&gt;Why is the Callisto Simultaneous Release named &quot;Callisto&quot; and not &quot;Eclipse 3.2&quot;? It's an excellent question and it has a good two-part answer.&lt;br /&gt;
+&lt;br /&gt;(Part One) The Eclipse version numbers (X.Y.Z) have semantic meaning. X increments for breaking API changes; Y increments for non-breaking API changes; Z increments for bug fixes. The projects have different version numbers today, e.g., Platform 3.2, TPTP 4.2, BIRT 2.1, CDT 3.1, EMF 2.2, etc. If we forced everyone to a common version number (3.2) then some projects would move backwards (TPTP) and some would leap forward with no breaking API change (BIRT, EMF) and so on. We didn't want to force projects into naming conventions that broke the semantics and thus we didn't want to use a common number.&lt;br /&gt;
+&lt;br /&gt;(Part Two) Different Eclipse projects have different release cycles. Some projects release once a year (e.g., Platform). Some release twice a year (e.g., TPTP, BIRT). Some release even more than that. By forcing the projects into a standard numbering, we would be limiting these faster releasing projects to the slowest project's schedule. That also did not seem correct.&lt;br /&gt;
+&lt;br /&gt;Hence we left each project's version numbering alone, and we chose a word-based scheme (moons of Jupiter) to generate names for the simultaneous releases. This year it is &lt;span&gt;Callisto&lt;/span&gt;, next year it will be &lt;span&gt;Europa&lt;/span&gt;.&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 02:04:03 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Wassim Melhem: Scream, Scream 2, Scream 3</title>
+	<guid>tag:blogger.com,1999:blog-25282541.post-115007667000626565</guid>
+	<link>http://wassim-melhem.blogspot.com/2006/06/scream-scream-2-scream-3.html</link>
+	<description>&lt;div&gt;After 3 years, the &quot;&lt;a href=&quot;http://www.eclipse.org/articles/Article-PDE-does-plugins/PDE-intro.html&quot;&gt;PDE Does Plug-ins&lt;/a&gt;&quot; article is in need of a major rewrite; so I volunteered to write a PDE trilogy over the summer.  More accurately, &quot;co-write&quot;; I will bribe Mike Pawlowski tomorrow into co-authoring.&lt;br /&gt;
+&lt;br /&gt;Titles are yet to be determined, but here are the suggested topics:&lt;br /&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=146462&quot;&gt;Extending Eclipse&lt;/a&gt;: A full plug-in development lifecycle, including coverage of fragments and internalization. &lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=146465&quot;&gt;Creating Extension Points&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=146470&quot;&gt;Creating an Eclipse product&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the articles ever get made into a movie trilogy, I want to be played by Leonardo DiCaprio.  &lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&quot;http://mea-bloga.blogspot.com&quot;&gt;Chris Aniszczyk&lt;/a&gt; will play himself, in a cameo, as the hyperactive blogger.&lt;/p&gt;
+&lt;/div&gt;</description>
+	<pubDate>Mon, 12 Jun 2006 01:44:30 +0000</pubDate>
+	<dc:creator>Wassim Melhem</dc:creator>
+</item>
+<item>
+	<title>Chris Aniszczyk: PDE &amp; Me, Part 2</title>
+	<guid>tag:blogger.com,1999:blog-16647950.post-115005974012589947</guid>
+	<link>http://mea-bloga.blogspot.com/2006/06/pde-me-part-2.html</link>
+	<description>&lt;div&gt;As &lt;a href=&quot;http://wassim-melhem.blogspot.com/&quot;&gt;Wassim&lt;/a&gt; pointed &lt;a href=&quot;http://wassim-melhem.blogspot.com/2006/06/poland-4-ecuador-0.html&quot;&gt;out&lt;/a&gt;, &lt;a href=&quot;http://www.eclipse.org/pde&quot;&gt;PDE&lt;/a&gt; now has support for hyperlinking (thanks Janek for the assist).&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/1852/1586/1600/hyperlink.0.png&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/1852/1586/200/hyperlink.png&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;This gives me the segue to work on Equinox DS &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=146423&quot;&gt;source editors&lt;/a&gt;. If you find anything missing regarding hyperlinks, please comment on this &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=79794&quot;&gt;bug&lt;/a&gt;. Anyone have other PDE issues they want to address?&lt;/div&gt;</description>
+	<pubDate>Sun, 11 Jun 2006 21:02:31 +0000</pubDate>
+	<dc:creator>zx</dc:creator>
+</item>
+<item>
+	<title>Kim Horne: Macbook vs. Powerbook: Preamble</title>
+	<guid>tag:blogger.com,1999:blog-11522912.post-114998919721899180</guid>
+	<link>http://eclipse.pookzilla.net/2006/06/macbook-vs-powerbook-preamble.php</link>
+	<description>&lt;div&gt;It was just last February that I took a deep breath and chugged back a glass of Steve Jobs kool-aid and despite some initial hiccups with the hardware it's been bliss ever since.  For the most part, that is.  While the Powerbook user experience was fantastic the performance of Eclipse on OS X was a mixed bag.  When compared with the ThinkPad I had been doing my Eclipse development on up until that point the build speed was better but the UI responsiveness was painful.  I would control-click on an item and wait seconds for a context menu to appear.  It would occasionally take so long that I would think that I had failed to click the button at all.  So for almost a year I alternated between love and rage when using Eclipse on OS X.  This state changed somewhat just after this past Christmas, however, as I had to once again do some work on Windows.  When faced with development on OS X after a session on my smoking fast Windows machine I cringed.  On windows things just &quot;popped&quot;.  Even the improved build speed that I had felt when I upgraded to the Powerbook was shattered.  Suddenly my feelings toward Eclipse Mac development had soured.&lt;br /&gt;
+&lt;br /&gt;When the MacBooks were announced I was excited.  Surely the performance numbers being touted in relation to it's predecessor would translate into big gains for Eclipse.  But I was hesitant.  No, that isn't right at all.  I just couldn't bring myself to buy my third laptop in as many years.&lt;br /&gt;
+&lt;br /&gt;All that changed last week.  In a moment of weakness I ordered myself a MacBook.  It's been sitting on my lap now for several days and I've just now had a chance to really see how Eclipse behaves on it.&lt;br /&gt;
+&lt;br /&gt;&amp;gt;Wow.&amp;lt;br&amp;gt;&amp;lt;br/&amp;gt;Wow.&lt;br /&gt;
+&lt;br /&gt;It's... perky.  Things happen!  There is no waiting!  Excited by my initial impression I went and downloaded the full Callisto release and proceeded to pull down the platform-ui source and test modules from CVS.  With my Powerbook I would pull down a fresh source tree and then go off to the coffee room.  Building from a clean state took a good 7-10 minutes and sitting around watching it was simply too painful.  A refreshing caffeinated beverage and perhaps a trip to the loo later I would return to find that it had finished its work.&lt;br /&gt;
+&lt;br /&gt;On the Macbook this same operation took roughly a minute.  I think I may be drinking less coffee in the future.&lt;br /&gt;
+&lt;br /&gt;I'm going to set up the &lt;a href=&quot;http://dev.eclipse.org/viewcvs/index.cgi/%7Echeckout%7E/org.eclipse.test.performance/doc/Performance%20Tests%20HowTo.html&quot;&gt;performance tests&lt;/a&gt; next week and run them on the Macbook and Powerbook to see how they compare.  If I were a gambler I'd say the Powerbook is going to be spanked thoroughly.&lt;/div&gt;</description>
+	<pubDate>Sun, 11 Jun 2006 01:26:37 +0000</pubDate>
+	<dc:creator>pookzilla</dc:creator>
+</item>
+<item>
+	<title>Steve Northover: We care ...</title>
+	<guid>tag:blogger.com,1999:blog-29517835.post-114994893168563160</guid>
+	<link>http://inside-swt.blogspot.com/2006/06/we-care.html</link>
+	<description>&lt;div&gt;One of the things that's great about open source is the interaction that you have with the community. I've worked on both closed and open source systems and let me tell you, open source is just way more fun.  There is no substitute for the level of interaction, quick turn around and raw power in working this way. Give me a guy ranting at me over some processed, filtered and predigested bug list any day!&lt;br /&gt;
+&lt;br /&gt;We helped this guy out yesterday with a &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=145662&quot;&gt;bizarre problem &lt;/a&gt;that didn't happen on my machine. This &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=67384&quot;&gt;bug report&lt;/a&gt; resembles a blog with people who &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=67384#c136&quot;&gt;hate my guts&lt;/a&gt;. Interesting, that all we are doing is writing code, solving problems and trying to ship, just like everyone else. But hey, all it takes is &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=67384#c147&quot;&gt;one comment &lt;/a&gt;like this to make it all worthwhile.&lt;br /&gt;
+&lt;br /&gt;Steve&lt;/div&gt;</description>
+	<pubDate>Sat, 10 Jun 2006 15:19:39 +0000</pubDate>
+	<dc:creator>Steve</dc:creator>
+</item>
+<item>
+	<title>Wassim Melhem: Poland 4 - Ecuador 0</title>
+	<guid>tag:blogger.com,1999:blog-25282541.post-114995022617609306</guid>
+	<link>http://wassim-melhem.blogspot.com/2006/06/poland-4-ecuador-0.html</link>
+	<description>&lt;div&gt;Poland may have suffered a &lt;a href=&quot;http://edition.cnn.com/2006/SPORT/football/06/09/world.upset/index.html&quot;&gt;devastating 0-2 loss&lt;/a&gt; to Ecuador today, but this score is reversed and doubled when it comes to new Eclipse 3.3 features.&lt;br /&gt;
+&lt;br /&gt;In the inaugural 3.3 integration build scheduled for next week, Team Poland (&lt;a href=&quot;http://mea-bloga.blogspot.com&quot;&gt;Chris Aniszczyk&lt;/a&gt;, Janek Lasocki-Biczysko and Mike Pawlowski) will contribute 4 new features, all under the &lt;em&gt;Ease of Use&lt;/em&gt; theme:&lt;br /&gt;
+&lt;br /&gt;1. &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=79794&quot;&gt;Hyperlinking&lt;/a&gt;
+&lt;br /&gt;2. &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=141640&quot;&gt;Field assists &lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/6458/2639/1600/field_assist.png&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/6458/2639/320/field_assist.png&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;3. &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=95413&quot;&gt;Code folding&lt;/a&gt;
+&lt;br /&gt;4. &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=138520&quot;&gt;Source formatting&lt;/a&gt;
+&lt;/div&gt;</description>
+	<pubDate>Sat, 10 Jun 2006 14:37:06 +0000</pubDate>
+	<dc:creator>Wassim Melhem</dc:creator>
+</item>
+<item>
+	<title>Gunnar Wagenknecht: Download Eclipse with BitTorrent</title>
+	<guid>http://wagenknecht.org/blog/archives/2006/06/download-eclipse-with-bittorrent.html</guid>
+	<link>http://wagenknecht.org/blog/archives/2006/06/download-eclipse-with-bittorrent.html</link>
+	<description>&lt;p&gt;Some days ago someone asked me if there are BitTorrent downloads for Eclipse. &lt;em&gt;Yes there are!&lt;/em&gt; And it&amp;#8217;s so easy. &lt;img src=&quot;http://wagenknecht.org/blog/wp-includes/images/smilies/icon_smile.gif&quot; alt=&quot;:)&quot; class=&quot;wp-smiley&quot; /&gt;  In fact, I often use BitTorrent because the downloads are more reliable and the speed is better.&lt;a id=&quot;more-92&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Install BitTorrent Client&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The first thing you need is a BitTorrent Client. I use &lt;a title=&quot;Azureus BitTorrent Client&quot; target=&quot;_blank&quot; href=&quot;http://azureus.sourceforge.net/&quot;&gt;Azureus &lt;/a&gt;because it&amp;#8217;s Java and based on Eclipse technology.  &lt;img src=&quot;http://wagenknecht.org/blog/wp-includes/images/smilies/icon_mrgreen.gif&quot; alt=&quot;:mrgreen:&quot; class=&quot;wp-smiley&quot; /&gt;  So &lt;a title=&quot;Download Azureus&quot; target=&quot;_blank&quot; href=&quot;http://azureus.sourceforge.net/download.php&quot;&gt;download&lt;/a&gt; Azureus for your platform. It comes with a nice installer. Just executed the downloaded file to start the Azureus Setup.&lt;/p&gt;
+&lt;p&gt;The Azureus Setup is very simple. It offers to start Azureus after successful installation. I suggest to do this because upon the first start of Azureus it opens a nice wizard, which guides you quickly through the configuration. Once this is done you can close Azureus again.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Start Downloading&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Go to the &lt;a target=&quot;_blank&quot; title=&quot;Eclipse Downloads&quot; href=&quot;http://www.eclipse.org/downloads/&quot;&gt;Eclipse Downloads&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;&lt;a title=&quot;Download Eclipse Torrents Link&quot; class=&quot;imagelink&quot; href=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/download-torrents-link.png&quot;&gt;&lt;img alt=&quot;Download Eclipse Torrents Link&quot; id=&quot;image93&quot; title=&quot;Download Eclipse Torrents Link&quot; src=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/download-torrents-link.thumbnail.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Click on the link &amp;#8220;[torrents]&amp;#8221; which will bring you right to the torrents. The torrents are created for every release and hosted at ibiblio.org.&lt;/p&gt;
+&lt;p&gt;&lt;a title=&quot;Eclipse Torrents at ibiblio.org&quot; class=&quot;imagelink&quot; href=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/ibiblio-page.png&quot;&gt;&lt;img alt=&quot;Eclipse Torrents at ibiblio.org&quot; id=&quot;image94&quot; title=&quot;Eclipse Torrents at ibiblio.org&quot; src=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/ibiblio-page.thumbnail.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a title=&quot;Download Torrent&quot; class=&quot;imagelink&quot; href=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/ibiblio-torrent-download.png&quot;&gt;&lt;img alt=&quot;Download Torrent&quot; id=&quot;image95&quot; title=&quot;Download Torrent&quot; src=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/ibiblio-torrent-download.thumbnail.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After you click on the Download torrent link you browser offers you to save or to open the torrent directly. Azureus associated itself with torrents files upon this. So the only thing I had to do is open the torrent directly and Azureus came up with this nice dialog.&lt;/p&gt;
+&lt;p&gt;&lt;a title=&quot;Open Torrent&quot; class=&quot;imagelink&quot; href=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/azureus-open-torrent.png&quot;&gt;&lt;img alt=&quot;Open Torrent&quot; id=&quot;image96&quot; title=&quot;Open Torrent&quot; src=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/azureus-open-torrent.thumbnail.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There you can select the destination and the download will start after you click on OK.&lt;/p&gt;
+&lt;p&gt;&lt;a title=&quot;Downloading the Torrent&quot; class=&quot;imagelink&quot; href=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/torrent-downloading.png&quot;&gt;&lt;img alt=&quot;Downloading the Torrent&quot; id=&quot;image97&quot; src=&quot;http://wagenknecht.org/blog/wp-content/uploads/2006/06/torrent-downloading.thumbnail.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;</description>
+	<pubDate>Sat, 10 Jun 2006 00:40:31 +0000</pubDate>
+	<dc:creator>Gunnar Wagenknecht</dc:creator>
+</item>
+<item>
+	<title>Ian Skerrett: Eclipse pops up in communication platforms</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114987597685744748</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=131</link>
+	<description>One of the things that I really enjoy about my job is that I continue to be surprised/impressed by where Eclipse is being used. For example, this morning on CNET I learn 'Cisco buys communication software development tools'.  This for obvious reasons caught my eye, so I looked into the article.   Sure enough, one of the companies Cisco bought, Audium, has built their IVR tools suite on top of</description>
+	<pubDate>Fri, 09 Jun 2006 18:00:52 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Using Statistics</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114986903380143834</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/using-statistics.html</link>
+	<description>&lt;div&gt;Bjorn spotted &lt;a href=&quot;http://www.slowleadership.org/2006/06/getting-your-numbers-right_07.html&quot;&gt;this post&lt;/a&gt; that agrees with us on the important, but not exclusive, role of quantitative measurement in decision making.  I recently reminded users of our &lt;a href=&quot;http://dash.eclipse.org/dash/commits/web-app/&quot;&gt;commits-explorer&lt;/a&gt; scripts to treat its numbers as &lt;a href=&quot;http://eclipse-projects.blogspot.com/2006/05/how-much-for-this-pile-of-numbers.html&quot;&gt;clues, not conclusions&lt;/a&gt;. This business blog post says the same thing this way:&lt;br /&gt;
+&lt;blockquote&gt;Wise managers don't &lt;em&gt;reject&lt;/em&gt; quantifiable data, but they don't trust it either. They use it to spark questions and suggest areas for inquiry.&lt;br /&gt;
+&lt;/blockquote&gt;Interested? One more click in the above post will take you to this Harvard update offering &lt;a href=&quot;http://hbswk.hbs.edu/item.jhtml?id=5352&amp;amp;t=finance&quot;&gt;five tips&lt;/a&gt; for using statistics.&lt;/div&gt;</description>
+	<pubDate>Fri, 09 Jun 2006 16:03:55 +0000</pubDate>
+	<dc:creator>Ward Cunningham</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (6 of 6): Testing</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928948970524932</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-6-of-6-testing.html</link>
+	<description>&lt;div&gt;When the Eclipse Planning Council first announced that the ten projects were going to do a simultaneous release, almost all the projects wanted to be involved. The PR value in being part of Callisto was pre-destined to be enormous and everyone wanted to be part of it. On the flip-side, nobody wanted to take time away from their own project to test other projects - after all, each project's schedule was already tight.&lt;br /&gt;
+&lt;br /&gt;Eclipse projects are, by-and-large, fairly high quality because the project teams take the time to test their APIs and their code. But without someone stepping up to the challenge of testing the in-betweens, the Callisto Simultaneous Release was/is bound to uncover bugs in the in-betweens: bugs that do not appear when project X is loaded by itself or project Y is loaded by itself, but do appear when both project X and project Y are active at the same time (&lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=146163&quot;&gt;bug 146163 &lt;/a&gt;is a simple example).&lt;br /&gt;
+&lt;br /&gt;Our somewhat lame solution this year was to provide the &lt;a href=&quot;http://www.eclipse.org/projects/callisto-files/callisto-bug-contest.php&quot;&gt;Callisto Bug Contest&lt;/a&gt; to encourage cross-project testing. The contest has been a partial success, finding bugs that might otherwise have been missed, but we'll need a less haphazard, more complete story for Europa (next year's simultaneous release)...&lt;/div&gt;</description>
+	<pubDate>Fri, 09 Jun 2006 14:22:32 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>EZ Tips and Tricks: Test and Performance Tools: Static Analysis of Your Code</title>
+	<guid>http://www.eclipsezone.com/eclipse/forums/t73873.rhtml</guid>
+	<link>http://www.eclipsezone.com/eclipse/forums/t73873.rhtml</link>
+	<description>Did you know that Eclipse TPTP can perform static analysis of your code? If I have lost you, static analysis is the process of digging through source code looking for patterns and usage that appears to be a bad programming practice.
+
+			194 words.  &lt;a href=&quot;http://www.eclipsezone.com/eclipse/forums/t73873.rhtml&quot;&gt;Read More at EclipseZone&lt;/a&gt;</description>
+	<pubDate>Fri, 09 Jun 2006 04:13:33 +0000</pubDate>
+	<dc:creator>R.J. Lorimer</dc:creator>
+</item>
+<item>
+	<title>Ryan Lowe: RadRails Snares New Committers</title>
+	<guid>http://www.ryanlowe.ca/blog/archives/001544_radrails_snares_new_committers.php</guid>
+	<link>http://www.ryanlowe.ca/blog/archives/001544_radrails_snares_new_committers.php</link>
+	<description>&lt;p&gt;This week I was invited by the &lt;a href=&quot;http://www.radrails.org&quot;&gt;RadRails&lt;/a&gt; guys on &lt;a href=&quot;irc://freenode/radrails&quot;&gt;#radrails&lt;/a&gt; to join their team as a committer and I've gladly accepted.  Thanks guys!  RadRails is a relatively new IDE for the relatively new &lt;a href=&quot;http://www.rubyonrails.org&quot;&gt;Ruby on Rails&lt;/a&gt; web platform.  RadRails is Java software built on the &lt;a href=&quot;http://www.eclipse.org&quot;&gt;Eclipse&lt;/a&gt; Rich Client Platform (RCP).&lt;/p&gt;
+
+&lt;p&gt;I have a stakeholder interest in RadRails because I use it for my Ruby on Rails development.  I like that it works on both Windows and my Mac and has nice Subversion integration, among other things.  The fact that I'm already really familiar with Eclipse doesn't hurt either.  I'm pretty pleased with RadRails but I wanted to see if I could help improve its quality and stability.&lt;/p&gt;
+
+&lt;p&gt;The invitation to be a committer was given after I submitted some &lt;a href=&quot;http://ant.apache.org&quot;&gt;Ant&lt;/a&gt; scripts to build RadRails.  I gained a lot of familiarity with RCP proejct structure and Ant while working on &lt;a href=&quot;http://www.ryanlowe.ca/blog/sourceforge.net/projects/durham&quot;&gt;Durham/AudioMan&lt;/a&gt; and subsequent Eclipse Rich Client Platform projects.  Since the Durham Ant scripts were under the EPL, I just moved them over to RadRails with some changes.&lt;/p&gt;
+
+&lt;p&gt;The Ant scripts could be used by developers but mainly they will be used by a build machine to automate the build process.  Automating the build process is important because it removes a lot of the human error that happens with 'manual' building of packages and it introduces consistency in the build process, both of which ultimately improve the quality of the final product.  Build scripts also ensure that you can go back and built something three versions ago and it'll work just like the original.&lt;/p&gt;
+
+&lt;p&gt;When this is all in place I'll be one happy Software Engineer (B.Eng).&lt;/p&gt;
+
+&lt;p&gt;What else am I up to? I'm still working on &lt;a href=&quot;http://www.fanconcert.com&quot;&gt;fanconcert&lt;/a&gt; and looking for full time work in either &lt;b&gt;Java+Eclipse+RCP&lt;/b&gt; or &lt;b&gt;Ruby+Rails+DHTML&lt;/b&gt;.  If you know of any opportunities in those two areas, especially in Ottawa, you can give me a shout: &lt;b&gt;blog(at)ryanlowe(dot)ca&lt;/b&gt;.&lt;/p&gt;</description>
+	<pubDate>Fri, 09 Jun 2006 04:10:31 +0000</pubDate>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Another Callisto Great Bug iPod winner (RC4)</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114980659473210447</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/another-callisto-great-bug-ipod-winner.html</link>
+	<description>&lt;div&gt;Congratulations to Anton Leherbauer, our &lt;a href=&quot;http://download.eclipse.org/callisto/releases/&quot;&gt;Callisto RC4&lt;/a&gt; &lt;a href=&quot;http://www.eclipse.org/projects/callisto-files/callisto-bug-contest.php&quot;&gt;Great Bugs contest&lt;/a&gt; iPod winner for &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=142170&quot;&gt;&quot;Annotations are not repainted upon state changes&quot;&lt;/a&gt;. There are just a few more release candidates to go and thus only a few more chances at an iPod... Of course I know that&lt;span&gt; &lt;span&gt;you&lt;/span&gt;
+&lt;/span&gt; are not motivated by prizes - you are helping test Callisto because you simply want Callisto to be as great as it can be... So then tell your friends to submit those great bugs and be entered for the iPod and Eclipse-brand mountain bike drawings.&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 22:43:14 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Donald Smith: What the hell is Eclipse exactly anyways?</title>
+	<guid>tag:blogger.com,1999:blog-20309733.post-114979044898550692</guid>
+	<link>http://eclipse-ecosystem.blogspot.com/2006/06/what-hell-is-eclipse-exactly-anyways.html</link>
+	<description>&lt;div&gt;
+&lt;a href=&quot;http://milinkovich.blogspot.com/&quot;&gt;Mike Milinkovich&lt;/a&gt; nails the best overall explanation of &quot;what is Eclipse&quot; I have ever seen or head in &lt;a href=&quot;http://www2.sys-con.com/webinararchive.cfm?registered=on&amp;amp;pid=instantiations&quot;&gt;this Sys-Con video&lt;/a&gt; published last week.   You owe it to yourself to watch this video.  At the very least watch the first few minutes, but definitely the whole thing when you have the time.&lt;br /&gt;
+&lt;br /&gt;- Don&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 18:45:16 +0000</pubDate>
+	<dc:creator>Donald Smith</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (5 of 6): Common Interface</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928914581528694</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-5-of-6-common.html</link>
+	<description>&lt;div&gt;The Callisto Simultaneous Release started with the goal of simultaneous releasing ten separate Eclipse projects. Just that. Nothing more. A same day, same hour release of ten separate projects. The project teams also had the sub-goal of solving the worst UI problems: those &quot;three menu items with the same name&quot; and &quot;loading project X causes project Y to stop working&quot;-type issues that cause severe embarrasment.&lt;br /&gt;
+&lt;br /&gt;Although &lt;span&gt;simultaneous release&lt;/span&gt; is what the projects said, the Eclipse community heard &lt;span&gt;integrated product&lt;/span&gt;. That's a valid desire, but a much harder problem - we'll probably attempt that in one of our future yearly moon-of-Jupiter simultaneous releases. Until then, those of us on the technical side have been carefully trying to reset expectations to reality: a simultaneous release of ten projects.&lt;br /&gt;
+&lt;br /&gt;Our lesson here is to be careful what one says because people will repeat what they want to hear, not what was actually said. Consider this non-Eclipse example:&lt;br /&gt;
+&lt;ol&gt;   &lt;li&gt;news.scotsman.com posts &lt;a href=&quot;http://news.scotsman.com/international.cfm?id=759642006&quot;&gt;an article&lt;/a&gt; saying that pirated &quot;Davinci Code&quot; DVDs were low quality and that the pirates promised a better rip soon.&lt;/li&gt;   &lt;li&gt;slashdot.org readers were among the masses who didn't like the movie (n.b. I did not see the movie) &lt;a href=&quot;http://slashdot.org/article.pl?sid=06/05/25/0028253&quot;&gt;read this&lt;/a&gt; as &quot;pirates promised a better edit of the movie&quot;.&lt;br /&gt;  &lt;/li&gt; &lt;/ol&gt; Say one thing (&quot;bad rip&quot; or &quot;simultaneous release&quot;) but your audience, already primed for something else, hears what they want (&quot;bad movie&quot; or &quot;integrated product&quot;).&lt;br /&gt;
+&lt;br /&gt;Our corollary lesson is to continuously correct and level set expectations - Callisto is about a simultanous, same-day, same-hour, release of ten major Eclipse projects. Period.&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 15:47:01 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Mike Milinkovich: Maturity Models for Open Source Adoption</title>
+	<guid>tag:blogger.com,1999:blog-12250052.post-114951972361499970</guid>
+	<link>http://feeds.feedburner.com/LifeAtEclipse?m=40</link>
+	<description>I've been meaning to blog on this for what feels like forever. I'm glad to finally have a moment to write this up.
+
+Back on April 21st, I was one of a number of presenters at an event here in Ottawa put together by the Ottawa Centre for Research and Innovation (OCRI) on Competing With Open Source Software. By far and away, my favourite presentation was from Peter Carbone, the Acting CTO of Nortel.</description>
+	<pubDate>Thu, 08 Jun 2006 15:36:11 +0000</pubDate>
+	<dc:creator>Mike Milinkovich</dc:creator>
+</item>
+<item>
+	<title>Ian Skerrett: The Callisto Effect</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114978018399907083</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=132</link>
+	<description>&lt;div&gt;A key reason for undertaking the Callisto release was to make it easier for individuals and organizations, like ISVs and enterprises, to adopt and integrate different Eclipse projects into their applications and projects. Therefore, we would like to highlight what people are doing with the projects that are included in Callisto.&lt;br /&gt;
+&lt;br /&gt;Donald and I have started the &lt;a href=&quot;http://www.eclipse.org/callisto/callistoeffect.php&quot;&gt;Callisto Effect page&lt;/a&gt;, a list of quotes from different organizations. We are just getting started, so if you have plans to use the projects coming out in Callisto, send an e-mail to &lt;a href=&quot;mailto:callisto.feedback@eclipse.org&quot;&gt;callisto.feedback@eclipse.org&lt;/a&gt; and we will post it.&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 15:23:04 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>Denis Roy: Back to Exquisitus</title>
+	<guid>tag:blogger.com,1999:blog-15140216.post-114977569656601012</guid>
+	<link>http://eclipsewebmaster.blogspot.com/2006/06/back-to-exquisitus.html</link>
+	<description>&lt;div&gt;Back in November, I blogged about how we &lt;a href=&quot;http://eclipsewebmaster.blogspot.com/2005/11/one-step-further-from-exquisitus.html&quot;&gt;removed the password protection&lt;/a&gt; from the &lt;a href=&quot;http://www.eclipse.org/newsportal/&quot;&gt;web-based News Portal&lt;/a&gt; at eclipse.org. I wanted to make it easier for everyone to read and participate on the newsgroups. Well, the password is back. Actually, I'm surprised we managed to allow wide-open, passwordless, authenticationless and image-verificationless write access to our newsgroups for so long without getting bombarded with SPAM.&lt;br /&gt;
+&lt;br /&gt;The eclipse.dsdp.mtj and eclipse.newcomers groups got heavily spammed this week, so we had no real choice but to re-implement it. For those of you using the Portal because your firewall doesn't allow you to use the NNTP server directly, have you tried connecting to news.eclipse.org directly on port 80?&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/3725/1392/1600/thunderbird.jpg&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/3725/1392/400/thunderbird.jpg&quot; /&gt;
+&lt;/a&gt;
+&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 14:10:37 +0000</pubDate>
+	<dc:creator>Denis Roy</dc:creator>
+</item>
+<item>
+	<title>Eugene Kuleshov: Instrumenting Eclipse RCP applications with ASM.</title>
+	<guid>http://jroller.com/page/eu?entry=instrumenting_eclipse_rcp_applications_with</guid>
+	<link>http://jroller.com/page/eu?entry=instrumenting_eclipse_rcp_applications_with</link>
+	<description>ONJava.com just published article by Riccardo Govoni &quot;&lt;a href=&quot;http://www.onjava.com/lpt/a/6620&quot;&gt;Achieving Inversion of Control with Eclipse RCP&lt;/a&gt;&quot;:
+
+&lt;blockquote&gt;
+...article will describe a simple way to introduce support for Dependency Injection into an Eclipse RCP application. To avoid polluting the Eclipse platform infrastructure and to transparently add the IoC framework on top of the RCP, we will use a combination of runtime bytecode manipulation techniques (using the ObjectWeb ASM library), Java classloading agents (using the java.lang.instrument package), and Java annotations.
+&lt;/blockquote&gt;
+
+It is really interesting to see how bytecode manipulation is being used in &lt;a href=&quot;http://asm.objectweb.org/users.html&quot;&gt;various Java tools&lt;/a&gt;. If your project happens to use &lt;a href=&quot;http://asm.objectweb.org/&quot;&gt;ASM&lt;/a&gt; bytecode manipulation framework and missing from &lt;a href=&quot;http://asm.objectweb.org/users.html&quot;&gt;ASM users page&lt;/a&gt; please give us a shout.</description>
+	<pubDate>Thu, 08 Jun 2006 09:30:00 +0000</pubDate>
+	<dc:creator>Eugene Kuleshov</dc:creator>
+</item>
+<item>
+	<title>Wayne Beaton: A new Sudoku puzzle generator</title>
+	<guid>tag:blogger.com,1999:blog-16553373.post-114973501759521110</guid>
+	<link>http://wbeaton.blogspot.com/2006/06/new-sudoku-puzzle-generator.html</link>
+	<description>&lt;div&gt;I've had to set aside the Sudoku stuff for a couple of days while I did some real work. But, George Koch has been keeping busy. George sent me a Sudoku puzzle builder that he's been working on; he'd managed to make it work with my application. His algorithm is better than mine: where mine is pretty simple and doesn't do key things like guarantee that a generated puzzle has a unique solution, George's does. You can also specify difficulty of the generated puzzle. It's a great addition to the application.&lt;br /&gt;
+&lt;br /&gt;I had already done most of the work, but I spent a few minutes making it possible for the user to select the puzzle generator they want to use when they create a new puzzle. It uses the extension-point mechanism to find puzzle generators, so you just have to drop 'generator' plug-ins into the application and everything just works. I've even set it up to handle dynamically installed plug-ins; you don't need to restart to make use of additions. This will come in very handy when I hook in the update mechanism.&lt;br /&gt;
+&lt;br /&gt;I need to make sure that the legal aspects are properly managed before I commit the code into the repository and share it. I'll let you know when that happens so you can make use of a good puzzle generator (rather than the junk I built).&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 02:50:17 +0000</pubDate>
+	<dc:creator>Wayne</dc:creator>
+</item>
+<item>
+	<title>Ian Skerrett: How big is Callisto?</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114972811377370461</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=133</link>
+	<description>&lt;div&gt;I am starting to prepare the press release of Callisto. By all accounts Callisto is going to be a big release and a great accomplishment for the Eclipse community. Some of the stats I have collected include:&lt;br /&gt;
+&lt;ul&gt;   &lt;li&gt;Number of commiters: 262&lt;/li&gt;   &lt;li&gt;Number of projects: 10&lt;br /&gt; &lt;/li&gt;   &lt;li&gt;Number of organizations contributing commiters: 15   (this does not include individuals unaffiliated with an organization)&lt;/li&gt;   &lt;li&gt;Number of countries where commiters reside: 10   &lt;span&gt;(&lt;/span&gt;
+Canada
+&lt;span&gt;, US, &lt;/span&gt;
+Finland
+&lt;span&gt;, &lt;/span&gt;
+Turkey
+&lt;span&gt;, &lt;/span&gt;
+China
+&lt;span&gt;,     &lt;/span&gt;
+France
+&lt;span&gt;, &lt;/span&gt;
+Russia
+&lt;span&gt;, &lt;/span&gt;
+Czech
+&lt;span&gt;, &lt;/span&gt;
+India
+&lt;span&gt;, &lt;/span&gt;
+
+Switzerland)   ** Please let me know if I have missed a country.  
+   &lt;/li&gt;   &lt;li&gt;72,000 bugzilla entries&lt;br /&gt; &lt;/li&gt;   &lt;li&gt;6 million LOC   (This is actually higher since I don't have stats from DTP, EMF, VE &amp;amp; GEF.)&lt;/li&gt; &lt;/ul&gt; This seems like a big deal. The question is can we claim that 'Callisto is the largest single release from an open source project.' Based on the lines of code, I can't seem to find a bigger open source project. Linux seems to be about 3-5 million, depending on the sources.&lt;br /&gt;
+&lt;br /&gt;So have I missed something or is Callisto really that big?&lt;/div&gt;</description>
+	<pubDate>Thu, 08 Jun 2006 00:55:14 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (4 of 6): Mirror Sites</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928879179557793</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-4-of-6-mirror-sites.html</link>
+	<description>&lt;div&gt;The Eclipse community helps the Eclipse community by off loading some of the bandwidth through mirror sites. These mirrors are volunteers with limited bandwidth and disk space budgets for their altruism. Thus the Callisto project planning needed to consider their issues as well as the project-local ones.&lt;br /&gt;
+&lt;br /&gt;For example, early in the Callisto planning process, we considered creating zip distributions of different subsets of the ten Callisto projects. In the very worst case, this would be 1,023 different subsets (all 10, then 10 x 9 projects, then 90 x 8 projects, ...) times seventeen &lt;a href=&quot;http://www.eclipse.org/eclipse/development/eclipse_project_plan_3_2.html&quot;&gt;different OS/CPU combinations&lt;/a&gt; = more than 17,000 different zip files. If each zip file is between 80 and 200 Mbs, we're talking about 1.7Tbs of files that we would be asking our mirrors to handle... We also considered a sparse-matrix version where the &quot;most popular combinations&quot; would be built as zips, but it was still deemed to be too burdensome on the mirrors so we returned to the update manager solution.&lt;br /&gt;
+&lt;br /&gt;Another problem we had with our mirrors was that a corrupt eclipse.org server seeded a bogus copy of an early Callisto release candidate to the mirrors. It took the teams almost two weeks to solve this problem and during that period we were all losing faith in the mirrors (when it turned out not to be the mirrors fault at all).&lt;br /&gt;
+&lt;br /&gt;The lesson to learn: distributing a working system is more than just putting the zip file on a server - there is a large infrastructure of people and machines that makes that distribution happen. Those people are part of the project team even if they aren't coders or even directly associated with the project.&lt;/div&gt;</description>
+	<pubDate>Wed, 07 Jun 2006 16:11:02 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Wassim Melhem: Moment of Zen</title>
+	<guid>tag:blogger.com,1999:blog-25282541.post-114964989589989410</guid>
+	<link>http://wassim-melhem.blogspot.com/2006/06/moment-of-zen.html</link>
+	<description>Last March, I presented a full-day hands-on &lt;a href=&quot;https://www.cmpevents.com/SDw6/a.asp?option=G&amp;V=3&amp;amp;id=435672&quot;&gt;tutorial&lt;/a&gt; at SDWest 2006 in Santa Clara, CA. The tutorial showed how to use the Plug-in Development Environment to create a rich client application.&lt;br /&gt;&lt;br /&gt;The attendees, who were new to Eclipse for the most part, got to develop a simple, yet cool, application. Some of the things they learned included menus, commands/keybindings, system tray integration and, of course, &lt;em&gt;stupid view tricks&lt;/em&gt;.   We ended by using the &lt;em&gt;Eclipse Product Export&lt;/em&gt; wizard to create a branded RCP product.&lt;br /&gt;&lt;br /&gt;There was so much joy in the room the moment the attendees saw that their exported product had a custom native launcher with a custom image and name.  It had just dawned on them that what they worked on all day is not a plug-in that sits on top of the Eclipse workbench.  It was their own standalone custom product.&lt;br /&gt;&lt;br /&gt;If you want to try this at home, PDE now provides a cheatsheet that guides you through the process of creating, defining, testing and exporting a fully-branded rich client application. Custom launcher images included.&lt;br /&gt;&lt;br /&gt;You can access the cheatsheet via &lt;strong&gt;Help &gt; Cheatsheets...&lt;/strong&gt; from the top level menu of the Eclipse workbench.&lt;br /&gt;&lt;br /&gt;&lt;a href=&quot;http://photos1.blogger.com/blogger/6458/2639/1600/cheatsheet.jpg&quot;&gt;&lt;img alt=&quot;cheatsheet&quot; src=&quot;http://photos1.blogger.com/blogger/6458/2639/320/cheatsheet.jpg&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;</description>
+	<pubDate>Wed, 07 Jun 2006 03:10:52 +0000</pubDate>
+	<dc:creator>Wassim Melhem</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (3 of 6): Update Manager</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928789651910572</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-3-of-6-update-manager.html</link>
+	<description>&lt;div&gt;Planning to distribute the Callisto Simultaneous Release using the existing Eclipse Update Manager seemed like an easy win: each project could contribute features without requiring a centralized build system. It was not an easy win.&lt;br /&gt;
+&lt;br /&gt;First of all, the update manager had never been tested with this much code. Second, the update manager was never designed to handle this &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=132450&quot;&gt;level of&lt;/a&gt; &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=144015&quot;&gt;inter-dependency&lt;/a&gt; &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=141454&quot;&gt;complexity&lt;/a&gt;. And third, the update manager was not designed for multi-project cooperation in a single update site - the single site.xml file needs to be coordinated amongst all ten projects -- perhaps it would have been nice to have &quot;include&quot; directives in the site.xml so that each project could create its own site.xml indirectly referenced from a master site.xml ... but it is always easy to design/criticize in hindsight.&lt;br /&gt;
+&lt;br /&gt;The point here is not to complain about the update manager, but rather to describe our third lesson learned: that writing code is only part of the story. Or to say it another way: delivering a working system is more than just writing code - in this case, delivering a working system is also about making sure the delivery mechanism works. Thanks to all the Callisto team members who did exactly that: worked hard to fix the problems and make sure the chosen delivery mechanism works. You can try it out &lt;a href=&quot;http://www.eclipse.org/callisto/discovery.php&quot;&gt;here&lt;/a&gt;.&lt;/div&gt;</description>
+	<pubDate>Tue, 06 Jun 2006 16:11:05 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Denis Roy: Eclipse CVS snapshots now available</title>
+	<guid>tag:blogger.com,1999:blog-15140216.post-114960583446843923</guid>
+	<link>http://eclipsewebmaster.blogspot.com/2006/06/eclipse-cvs-snapshots-now-available.html</link>
+	<description>&lt;div&gt;We've had a couple of requests from folks who want to download entire CVS snapshots for analysis.  We've made them available here: &lt;a href=&quot;http://archive.eclipse.org/arch/&quot;&gt;http://archive.eclipse.org/arch/&lt;/a&gt;
+&lt;br /&gt;
+&lt;br /&gt;These snapshots are generated weekly, and the Eclipse project alone will yield you a 3 GB+ download, and require about 6 GB of disk space once uncompressed.  This archive contains every version, revision, tag, branch and comment from every commit since the beginning of Eclipse time.&lt;br /&gt;
+&lt;br /&gt;Of course, the uncompressed result is a CVS structure of RCS-encoded files (file.ext,v) that is usable by a cvs server, or the CVS command-line utility.  If you need to analyze the Eclipse CVS repositories, this is the best way to go about it (as opposed to banging on our &lt;a href=&quot;http://dev.eclipse.org/viewcvs&quot;&gt;ViewCVS interface&lt;/a&gt;! Don't do it! Just don't!)&lt;br /&gt;
+&lt;br /&gt;We'll also make the raw Bugzilla databases available at some point, as folks frequently request them (and also hammer on Bugzilla one bug at a time!  Don't do it! Just don't).  Our concern here is to remove e-mail addresses and user passwords from the tables before zipping them up.&lt;/div&gt;</description>
+	<pubDate>Tue, 06 Jun 2006 15:00:30 +0000</pubDate>
+	<dc:creator>Denis Roy</dc:creator>
+</item>
+<item>
+	<title>Donald Smith: Eclipse Bounties at OpenLogic</title>
+	<guid>tag:blogger.com,1999:blog-20309733.post-114960547838782514</guid>
+	<link>http://eclipse-ecosystem.blogspot.com/2006/06/eclipse-bounties-at-openlogic.html</link>
+	<description>&lt;div&gt;
+&lt;a href=&quot;http://www.openlogic.com/&quot;&gt;OpenLogic&lt;/a&gt; is &lt;a href=&quot;http://www.openlogic.com/community/join.php&quot;&gt;looking for&lt;/a&gt; Eclipse gurus (I would presume anyone well qualified would be good, but their &lt;a href=&quot;http://www.openlogic.com/community/faq.php&quot;&gt;FAQ&lt;/a&gt; hints at a strong bias for committers) to earn bounties for &quot;resolving incidents&quot;.&lt;br /&gt;
+&lt;br /&gt;The topic was thrashed out last month on &lt;a href=&quot;http://developers.slashdot.org/article.pl?sid=06/05/08/1750256&quot;&gt;Slashdot&lt;/a&gt;.  OpenLogic opted for a &quot;points&quot; program under the assumption that bounty hunters would rather have an option for gifts over cash because &quot;significant others&quot; might try to divert the cash to the kids braces rather than for an XBox.&lt;br /&gt;
+&lt;br /&gt;Ok, so this isn't the same bounty mechanism and level of &quot;fun-ness&quot; that I think &lt;a href=&quot;http://mea-bloga.blogspot.com/2006/05/eclipse-bounties_114867603433729896.html&quot;&gt;Zx was looking for&lt;/a&gt;, but it still an interesting business model with interesting implications to open source projects.&lt;br /&gt;
+&lt;br /&gt;What are your thoughts on OpenLogic's approach?&lt;br /&gt;
+&lt;br /&gt;  - Don&lt;/div&gt;</description>
+	<pubDate>Tue, 06 Jun 2006 14:51:18 +0000</pubDate>
+	<dc:creator>Donald Smith</dc:creator>
+</item>
+<item>
+	<title>EZ Tips and Tricks: View Organization With the Keyboard</title>
+	<guid>http://www.eclipsezone.com/eclipse/forums/t73595.rhtml</guid>
+	<link>http://www.eclipsezone.com/eclipse/forums/t73595.rhtml</link>
+	<description>If you're like me, you like to avoid lifting your hands off the keyboard. I despise having to reach way over to the mouse (crossing the desert tundra that is my desk) so I can perform tasks such as window organization.
+
+			344 words.  &lt;a href=&quot;http://www.eclipsezone.com/eclipse/forums/t73595.rhtml&quot;&gt;Read More at EclipseZone&lt;/a&gt;</description>
+	<pubDate>Tue, 06 Jun 2006 01:20:53 +0000</pubDate>
+	<dc:creator>R.J. Lorimer</dc:creator>
+</item>
+<item>
+	<title>Chris Aniszczyk: RSDC 2006 Blogger Party</title>
+	<guid>tag:blogger.com,1999:blog-16647950.post-114952576779698697</guid>
+	<link>http://mea-bloga.blogspot.com/2006/06/rsdc-2006-blogger-party_114952576779698697.html</link>
+	<description>&lt;div&gt;I finished my morning &lt;a href=&quot;http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.ecf/tutorials/RSDC%202006/?cvsroot=Technology_Project&quot;&gt;presentation&lt;/a&gt; today about ECF and got some great feedback. It seems &lt;a href=&quot;http://www.eclipse.org/ecf&quot;&gt;ECF&lt;/a&gt; may have a new recruit to implement rudimentary shared debugging within Eclipse (yay). More importantly, I'm a sucker for free drinks. There will be a blogger meetup at the hotel bar, Tuesday @ 6-8pm.  Thanks to &lt;a href=&quot;http://www.redmonk.com/sogrady/&quot;&gt;Stephen O' Grady&lt;/a&gt; for pointing this out, because free booze is awesome ;)&lt;/div&gt;</description>
+	<pubDate>Mon, 05 Jun 2006 18:52:44 +0000</pubDate>
+	<dc:creator>zx</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (2 of 6): Distributed Control</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928703352139179</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-2-of-6-distributed.html</link>
+	<description>&lt;div&gt;Each Eclipse project is a separate entity with separate leadership and separate schedules. The projects are grouped under top-level projects (PMCs) who provide leadership in a given technical area. The projects and top-level projects follow certain Eclipse-wide policies and rules, but overall the projects are independent.&lt;br /&gt;
+&lt;br /&gt;A simultaneous release (e.g., Callisto) requires coordinated schedules. The ten Callisto projects each had to change their initial project schedules a bit so that Callisto as a whole could work. For example: changing the length of iterations and milestones to a common six week schedule; working towards a common ramp-down process of shorter and shorter release candidates; and altering the dates of mid-year releases.&lt;br /&gt;
+&lt;br /&gt;We tried to keep the set of &lt;span&gt;required changes to participate in Callisto&lt;/span&gt; as small as possible, but the lesson I learned is that I needed to make the business case for cooperation more strongly than I thought.&lt;br /&gt;
+&lt;br /&gt;Our experiment with Callisto this year has been positive; to quote one of the project leads:&lt;br /&gt;
+&lt;blockquote&gt;&quot;With Callisto, it has really brought [our project] into the fold which goes a long way towards improving the quality of [our project] and towards building our community&quot;&lt;/blockquote&gt;Next year's simultaneous release (Europa) will probably require a little more schedule and process synchronization from the participating projects, especially in the end game, but we will work hard to keep it minimal. And we will attempt to mollify concerns by making the requirements clearer, earlier, but overall one always has to relinquish a bit of sovereignty in return for participating in any joint effort.&lt;/div&gt;</description>
+	<pubDate>Mon, 05 Jun 2006 17:56:52 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Matt Conway: Auto generating eclipse user libraries</title>
+	<guid>http://simplygenius.com/geekblog/2006/06/05/1149529297155.html</guid>
+	<link>http://simplygenius.com/geekblog/2006/06/05/1149529297155.html</link>
+	<description>Our build system at work is a little archaic, but there just isn't any time to rewrite it with anything more modern.  As a result, I have to do some elbow twisting to get eclipse running smoothly with it.  One of these contortions has to  do with organizing the third party libraries we depend on.&lt;p class=&quot;paragraph&quot;&gt;I start off with a directory called ThirdParty, under which I have a top level directory for each third party lib we use, e.g. commons-logging.  Each third party directory will then have a sub-directory for each version we use, under which will be the jars for that lib plus a src.zip and docs.zip which contain the src and javadocs for use in eclipse.  I find it better to keep them as archive files as it makes checkouts from source control a lot quicker, and I only ever browse their contents from within eclipse, which has no problem doing so.  The nice thing about using the version number directories is that then the ThirdParty tree can be excluded from tagging/branching/etc.  Since we never delete from ThirdParty, and the build files which are versioned have the right version number directory they depend on, the sytem as whole ends up acting versioned.&lt;p class=&quot;paragraph&quot;&gt;e.g.
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;ThirdParty&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;commons-logging&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;1.0.0&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;commons-logging.jar&lt;/li&gt;
+&lt;li&gt;commons-logging-api.jar&lt;/li&gt;
+&lt;li&gt;src.zip&lt;/li&gt;
+&lt;li&gt;docs.zip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li&gt;1.0.4&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;commons-logging.jar&lt;/li&gt;
+&lt;li&gt;commons-logging-api.jar&lt;/li&gt;
+&lt;li&gt;src.zip&lt;/li&gt;
+&lt;li&gt;docs.zip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;li&gt;commons-lang&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;2.1&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;commons-lang-2.1.jar&lt;/li&gt;
+&lt;li&gt;src.zip&lt;/li&gt;
+&lt;li&gt;docs.zip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;li&gt;foo-bar&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;3.4&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;foo-bar.jar&lt;/li&gt;
+&lt;li&gt;src.zip&lt;/li&gt;
+&lt;li&gt;docs.zip&lt;/li&gt;
+&lt;li&gt;deps&lt;/li&gt;
+&lt;ul class=&quot;star&quot;&gt;
+&lt;li&gt;commons-logging.jar&lt;/li&gt;
+&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;If a lib has dependecies on other third parties, I simply stick those dependent libs in a subdir of the version called &quot;deps&quot;.  I really should do some dependency checking like Ivy or Maven, but no current need as this system is more for my eclipse browsing needs than it is for our build system.  Ideally, I would prefer to use Ivy and/or Maven for something like this, but they didn't seem to have a way to specify the src/docs attachments.  Someone please correct me if I'm wrong.&lt;p class=&quot;paragraph&quot;&gt;Once this directory tree is all setup, then I run a bash script (&lt;a href=&quot;http://simplygenius.com/geekblog/files/genlibs.sh&quot;&gt;genlibs.sh&lt;/a&gt; in root of ThirdParty directory) to generate the xml files used by eclipse for defining User libraries, and attach this library to my project so that I can easily browse the src/javadoc for all our thirdparty libs.  Since these files are generated, anyone in the team can also use them - we can't check them in because eclipse has no way of abstracting out paths in the user lib file, so unless everyone has the same path to ThirdParty, it won't work.&lt;p class=&quot;paragraph&quot;&gt;Within eclipse preferences, Java -&amp;#62; Build Path -&amp;#62; User Libraries, import any of the xml files the script generated.  The all.xml file has everything, and after importing one can delete and/or move items around to match the reality of how the libs are used in your project.  Othewrise, an individual library file is also generated for each lib, so feel free to use those instead.&lt;p class=&quot;paragraph&quot;&gt;Hope this helps others out, let me know if you make any improvements.&lt;p class=&quot;paragraph&quot;&gt;</description>
+	<pubDate>Mon, 05 Jun 2006 17:41:37 +0000</pubDate>
+</item>
+<item>
+	<title>Ian Skerrett: SD Times 100 Winners</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114952764051205491</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=134</link>
+	<description>&lt;div&gt;It is nice to see Eclipse is once again recognized in the &lt;a href=&quot;http://www.sdtimes.com/static/sdtimes100-06.html&quot;&gt;SD Times 100&lt;/a&gt;. This year we were named in the Influencers and Rich Client Category and won the Tools and Environments category. Next year I want to win in the Rich Client category too. :-)&lt;br /&gt;
+&lt;br /&gt;It is also great to see a number of companies Eclipse Foundation member companies winning in their category.&lt;/div&gt;</description>
+	<pubDate>Mon, 05 Jun 2006 17:14:01 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>Vasanth Dharmaraj: Eclipse Tip: Content Assist Cycling</title>
+	<guid>http://www.vasanth.in/PermaLink,guid,85210e78-156d-47f6-ae38-56da52f02a63.aspx</guid>
+	<link>http://feeds.feedburner.com/vasantheclipse?m=57</link>
+	<description>&lt;p&gt;
+        &lt;/p&gt;
+        &lt;div align=&quot;center&quot;&gt;
+          &lt;img src=&quot;http://feeds.feedburner.com/content/binary/Eclipse%20Tip%20Customize%20content%20assist%202.png&quot; border=&quot;0&quot; /&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;br /&gt;
+The content assist in Eclipse can be a bit overwhelming at times. With Eclipse 3.2
+there is a new feature called Content Assist Cycling. If &quot;&lt;b&gt;Ctrl + Space&lt;/b&gt;&quot; is
+presses successively Eclipse displays different types of proposals. This can be customized
+at  &lt;b&gt;Window&amp;gt;Preferences&amp;gt;Java&amp;gt;Editor&amp;gt;Content Assist&amp;gt;Advanced&lt;/b&gt;. 
+&lt;br /&gt;&lt;br /&gt;
+Select the proposal types as shown in the first screenshot. Now in Java editor type
+invoke content assist by pressing &quot;&lt;b&gt;Ctrl + Space&lt;/b&gt;&quot; once. All the proposals are
+shown. If you press &quot;&lt;b&gt;Ctrl + Space&lt;/b&gt;&quot; again only the Template Proposals are shown.
+See screenshot below. If you press &quot;&lt;b&gt;Ctrl + Space&lt;/b&gt;&quot; once again you will see the
+Other Java Proposals. 
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://www.vasanth.in/content/binary/Eclipse%20Tip%20Customize%20content%20assist.png&quot; border=&quot;0&quot; /&gt;&lt;br /&gt;&lt;/div&gt;&lt;img width=&quot;0&quot; height=&quot;0&quot; src=&quot;http://www.vasanth.in/aggbug.ashx?id=85210e78-156d-47f6-ae38-56da52f02a63&quot; /&gt;&lt;br /&gt;&lt;hr /&gt;
+Check out my new blog, &lt;a href=&quot;http://www.futrblog.com&quot;&gt;Futr Blog&lt;/a&gt;. The blog is
+about gadgets and software that could impact us in the future.</description>
+	<pubDate>Mon, 05 Jun 2006 10:28:20 +0000</pubDate>
+	<dc:creator>mail@vasanth.in (Vasanth Dharmaraj)</dc:creator>
+</item>
+<item>
+	<title>Vasanth Dharmaraj: Eclipse Tip: Grouping Java Problems</title>
+	<guid>http://www.vasanth.in/PermaLink,guid,a6c316f6-df95-4eb5-8d46-7cafadf64af0.aspx</guid>
+	<link>http://feeds.feedburner.com/vasantheclipse?m=56</link>
+	<description>&lt;p&gt;
+        &lt;/p&gt;
+        &lt;div align=&quot;center&quot;&gt;
+          &lt;img src=&quot;http://www.vasanth.in/content/binary/Eclipse%20Tip%20Grouping%20Java%20Problems.png&quot; border=&quot;0&quot; /&gt;
+          &lt;br /&gt;
+          &lt;br /&gt;
+          &lt;div align=&quot;left&quot;&gt;The problems view in Eclipse has some new features. The interesting
+one is the &quot;Group By&quot; feature. When the group by Java problem type is selected you
+can target and fix a particular set of problems like all &quot;Deprecation&quot; warnings at
+once. Nice.&lt;br /&gt;&lt;br /&gt;
+I have to say our code is not as bad as it looks from the problems view, with 2200+
+warnings. :-) We have a lot of generated classes from a couple of tools we use. The
+versions we are using are a bit dated and does not generate Java 5 compliant code.&lt;br /&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;img width=&quot;0&quot; height=&quot;0&quot; src=&quot;http://www.vasanth.in/aggbug.ashx?id=a6c316f6-df95-4eb5-8d46-7cafadf64af0&quot; /&gt;
+        &lt;br /&gt;
+        &lt;hr /&gt;
+Check out my new blog, &lt;a href=&quot;http://www.futrblog.com&quot;&gt;Futr Blog&lt;/a&gt;. The blog is
+about gadgets and software that could impact us in the future.</description>
+	<pubDate>Mon, 05 Jun 2006 09:26:14 +0000</pubDate>
+	<dc:creator>mail@vasanth.in (Vasanth Dharmaraj)</dc:creator>
+</item>
+<item>
+	<title>Doug Schaefer: Software as a Service Industry</title>
+	<guid>tag:blogger.com,1999:blog-16474715.post-114947764035282245</guid>
+	<link>http://cdtdoug.blogspot.com/2006/06/software-as-service-industry_04.html</link>
+	<description>&lt;div&gt;Curt Schacker, apparently a veteran of the embedded software industry (well, his resume looks good anyway), has an &lt;a href=&quot;http://linuxdevices.com/articles/AT6989225710.html&quot;&gt;interesting article&lt;/a&gt; on LinuxDevices.com on how he sees the state of the embedded software industry. His contention is that we've been been trying to shove a giant square peg in a giant round hole (his words, not mine), and that the embedded software industry is really a service industry and isn't well served by off the shelf software.&lt;br /&gt;
+&lt;br /&gt;Now mind you Curt is a co-founder of, you guessed it, an embedded services company. But I have definitely seen the trend, especially in the tools area. It is really hard to sell software development tools in a box. Every customer seems to have different processes, different configuration management systems, build systems, coding standards, you name it. It is very difficult to build a suite of tools to satisfy them all.&lt;br /&gt;
+&lt;br /&gt;The biggest success stories I've been a part of in this industry is when we sell the customer a box, but then follow it up with intensive support or custom development to make the software in the box work best for them. There's nothing worse, for me anyway, to have a customer who bought my box, but then let it sit on the shelf because it didn't really meet his needs. It's not so good for the reputation and future sales.&lt;br /&gt;
+&lt;br /&gt;This is where programs like Eclipse really play into the business needs of software vendors. First, by sharing the development costs with other companies, our boxes are cheaper to produce. However, with Eclipse's extensibility and customizability, it is easier to take those products and customize them for individual customer's needs. Selling services may be more difficult and, as Curt mentions, doesn't provide the multiples that products do, but it might be the right approach that customers have always wanted and the best road to profitibility for software vendors.&lt;/div&gt;</description>
+	<pubDate>Mon, 05 Jun 2006 03:20:40 +0000</pubDate>
+	<dc:creator>Doug Schaefer</dc:creator>
+</item>
+<item>
+	<title>Chris Aniszczyk: Sudoku On A Plane!</title>
+	<guid>tag:blogger.com,1999:blog-16647950.post-114945628850599349</guid>
+	<link>http://mea-bloga.blogspot.com/2006/06/sudoku-on-plane.html</link>
+	<description>&lt;div&gt;Well, I'll be damned! On my plane ride over to Orlando, I managed to get an &lt;a href=&quot;http://www.eclipse.org/ecf&quot;&gt;ECF&lt;/a&gt;-enabled &lt;a href=&quot;http://wbeaton.blogspot.com/2006/06/eclipse-sudoku.html&quot;&gt;Sudoku client&lt;/a&gt; working (when my battery was dying on the plane, I had to pull some &lt;a href=&quot;http://wassim-melhem.blogspot.com/2006/05/hottest-spot-north-of-havana.html&quot;&gt;Paula Abdul crazy&lt;/a&gt; hacks to get it working though)! It gets me thinking about what can be done if someone actually put forth a serious effort to add more ECF UI polish , remove my dirty hacks and add chat features via ECF. Donald may finally have his viral application ;P &lt;br /&gt;
+&lt;br /&gt;Hell, I could even imagine a &lt;a href=&quot;http://en.wikipedia.org/wiki/Tetrinet&quot;&gt;TetriNET&lt;/a&gt; like Sudoku thing going on if someone had a lot of time on their hands ;)&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/1852/1586/1600/soap.png&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/1852/1586/320/soap.png&quot; /&gt;
+&lt;/a&gt;
+&lt;/div&gt;</description>
+	<pubDate>Sun, 04 Jun 2006 21:28:14 +0000</pubDate>
+	<dc:creator>zx</dc:creator>
+</item>
+<item>
+	<title>Doug Schaefer: Web server on your phone?</title>
+	<guid>tag:blogger.com,1999:blog-16474715.post-114943590885808670</guid>
+	<link>http://cdtdoug.blogspot.com/2006/06/web-server-on-your-phone.html</link>
+	<description>&lt;div&gt;One of my &quot;too many&quot; interests in the computing industry is how to best serve up web content from embedded devices. The main use I see for such a capability is to allow maintenance personnel an convenient and standard way at getting at state and configuration information from the devices under their care. You see it very commonly used for configuring home routers such as my Linksys.&lt;br /&gt;
+&lt;br /&gt;If you were at the CDT BOF at EclipseCon 2005, you would have seen a demo I gave of using gsoap to do this kind of thing. Since then, I've come to the conclusion that SOAP and related protocols are oversolving the problem. You can do what I was trying to do with simple http GETs. And with the coming out of AJAX to provide more interactive content with web pages using simple http requests, this really starts to look like the right architecture.&lt;br /&gt;
+&lt;br /&gt;The problem I had was how to you integrate an http server with your embedded application. There are a few httpd library packages around but none of them appear to have enough momentum behind them to take the industry by storm. I had considered making my own but going through the http spec I quickly came to the conclusion that it would take a little more work than I wanted to soak into it at this point.&lt;br /&gt;
+&lt;br /&gt;Then I ran across &lt;a href=&quot;http://sourceforge.net/project/showfiles.php?group_id=167580&quot;&gt;Nokia's Raccoon project&lt;/a&gt; where they've ported Apache to the Symbian OS that they use in their cell phones. My head almost fell off. I thought Apache was this big monolithic web server that is driving the bulk of the web servers on the internet, big iron types. Could Apache be made small enough to fit into embedded devices. Nokia seems to have been able to do it. And looking at Apache's modular architecture, it looks like you could write some cool modules that can interact with the software on the device without having to resort to the slow and clunky CGI interface. Very cool, and something I need to look into more.&lt;/div&gt;</description>
+	<pubDate>Sun, 04 Jun 2006 15:45:08 +0000</pubDate>
+	<dc:creator>Doug Schaefer</dc:creator>
+</item>
+<item>
+	<title>Chris Aniszczyk: ECF Presentation @ RSDC 2006</title>
+	<guid>tag:blogger.com,1999:blog-16647950.post-114938219277547806</guid>
+	<link>http://mea-bloga.blogspot.com/2006/06/ecf-presentation-rsdc-2006.html</link>
+	<description>&lt;div&gt;I have the pleasure to &lt;a href=&quot;https://1bosweb3.conferon.com/Events/Rational/RSDC2006/Agenda/agenda_by_track.cfm?track=OC&quot;&gt;speak&lt;/a&gt; at this year's &lt;a href=&quot;http://www-306.ibm.com/software/rational/events/rsdc2006/&quot;&gt;Rational Software Development Conference&lt;/a&gt;. I will be speaking about &lt;a href=&quot;http://www.eclipse.org/ecf&quot;&gt;ECF&lt;/a&gt;. The &lt;a href=&quot;http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.ecf/tutorials/RSDC%202006/?cvsroot=Technology_Project&quot;&gt;presentation&lt;/a&gt; is currently available in ECF's CVS. I plan to give an introduction to ECF, some background on why it exists, some demos, an API introduction and wrap it up with where ECF is headed. Hopefully I won't ramble too much ;)&lt;br /&gt;
+&lt;br /&gt;Also, if anyone is in the area and wants to grab a beer to talk Eclipse/open-source, please give me a &lt;a href=&quot;mailto:zx@us.ibm.com&quot;&gt;holler&lt;/a&gt; ;)&lt;br /&gt;
+&lt;br /&gt;Furthermore, I'm debating whether I can ECF-enable Wayne's Sudoku &lt;a href=&quot;http://wbeaton.blogspot.com/2006/06/eclipse-sudoku.html&quot;&gt;application&lt;/a&gt; on the two-hour plane ride to Orlando ;)&lt;/div&gt;</description>
+	<pubDate>Sun, 04 Jun 2006 00:49:52 +0000</pubDate>
+	<dc:creator>zx</dc:creator>
+</item>
+<item>
+	<title>Donald Smith: Open Source Insanity?</title>
+	<guid>tag:blogger.com,1999:blog-20309733.post-114937232315949510</guid>
+	<link>http://eclipse-ecosystem.blogspot.com/2006/06/open-source-insanity.html</link>
+	<description>&lt;div&gt;Matt Assay posted &lt;a href=&quot;http://weblog.infoworld.com/openresource/archives/2006/06/a_return_to_san.html&quot;&gt;a blog&lt;/a&gt; entry today that hit on some points that have been on my mind for quite a while.&lt;br /&gt;
+&lt;br /&gt;Matt draws a parallel between the pre-dot-com-bust obsession over &quot;eyeballs&quot; as a metric of valuation and today -- where some organizations are obsessing over downloads not giving any thought to how to build a &lt;span&gt;sound&lt;/span&gt; business model on top of it.&lt;br /&gt;
+&lt;br /&gt;It's almost as if some have been duped into believing that software has a &lt;span&gt;negative&lt;/span&gt; marginal cost - just get your brand on as many desktops as humanly possible and you will figure it out how to monetize it later.  Pre dot-com  was &quot;just get lots of people to visit our site, and we'll figure out how to monetize it later&quot;.&lt;br /&gt;
+&lt;br /&gt;&amp;gt;Whoops.&amp;lt;br&amp;gt;&amp;lt;br/&amp;gt;Whoops.&lt;br /&gt;
+&lt;br /&gt;I don't think it's a coincedence that all of Matt's examples of successful organizations are all Eclipse Foundation members.  RedHat, MySQL, SugarCRM and JBOSS are doing very well by realizing you need to have a sound business model and go beyond a &quot;we'll figure it out later&quot; approach.  Moreover, these are organizations that realize the importance of not reinventing the wheel - compete on a common platform and share effort wherever possible.&lt;br /&gt;
+&lt;br /&gt;- Don&lt;/div&gt;</description>
+	<pubDate>Sat, 03 Jun 2006 22:07:48 +0000</pubDate>
+	<dc:creator>Donald Smith</dc:creator>
+</item>
+<item>
+	<title>Paul Webster: Eclipse, you say? Very interesting.</title>
+	<guid>tag:blogger.com,1999:blog-29207064.post-114934159522677048</guid>
+	<link>http://pweclipse.blogspot.com/2006/06/eclipse-you-say-very-interesting.html</link>
+	<description>&lt;div&gt;It's been just over a year since I joined the Eclipse team.  I've been hearing about these blog postings that other Eclipse committers and Eclipse Foundation members maintain, and thought I would add my 2 cents into the pot.&lt;br /&gt;
+&lt;br /&gt;But later, this first post was very tiring :-)&lt;br /&gt;
+&lt;br /&gt;PW&lt;/div&gt;</description>
+	<pubDate>Sat, 03 Jun 2006 13:33:15 +0000</pubDate>
+	<dc:creator>PW</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Callisto Lesson (1 of 6): Unintended Effects</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114928176177306690</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/callisto-lesson-1-of-6-unintended.html</link>
+	<description>As part our &lt;a href=&quot;https://www28.cplan.com/javaone06_cv_124_1/session_details.jsp?isid=279311&amp;ilocation_id=124-1&amp;amp;ilanguage=english&quot;&gt;JavaOne talk on Callisto&lt;/a&gt;, Mike and I summarized six lessons the projects have learned from the Callisto effort. The first lesson was &quot;Unintended Effects&quot;. Not unique to Callisto, this problem is due to using undocumented features in dependent projects. Each Eclipse project provides both extensible frameworks (APIs) and exemplary tools. The tools are probably what most people know Eclipse by, but it's the APIs that make Eclipse the powerhouse that it is. Without those high-quality APIs, the community would not be able to extend Eclipse through plug-ins and Eclipse would have been just another monolithic IDE. An open source one, yes, but limited.&lt;br /&gt;&lt;br /&gt;One difficulty with APIs is that API providers rarely know who the API consumers are and how they are using the APIs. If the upstream consumers are using undocumented features of the API, even just by fixing a bug in the API may break those consumers.&lt;br /&gt;&lt;br /&gt;In the Callisto effort, we found a number of these. For example, &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=128866&quot;&gt;bug 128866&lt;/a&gt; about using dots in extension ids. The problem was that &quot;it was forbidden ([although] the 1.0 doc is not super clear)&quot;. So plug-in authors have been using dots but as of the Platform 3.2M5, they did not work; the newsgroups and mailing lists and bugzillas came alive with discussion.&lt;br /&gt;&lt;br /&gt;Two lessons here: first, good solid APIs are hard to design, harder to document, and very difficult to code defensively. Second, in any large coordinated release, be sure to include enough testing time to catch these unintended effects. It will take longer than you think to find them, so include more time than you think.&lt;br /&gt;&lt;br /&gt;(Note: the platform runtime team did &quot;everything possible to not break&quot; consumers and all's well that ends well.)</description>
+	<pubDate>Fri, 02 Jun 2006 20:56:01 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Wayne Beaton: Eclipse Sudoku!</title>
+	<guid>tag:blogger.com,1999:blog-16553373.post-114927424088243329</guid>
+	<link>http://wbeaton.blogspot.com/2006/06/eclipse-sudoku.html</link>
+	<description>&lt;div&gt;I managed to speed up my &lt;a href=&quot;http://wbeaton.blogspot.com/2006/05/computer-sciency-stuff.html&quot;&gt;puzzle generation algorithm&lt;/a&gt; by a few orders of magnitude. In the process, I got a free solver out of it. The Sudoku game is coming along quite nicely; not bad for about three days worth of actual effort.&lt;br /&gt;
+&lt;br /&gt;We've also wrapped up the plug-in into an Eclipse RCP application, and added some fancy icons. Here's what it looks like as an RCP application:&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/5506/1574/1600/sudoku1.gif&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/5506/1574/320/sudoku1.png&quot; /&gt;
+&lt;/a&gt;I've been playing with it a lot over the past day or so, and am quite happy with it. The one area where we really need to do a lot of work is in determining an appropriate set of given cells for a puzzle. Currently, we don't do that very well.&lt;br /&gt;
+&lt;br /&gt;The application itself is pretty function rich. You can click on a cell to set its value, or you can type the digit to put in the cell under the cursor. When you hover over a cell, it shows you the values that can legally be put into that cell based on the current state of the board (there's no guarantee that any of those suggested values are actually in the final solution). We also added a feature (see below) where it marks the rows, columns, and boxes that are invalid.&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/5506/1574/1600/sudoku2.gif&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/5506/1574/320/sudoku2.png&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;&quot;But,&quot; I hear you say, &quot;that's cheating.&quot; You're right. We're going to add some options to turn on or off the help.&lt;br /&gt;
+&lt;br /&gt;The state of the current game is saved when the game is shut down, so that when you restart, it resumes with the previous state intact. It also has a cool &quot;Solve&quot; button that uses the fancy backtracking algorithm I developed to solve the puzzle (from its current state) in front of your eyes. If a solution is possible from the current state, it will find one (if you have invalid values in any of the cells, the solve will fail).&lt;br /&gt;
+&lt;br /&gt;For kicks, I packaged up a Windows version of the RCP application. It weights in a 10MB. A little large, but not too large IMHO. I may put some effort into stripping it down.&lt;br /&gt;
+&lt;br /&gt;If you want to take a look at the code, be my guest. Download and import this &lt;a href=&quot;http://www.eclipse.org/evangelism/samples/sudoku/sudoku.psf&quot;&gt;Team Project Set&lt;/a&gt; and it'll set you up with all the code. Be advised that we're still working on it and significant changes will likely be made. I intend to spend the next few days adding more comments and generally cleaning up the code. There's a few spots in there that are a little inefficient in their implementation that I want to profile (with TPTP) and fix up.&lt;br /&gt;
+&lt;br /&gt;I'd love to get any patches you deem valuable (I'm the only &quot;wayne&quot; at eclipse.org). There's also some test projects, but they're not included in the team project set.&lt;br /&gt;
+&lt;br /&gt;There's a few partially started bits in the code that you might find interesting. To start with, I have the puzzle generation functionality implemented as extensions. The plan is to make it possible to provide other sources of puzzles including pre-packaged ones or those generated by another algorithm or whatever. I also intend to make the solvers pluggable so that you can add other solvers and watch them in action.&lt;br /&gt;
+&lt;br /&gt;At present, I don't have a packaged up version of it for download, but do intend to shortly.&lt;/div&gt;</description>
+	<pubDate>Fri, 02 Jun 2006 19:05:58 +0000</pubDate>
+	<dc:creator>Wayne</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: A PMC Question</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114927347908071215</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/06/pmc-question.html</link>
+	<description>&lt;div&gt;Recently someone asked me: &lt;span&gt;when an official Eclipse form asks for confirmation that &quot;the PMC approves&quot; does this mean that one PMC member approves or that a vote of all members was taken?&lt;/span&gt; My position is that each PMC member speaks for the entire group and thus one PMC member is sufficient to qualify as &quot;the PMC approves&quot;. The corollary, of course is that a PMC must have a great deal of trust in each other. But that is as it should be - you cannot collaborate without trust.&lt;br /&gt;
+&lt;br /&gt;Each Eclipse PMC is, of course, welcome to apply stricter rules.&lt;/div&gt;</description>
+	<pubDate>Fri, 02 Jun 2006 18:37:59 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Ian Skerrett: Eclipse Webinars and More Eclipse Webinars</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114917899694659409</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=135</link>
+	<description>There are a number of Eclipse related webinars that I wanted to point out. We are getting really good response to these webinars, so I hope to do more throughout the summer.&lt;br /&gt;&lt;br /&gt;&lt;ol&gt;   &lt;li&gt;We just finished running a webinar with BZ Media called 'Creating Eclipse Plug-ings'. Over 300 people attended and the playback can be found &lt;a href=&quot;https://bzmedia.webex.com/ec0502l/eventcenter/recording/recordAction.do?theAction=poprecord&amp;confViewID=149958863&amp;amp;siteurl=bzmedia&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;   &lt;li&gt;Instantiations just completed a webcast with SYS-CON called ' Bring Java Back to the Desktop: Eclipse Rich Client Platform (RCP)'. The playback for this can be found &lt;a href=&quot;http://www2.sys-con.com/webinararchive.cfm?registered=on&amp;pid=instantiations&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;   &lt;li&gt;We are organizing a series of webinars about some of the Callisto projects; the first being next Monday, June 5 called 'Building Data Centric RCP Applications'. More details can be found &lt;a href=&quot;http://www.eclipse.org/callisto/webinars.php&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; &lt;/ol&gt;</description>
+	<pubDate>Thu, 01 Jun 2006 16:23:17 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>EZ Tips and Tricks: Getting started with Google Web Toolkit (GWT)</title>
+	<guid>http://www.eclipsezone.com/eclipse/forums/t73289.rhtml</guid>
+	<link>http://www.eclipsezone.com/eclipse/forums/t73289.rhtml</link>
+	<description>Start with some Java, add a pinch of Eclipse, stir in the Google Web Tookit, and before you know it you're developing and debugging Ajax code from the comfort of your favorite IDE. Take a sip with this walkthrough with screenshots.
+
+			776 words.  &lt;a href=&quot;http://www.eclipsezone.com/eclipse/forums/t73289.rhtml&quot;&gt;Read More at EclipseZone&lt;/a&gt;</description>
+	<pubDate>Thu, 01 Jun 2006 01:35:57 +0000</pubDate>
+	<dc:creator>Ed Burnette</dc:creator>
+</item>
+<item>
+	<title>Alex Blewitt: [Eclipse,Mac] Eclipse on Macintel - minor glitch?</title>
+	<guid>tag:blogger.com,1999:blog-6705935.post-114911133836484134</guid>
+	<link>http://alblue.blogspot.com/2006/05/eclipsemac-eclipse-on-macintel-minor.html</link>
+	<description>&lt;div&gt;
+&lt;p&gt;
+&lt;b&gt;Update:&lt;/b&gt; it looks like it has been fixed with the QuickTime 7.1.1 update. You might want to install that before running Eclipse 3.2 on an Intel Mac.&lt;/p&gt;
+&lt;p&gt;For those of you lucky enough to have purchased an Intel Mac, you might want to take heed of &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=142892&quot;&gt;bug 142892&lt;/a&gt;. Apparently, a number of people are reporting issues when using an intel mac with the later 3.2RC builds, Java 5 update 4, where opening the Java project may cause the system to freeze. Thereafter, it appears that even a reinstall of the OS doesn't solve the problem, so there may be some kind of hardware/driver issue at fault. Separately, Apple has released &lt;a href=&quot;http://www.apple.com/support/downloads/quicktime711.html&quot;&gt;QuickTime 7.1.1&lt;/a&gt;, which has fixes for some startup items on Intel Macs. It's somewhat unlikely that the two are related, but needless to say it's causing some headaches for the Eclipse team as well as those Mac members who now can't run Eclipse.&lt;/p&gt;
+&lt;p&gt;(And yes, Roman Strobl, I'm sure NetBeans would still work on those Macs if you want to try the hard sell.)&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;Update:&lt;/b&gt; yes, it did seem that the QuickTime update fixed a number of people's problems. Sorry Roman ...&lt;/p&gt;
+&lt;/div&gt;</description>
+	<pubDate>Wed, 31 May 2006 22:44:15 +0000</pubDate>
+	<dc:creator>AlBlue</dc:creator>
+</item>
+<item>
+	<title>Wayne Beaton: A Shape Diagram Editor... in Chinese!</title>
+	<guid>tag:blogger.com,1999:blog-16553373.post-114910676569420773</guid>
+	<link>http://wbeaton.blogspot.com/2006/05/shape-diagram-editor-in-chinese.html</link>
+	<description>&lt;div&gt;Cliff Liang has translated &quot;&lt;a href=&quot;http://www.eclipse.org/articles/Article-GEF-diagram-editor/shape.html&quot;&gt;A Shape Diagram Editor&lt;/a&gt;&quot; into Chinese. You can read it &lt;a href=&quot;http://www.eclipse.org/articles/Article-GEF-diagram-editor/shape_cn.html&quot;&gt;here&lt;/a&gt; (assuming you can read Chinese).&lt;/div&gt;</description>
+	<pubDate>Wed, 31 May 2006 20:19:27 +0000</pubDate>
+	<dc:creator>Wayne</dc:creator>
+</item>
+<item>
+	<title>Wayne Beaton: Computer Sciency stuff...</title>
+	<guid>tag:blogger.com,1999:blog-16553373.post-114910328795548923</guid>
+	<link>http://wbeaton.blogspot.com/2006/05/computer-sciency-stuff.html</link>
+	<description>&lt;div&gt;It's only every once in a while that I really get to geek out and use some of that computer science stuff I learned in university. Frankly, I quite enjoy these little opportunities (disturbingly, most of these opportunities have something to do with combinatorics and recurrence equations).&lt;br /&gt;
+&lt;br /&gt;Yesterday, I wrote a recursive backtracking algorithm for solving Sudoku puzzles. It's a pretty simple thing (only about a dozen lines of code in addition to all the code that implements the actual puzzle board) but it works. And it works well. I use it to both solve an existing puzzle and to create new ones. Unfortunately, it's not all that smart and, while it oftentimes takes less than a second to solve a puzzle, sometimes it takes several minutes. I have some thoughts on how to speed it up that I'll explore over the next few days.&lt;br /&gt;
+&lt;br /&gt;I built the solver because I need to generate puzzles for a Sudoku game that I'm building with Maria, my co-op summer student, using Eclipse &lt;a href=&quot;http://wiki.eclipse.org/index.php/Rich_Client_Platform&quot;&gt;Rich Client Platform&lt;/a&gt;. It's taken about two days to get most of the game working and now, we're working on finishing touches. Here's what it looks like so far:&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://photos1.blogger.com/blogger/5506/1574/1600/sudoku.gif&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://photos1.blogger.com/blogger/5506/1574/320/sudoku.png&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;As you hover over a cell, it shows you the values that could possibly go in that cell; you simply type a digit to set the value in the cell under the cursor. At some point, we're going make a preferences selection to turn on or off the hints. We're also going to add a feature to optionally highlight invalid rows, columns, and boxes. There's already a lot of cool features in the implementation that I'll likely blog about later this week and next.&lt;br /&gt;
+&lt;br /&gt;As of now, the Sudoku game is just a collection of plug-ins that I'm testing in the Eclipse workbench. I'll turn it into a proper RCP application sometime later this week. That should end up being a pretty simple exercise since most of the heavy-lifting is already done.&lt;/div&gt;</description>
+	<pubDate>Wed, 31 May 2006 19:21:27 +0000</pubDate>
+	<dc:creator>Wayne</dc:creator>
+</item>
+<item>
+	<title>Bjorn &amp; Ward: Why Callisto?</title>
+	<guid>tag:blogger.com,1999:blog-12783252.post-114909608046424519</guid>
+	<link>http://eclipse-projects.blogspot.com/2006/05/why-callisto.html</link>
+	<description>&lt;div&gt;The Eclipse project teams chose to do Callisto for one basic reason: to make it easier to adopt/use the ten Callisto projects simultaneously. The Eclipse community asked for more clarity about projects, plug-ins, versions and releases:&lt;br /&gt;
+&lt;div&gt;
+&lt;a href=&quot;http://www.eclipse.org/projects/callisto-files/blog1.gif&quot;&gt;
+&lt;img alt=&quot;&quot; border=&quot;0&quot; src=&quot;http://www.eclipse.org/projects/callisto-files/blog1.gif&quot; /&gt;
+&lt;/a&gt;
+&lt;br /&gt;
+&lt;/div&gt; Hence Callisto --  which is our collective first attempt to provide:&lt;br /&gt;
+&lt;ul&gt;
+&lt;li&gt;For ISVs and Plug-in Developers&lt;/li&gt;   &lt;ul&gt;
+&lt;li&gt;Access to a complete stack of Eclipse projects once a year to build products on&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ul&gt; &lt;li&gt;For Developers and Users &lt;ul&gt;   &lt;li&gt;Better integration of multiple projects&lt;/li&gt;   &lt;li&gt;More complete development solution (WTP, BIRT, etc.)&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt;
+&lt;li&gt;For Eclipse Committers and Projects&lt;ul&gt;
+&lt;li&gt;Forcing greater co-operation and interaction - community building&lt;/li&gt;   &lt;li&gt;Learning and sharing experience and best practices&lt;/li&gt;   &lt;li&gt;Forcing new projects to mature faster&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt; &lt;li&gt;For Everyone&lt;ul&gt;
+&lt;li&gt;Continued focus on Quality and Predictability&lt;br /&gt;
+&lt;/li&gt; &lt;/ul&gt;
+&lt;/li&gt;  &lt;/ul&gt;And so far, it's looking good. Thanks to a lot of hard work by &lt;a href=&quot;http://dash.eclipse.org/dash/commits/web-app/active-committers.cgi&quot;&gt;a lot of people&lt;/a&gt;, the &quot;end of June&quot; Callisto Simultaneous Release is coming together nicely.&lt;/div&gt;</description>
+	<pubDate>Wed, 31 May 2006 17:30:37 +0000</pubDate>
+	<dc:creator>Bjorn Freeman-Benson</dc:creator>
+</item>
+<item>
+	<title>Ian Skerrett: Certification for Eclipse RCP</title>
+	<guid>tag:blogger.com,1999:blog-12136226.post-114909105697950779</guid>
+	<link>http://feeds.feedburner.com/IanSkerrett?m=136</link>
+	<description>&lt;div&gt;At JavaOne, I met John Rizzo from &lt;a href=&quot;http://www.javablackbelt.com/&quot;&gt;JavaBlackBelt &lt;/a&gt;and he mentioned to me that they had an &lt;a href=&quot;http://www.javablackbelt.com/QuestionnaireDefDisplay.do?questpublicId=01536&quot;&gt;Eclipse RCP exam&lt;/a&gt;. JavaBlackBelt uses a community based approach for developing certification exams of various Java related technology. It looks like an interesting model for creating certifications. The Eclipse RCP exam is still in beta but it is nice to see that it is on the list. Maybe some people from the Eclipse community can help complete it.&lt;/div&gt;</description>
+	<pubDate>Wed, 31 May 2006 15:57:37 +0000</pubDate>
+	<dc:creator>Ian Skerrett</dc:creator>
+</item>
+<item>
+	<title>Ed Burnette: Getting started with Google Web Toolkit (GWT)</title>
+	<guid>http://blogs.zdnet.com/Burnette/?p=122</guid>
+	<link>http://blogs.zdnet.com/Burnette/?p=122</link>
+	<description>Start with some Java, add a pinch of Eclipse, stir in the Google Web Tookit, and before you know it you're developing and debugging Ajax code from the comfort of your favorite IDE. Take a sip with this walkthrough with screenshots.</description>
+	<pubDate>Wed, 31 May 2006 04:23:09 +0000</pubDate>
+	<dc:creator>Ed Burnette</dc:creator>
+</item>
+<item>
+	<title>EZ Tips and Tricks: Scheduling Synchronizations</title>
+	<guid>http://www.eclipsezone.com/eclipse/forums/t73210.rhtml</guid>
+	<link>http://www.eclipsezone.com/eclipse/forums/t73210.rhtml</link>
+	<description>Synchronizations to your repository can be scheduled in Eclipse which allows you to keep track of the code changes as they come in, minimizing the possibility for major merges.
+
+			242 words.  &lt;a href=&quot;http://www.eclipsezone.com/eclipse/forums/t73210.rhtml&quot;&gt;Read More at EclipseZone&lt;/a&gt;</description>
+	<pubDate>Wed, 31 May 2006 00:13:50 +0000</pubDate>
+	<dc:creator>R.J. Lorimer</dc:creator>
+</item>
+<item>
+	<title>Birt World: Callisto Webinar</title>
+	<guid>tag:blogger.com,1999:blog-14521551.post-114901841357363310</guid>
+	<link>http://birtworld.blogspot.com/2006/05/callisto-webinar.html</link>
+	<description>&lt;div&gt;The Eclipse team will be starting a series or Webinars in June focused on the Callisto release.  The BIRT and DTP teams have the pleasure of doing the first on June 5.  We will be focusing on DTP, BIRT, and RCP integration.&lt;br /&gt;
+&lt;br /&gt;If you haven't already signed up, check out &lt;a href=&quot;http://ianskerrett.blogspot.com/2006/05/announcing-eclipse-webinars.html&quot;&gt;Ian's Blog&lt;/a&gt; or go to the Eclipse site and &lt;a href=&quot;http://www.eclipse.org/callisto/webinars.php&quot;&gt;register&lt;/a&gt;.&lt;/div&gt;</description>
+	<pubDate>Tue, 30 May 2006 19:46:53 +0000</pubDate>
+	<dc:creator>Jason Weathersby</dc:creator>
+</item>
+<item>
+	<title>Chris Aniszczyk: Class of 2006</title>
+	<guid>tag:blogger.com,1999:blog-16647950.post-114900156863895104</guid>
+	<link>http://mea-bloga.blogspot.com/2006/05/class-of-2006.html</link>
+	<description>&lt;div&gt;This year, Eclipse is participating in Google's &lt;a href=&quot;http://code.google.com/soc&quot;&gt;Summer of Code&lt;/a&gt;. Google has been kind enough to offer some money to students to work on an open-source project of their choice. Eclipse has &lt;a href=&quot;http://wiki.eclipse.org/index.php/Google_Summer_of_Code_2006&quot;&gt;11&lt;/a&gt; (!) projects this summer aiming to enhance various aspects of Eclipse. Here they are:&lt;br /&gt;
+&lt;br /&gt;    *  &lt;a href=&quot;http://wiki.eclipse.org/index.php/ECF_BitTorrent_Provider&quot;&gt;ECF BitTorrent Provider&lt;/a&gt; (&lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=144133&quot;&gt;#144133&lt;/a&gt;)&lt;br /&gt;)&lt;br /&gt;          o Student: Remy Chi Jian Suen&lt;br /&gt;          o Mentor(s): Chris Aniszczyk, Scott Lewis, Wayne Beaton &lt;br /&gt;
+&lt;br /&gt;    * Word Wrap for Text Viewer and Editor&lt;br /&gt;          o Student: Ahti Kitsik&lt;br /&gt;          o Mentor(s): Philippe Ombredanne &lt;br /&gt;
+&lt;br /&gt;    * Generic form description and a prototypical implementation of a render engine for Eclipse RCP&lt;br /&gt;          o Student: Steffen Grün&lt;br /&gt;          o Mentor(s): Gunnar Wagenknecht &lt;br /&gt;
+&lt;br /&gt;    * &lt;a href=&quot;http://wiki.eclipse.org/index.php/Mylar_Bugzilla_Connector_Enhancements&quot;&gt;Enhancing Mylar's Bugzilla Integration&lt;/a&gt;
+&lt;br /&gt;          o Student: Jeff Pound&lt;br /&gt;          o Mentor(s): Mik Kersten &lt;br /&gt;
+&lt;br /&gt;    * &lt;a href=&quot;http://wiki.eclipse.org/index.php/Mylar_Trac_Connector&quot;&gt;Mylar Trac Connector Plug-in&lt;/a&gt;
+&lt;br /&gt;          o Student: Steffen Pingel&lt;br /&gt;          o Mentor(s): Mike Kersten &lt;br /&gt;
+&lt;br /&gt;    * &lt;a href=&quot;http://wiki.eclipse.org/index.php/RT_Shared_Editing&quot;&gt;Real-Time Shared Editing&lt;/a&gt;
+&lt;br /&gt;          o Student: Mustafa K. Isik&lt;br /&gt;          o Mentor(s): Scott Lewis &lt;br /&gt;
+&lt;br /&gt;    * &lt;a href=&quot;http://wiki.eclipse.org/index.php/Shared_Code_Plugin&quot;&gt;Shared Code Plug-in (SCP)&lt;/a&gt;
+&lt;br /&gt;          o Student: Marcelo Mayworm&lt;br /&gt;          o Mentor(s): Scott Lewis, Ken Gilmer &lt;br /&gt;
+&lt;br /&gt;    * Eclipse RCP Installer/Packages Generator&lt;br /&gt;          o Student: Jacobo García&lt;br /&gt;          o Mentor(s): Francois Granade &lt;br /&gt;
+&lt;br /&gt;    * A Distributed Object Application Debugger for the Eclipse Platform&lt;br /&gt;          o Student: Giuliano Mega&lt;br /&gt;          o Mentor(s): Fabio Kon &lt;br /&gt;
+&lt;br /&gt;    * Basic Eclipse Mono Development Environment and Contributions Towards an Eclipse IDE Generator&lt;br /&gt;          o Student: Rebecca Chernoff&lt;br /&gt;          o Mentor(s): Doug Schaefer &lt;br /&gt;
+&lt;br /&gt;    * Duplicated code detection tool (SDD)&lt;br /&gt;          o Student: Iryoung Jeong&lt;br /&gt;          o Mentor(s): Pascal Rapicault &lt;br /&gt;
+&lt;br /&gt;I'm personally thrilled about each of the projects (a few that involve collaboration, which Eclipse desperately needs). A special &lt;a href=&quot;http://wiki.eclipse.org/index.php/IRC&quot;&gt;IRC&lt;/a&gt; channel has been setup for the students: &lt;a href=&quot;irc://irc.freenode.net/#eclipse-soc&quot;&gt;#eclipse-soc&lt;/a&gt;. I encourage everyone to help out the students if they have time :)&lt;/div&gt;</description>
+	<pubDate>Tue, 30 May 2006 15:06:08 +0000</pubDate>
+	<dc:creator>zx</dc:creator>
+</item>
+<item>
+	<title>Denis Roy: Phoenix activity</title>
+	<guid>tag:blogger.com,1999:blog-15140216.post-114899692914052928</guid>
+	<link>http://eclipsewebmaster.blogspot.com/2006/05/phoenix-activity.html</link>
+	<description>Now that the MySQL dust has settled, I've had a bit more time to invest in Phoenix - the Eclipse project that covers our website. Here's what we're up to:&lt;br /&gt;&lt;br /&gt;&lt;span&gt;Bigger Fonts:&lt;/span&gt; Do you think that our site's font is too small? Stanimir has been kind enough to post a patch which makes our font bigger and more scalable. &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=114288#c57&quot;&gt;Read about it in the bug&lt;/a&gt;, test it on our sandbox (links in the bug) and feel free to comment by including your browser/OS version, screen resolution and font DPI setting with your comments.&lt;br /&gt;&lt;br /&gt;&lt;span&gt;Multi-lingual content: &lt;/span&gt;Being French Canadian,&lt;span&gt; &lt;/span&gt;I'm the first to admit that there's not enough non-English content on the Eclipse.org website, and many of you agree with me. While we try to find a strategy to make this better, we do occasionally post links to non-English sites on our homepage. I think a link to a [German | French | Italian etc.] page on an English website is strange usability (not because of the foreign characters, but because, from an English page, I'm sent to a page that I cannot read) so in &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=143449&quot;&gt;bug 143449&lt;/a&gt; I suggest that we either remove the links to non-English pages (yuck) or add a language identifier next to the links (yay). Of course the better solution would be to have a home for non-English content (fr.eclipse.org, de.eclipse.org, etc..) but in the interim ... what are your toughts?&lt;br /&gt;&lt;br /&gt;&lt;span&gt;Wiki vs. website&lt;/span&gt;&lt;span&gt;: &lt;/span&gt;In &lt;a href=&quot;https://bugs.eclipse.org/bugs/show_bug.cgi?id=125497&quot;&gt;bug 125497&lt;/a&gt;, Bjorn suggests the Wiki pages should look identical to the website. I think the Wiki and the Website are two different things. So, Bjorn and I need your input: what do you think about this?&lt;br /&gt;&lt;br /&gt;These three issues are only the tip of the iceberg.  Want to help us make a better website?  Have a look at the &lt;a href=&quot;https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;amp;short_desc=&amp;classification=Technology&amp;amp;product=Phoenix&amp;long_desc_type=allwordssubstr&amp;amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;amp;status_whiteboard=&amp;keywords_type=allwords&amp;amp;keywords=&amp;deadlinefrom=&amp;amp;deadlineto=&amp;bug_status=NEW&amp;amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;amp;emailtype1=substring&amp;email1=&amp;amp;emailtype2=substring&amp;email2=&amp;amp;amp;amp;amp;amp;bugidtype=include&amp;bug_id=&amp;amp;votes=&amp;chfieldfrom=&amp;amp;amp;amp;amp;amp;chfieldto=Now&amp;chfieldvalue=&amp;amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;amp;amp;amp;amp;amp;field0-0-0=noop&amp;type0-0-0=noop&amp;amp;value0-0-0=&quot;&gt;Phoenix Bugs&lt;/a&gt; and the &lt;a href=&quot;https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;amp;short_desc=&amp;classification=Eclipse+Foundation&amp;amp;product=Community&amp;component=Website&amp;amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;amp;keywords_type=allwords&amp;keywords=&amp;amp;deadlinefrom=&amp;deadlineto=&amp;amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;amp;bug_status=REOPENED&amp;emailtype1=substring&amp;amp;email1=&amp;emailtype2=substring&amp;amp;email2=&amp;bugidtype=include&amp;amp;bug_id=&amp;votes=&amp;amp;chfieldfrom=&amp;chfieldto=Now&amp;amp;chfieldvalue=&amp;cmdtype=doit&amp;amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;amp;type0-0-0=noop&amp;value0-0-0=&quot;&gt;Website Bugs&lt;/a&gt; and contribute what you can.&lt;br /&gt;&lt;span&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/span&gt;</description>
+	<pubDate>Tue, 30 May 2006 13:58:53 +0000</pubDate>
+	<dc:creator>Denis Roy</dc:creator>
+</item>
+<item>
+	<title>Vasanth Dharmaraj: Eclipse Tip: Java Type Indicator</title>
+	<guid>http://www.vasanth.in/PermaLink,guid,3a053726-8675-4fc3-a9e9-b2c2c18c2c95.aspx</guid>
+	<link>http://feeds.feedburner.com/vasantheclipse?m=55</link>
+	<description>&lt;p&gt;
+        &lt;/p&gt;
+        &lt;div align=&quot;center&quot;&gt;
+          &lt;img src=&quot;http://www.vasanth.in/content/binary/Eclipse%20Tip%20Java%20Type%20Indicator.png&quot; border=&quot;0&quot; /&gt;
+          &lt;br /&gt;
+          &lt;br /&gt;
+          &lt;div align=&quot;left&quot;&gt;I am a fan of the CVS label decorations in Eclipse. Just by looking
+at the file in Package Explorer I can find out whether the file is in sync with CVS.
+In the recent builds of Eclipse a new label decoration is available. It is called
+'Java Type Indicator'. It can be accessed via &lt;b&gt;Window&amp;gt;Preference&amp;gt;General&amp;gt;Appearance&amp;gt;Label
+Decorations&lt;/b&gt;. Just check Java Type Indicator. Now the package explorer will show
+decorations like the ones in the screenshot for Abstract Class and Interface. 
+&lt;br /&gt;&lt;br /&gt;
+This is kind of a small feature but it is useful if you have a large code base maintained
+by multiple teams. While you check this out you can try the other decorations available
+too. 
+&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div align=&quot;center&quot;&gt;
+          &lt;img src=&quot;http://www.vasanth.in/content/binary/Eclipse%20Tip%20Other%20Decorations.png&quot; border=&quot;0&quot; /&gt;
+        &lt;/div&gt;
+        &lt;img width=&quot;0&quot; height=&quot;0&quot; src=&quot;http://www.vasanth.in/aggbug.ashx?id=3a053726-8675-4fc3-a9e9-b2c2c18c2c95&quot; /&gt;
+        &lt;br /&gt;
+        &lt;hr /&gt;
+Check out my new blog, &lt;a href=&quot;http://www.futrblog.com&quot;&gt;Futr Blog&lt;/a&gt;. The blog is
+about gadgets and software that could impact us in the future.</description>
+	<pubDate>Tue, 30 May 2006 13:12:40 +0000</pubDate>
+	<dc:creator>mail@vasanth.in (Vasanth Dharmaraj)</dc:creator>
+</item>
+
+</channel>
+</rss>
