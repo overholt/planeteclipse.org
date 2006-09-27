@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="css/planet.css" type="text/css">
 <link rel="stylesheet" href="css/visual.css" type="text/css">
 <link rel="stylesheet" href="css/layout.css" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="PlanetEclipse News Feed" href="http://www.planeteclipse.org/planet/rss20.xml">
+<link rel="alternate" type="application/rss+xml" title="PlanetEclipse News Feed (RSS)" href="rss20.xml">
+<link rel="alternate" type="application/atom+xml" title="PlanetEclipse News Feed (Atom)" href="atom.xml">
 </head>
 
 <body>
@@ -74,7 +75,7 @@
 				<td><a href="rss20.xml"><img alt="RSS 2.0" src="images/rss20.png"></a></td>
 			</tr>
 			<tr>
-				<td><a href="foaf.xml"><img alt="FOAF" src="images/foaf.png"></a></td>
+				<td><a href="atom.xml"><img alt="Atom" src="images/atom.png"></a></td>
 				<td><a href="opml.xml"><img alt="OPML" src="images/opml.png"></a></td>
 			</tr>
 		</table>
@@ -100,7 +101,8 @@
 		<h3>Subscriptions</h3>
 		<ul>
 		<TMPL_LOOP Channels>
-		<li><a href="<TMPL_VAR link ESCAPE="HTML">" title="<TMPL_VAR title ESCAPE="HTML">"><TMPL_VAR name></a> <a href="<TMPL_VAR url ESCAPE="HTML">">(feed)</a></li>
+		<!--<li><a href="<TMPL_VAR link ESCAPE="HTML">" title="<TMPL_VAR title ESCAPE="HTML">"><TMPL_VAR name></a> <a href="<TMPL_VAR url ESCAPE="HTML">">(feed)</a></li>-->
+		<li><a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="images/feed-icon-10x10.png" alt="(feed)"></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF><TMPL_IF message>class="message" title="<TMPL_VAR message ESCAPE="HTML">"</TMPL_IF><TMPL_UNLESS message>title="<TMPL_VAR title_plain ESCAPE="HTML">"</TMPL_UNLESS>><TMPL_VAR name></a></li>
 		</TMPL_LOOP>
 		</ul>
 	</div>
