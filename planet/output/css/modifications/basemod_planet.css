@@ -1,0 +1,84 @@
+/* 
+** 
+**  Planet Eclipse Base YAML Modifications
+**
+**  based on: 
+**      YAML Version: 2.5.2
+**      Dateiversion: 01.11.06  
+**      Datei       : basemod.css
+**      Funktion    : Basis-Modifikation für das Layout des YAML-Tutorials
+**
+*/
+
+@media all
+{
+	/* body */
+	body { background: #fff; padding: 0; margin: 0; }
+	
+	/* header */
+	#header { height: 75px; background: #fff url(../../images/header_bg.png) repeat-x top left; }
+	#header img { margin: 0; font-size:208%; }
+		
+	/* header navigation */
+	#topnav { top: 8px; right: 4px; }
+	#topnav ul { display: block; }
+	#topnav li { margin: 0; border-width: 0 0 0 1px; padding: 0 6px; float: left; list-style: none; }
+	#topnav li.first { border-width: 0; }
+		
+	/* progress indicator */
+	#progressindicator { position: absolute; top: 46px; right: 2px; }
+		
+	/* main navigation */
+	#nav { position: absolute; top: 50px; left: 195px; }
+	#nav ul { display: block; }
+	#nav li { margin: 0; border-left: 1px dotted; padding: 0 6px; float: left; list-style: none; }
+	#nav li.first { border: 0; }
+	
+	/* Formatierung der Fußzeile */
+	#footer { color:#888; background:#fff; margin: 0 1em; padding: 1em 0; border-top: 1px #ddd solid; line-height: 2em;}
+	
+	/* ######################################################################################################
+	** ### Formatierung der Inhaltsspalten ##################################################################
+	** ######################################################################################################
+	*/
+	#main { background: #fff ; padding: 0; } 
+	
+	/* switch off left column */
+	#col1 { display:none; }
+	#col1_content { display:none; }
+	#col3 { margin-left:0; border-left:0; }
+		
+	/* second column as sidebar  */
+	#col2 { width: 220px; }
+	#col2 div.col2_content { padding: 1em; border-bottom: 1px solid #d9d9d9; }
+	#col2 div.col2_content h3 {	background: #fff url(../../images/leftcol_sideitem_bg.gif) repeat-x top left; padding: 0; padding-left: 5px; }
+	#col2 div.col2_content ul {	padding: 0;	margin: 0; }
+	#col2 div.col2_content li {	list-style: none; }
+		
+	/* middle column */
+	#col3_content { margin-left: 1em; margin-right: 1em; margin-top:1em; }
+	
+	/* ############################################################################################
+	** ### formatting of entries ##################################################################
+	** ############################################################################################
+	*/
+	div.entry { margin-bottom: 2em; margin-right: 1em; clear: left; }
+
+	div.person-info {
+		float: left;
+		position: relative;
+		left: 4px;
+		margin-top: 25px !important;
+		padding: 0 20px 30px 0;
+		width: 120px;
+	}
+	
+	div.homeitem { border-bottom: 1px dotted #000; margin: 10px 0 10px 1%; padding-bottom: 10px; margin-left: 140px; }
+	div.homeitem h3 { background: url("../../images/leftcol_sideitem_bg.gif") repeat-x top left; padding-left: 5px; }
+		
+	div.post-contents {	padding: 1em 25px 0 25px; margin-right: 10px; }
+	div.post-contents:after { content: ""; display: block; clear: left; }
+
+	div.post-footer div { margin: 0; padding-top: 1em; padding-right: 1em; }
+
+} 
