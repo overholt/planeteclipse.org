@@ -316,12 +316,13 @@ var __gwt_moduleControlBlocks = new ModuleControlBlocks();
  * Determines whether or not the page is being loaded in the GWT hosted browser.
  */
 function __gwt_isHosted() {
-  if (window.external && window.external.gwtOnLoad) {
+  // http://archivesat.com/Google_Web_Toolkit/thread2361095.htm
+  //if (window.external && window.external.gwtOnLoad) {
     // gwt.hybrid makes the hosted browser pretend not to be
-    if (document.location.href.indexOf("gwt.hybrid") == -1) {
-      return true;
-    }
-  }
+  //  if (document.location.href.indexOf("gwt.hybrid") == -1) {
+  //    return true;
+  //  }
+  //}
   return false;
 }
 
