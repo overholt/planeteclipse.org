@@ -6055,7 +6055,7 @@ function _$populateFromFeed(_this$static, _feed){
           continue;
         _dayHeader = _$HTML0(new _HTML(), _$getDayHeaderHtml(_this$static, _day, _postsCount));
         _$addClickListener0(_dayHeader, _$FeedComposite$1(new _FeedComposite$1(), _this$static, _dayContainer, _dayHeader));
-        _visible = _dayCount == 0;
+        _visible = _dayCount <= 1;
         _$setVisibility(_this$static, _visible, _dayHeader, _dayContainer);
         _dayCount++;
         _$add1(_this$static._feedPanel, _dayHeader);

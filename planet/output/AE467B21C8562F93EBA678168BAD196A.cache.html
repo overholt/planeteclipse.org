@@ -365,7 +365,7 @@ function _$clinit0(){
   _$clinit0 = _nullMethod;
   _sEventPreviewStack = _$Vector(new _Vector());
   {
-    _impl = new _DOMImplSafari();
+    _impl = new _DOMImplMozilla();
     _impl._init();
   }
   return window;
@@ -725,7 +725,7 @@ function _$clinit2(){
   _$clinit2 = _nullMethod;
   _historyListeners = _$Vector(new _Vector());
   {
-    _impl0 = new _HistoryImplSafari();
+    _impl0 = new _HistoryImplStandard();
     if (!_impl0._init()) {
       _impl0 = null;
     }
@@ -1109,10 +1109,6 @@ _._setIntAttribute0 = _setIntAttribute1;
 _._setStyleAttribute0 = _setStyleAttribute1;
 _._typeName = 'com.google.gwt.user.client.impl.DOMImpl';
 _._typeId = 0;
-function _compare1(_elem1, _elem2){
-  return _elem1 == _elem2;
-}
-
 function _eventGetTarget1(_evt){
   return _evt.target?_evt.target:null;
 }
@@ -1127,18 +1123,6 @@ function _eventPreventDefault1(_evt){
 
 function _eventToString1(_evt){
   return _evt.toString();
-}
-
-function _getChildIndex1(_parent, _toFind){
-  var _count = 0, _child = _parent.firstChild;
-  while (_child) {
-    if (_child == _toFind)
-      return _count;
-    if (_child.nodeType == 1)
-      ++_count;
-    _child = _child.nextSibling;
-  }
-  return -1;
 }
 
 function _getFirstChild1(_elem){
@@ -1235,22 +1219,6 @@ function _insertChild1(_parent, _toAdd, _index){
   _parent.insertBefore(_toAdd, _before);
 }
 
-function _isOrHasChild1(_parent, _child){
-  while (_child) {
-    if (_parent == _child)
-      return true;
-    _child = _child.parentNode;
-    if (_child.nodeType != 1)
-      _child = null;
-  }
-  return false;
-}
-
-function _releaseCapture1(_elem){
-  if (_elem == $wnd.__captureElem)
-    $wnd.__captureElem = null;
-}
-
 function _setCapture1(_elem){
   $wnd.__captureElem = _elem;
 }
@@ -1289,57 +1257,98 @@ function _DOMImplStandard(){
 }
 
 _ = _DOMImplStandard.prototype = new _DOMImpl();
-_._compare0 = _compare1;
 _._eventGetTarget0 = _eventGetTarget1;
 _._eventGetToElement0 = _eventGetToElement1;
 _._eventPreventDefault0 = _eventPreventDefault1;
 _._eventToString0 = _eventToString1;
-_._getChildIndex0 = _getChildIndex1;
 _._getFirstChild0 = _getFirstChild1;
 _._getNextSibling0 = _getNextSibling1;
 _._getParent0 = _getParent1;
 _._init = _init1;
 _._insertChild0 = _insertChild1;
-_._isOrHasChild0 = _isOrHasChild1;
-_._releaseCapture0 = _releaseCapture1;
 _._setCapture0 = _setCapture1;
 _._sinkEvents0 = _sinkEvents1;
 _._toString4 = _toString7;
 _._typeName = 'com.google.gwt.user.client.impl.DOMImplStandard';
 _._typeId = 0;
-function _getAbsoluteLeft1(_elem){
-  var _left = 0;
-  while (_elem) {
-    _left += _elem.offsetLeft - _elem.scrollLeft;
-    var _parent = _elem.offsetParent;
-    if (_parent &&(_parent.tagName == 'BODY' && _elem.style.position == 'absolute')) {
-      return _left;
-    }
-    _elem = _parent;
+function _compare1(_elem1, _elem2){
+  if (!_elem1 && !_elem2) {
+    return true;
   }
-  return _left + $doc.body.scrollLeft;
+   else if (!_elem1 || !_elem2) {
+    return false;
+  }
+  return _elem1.isSameNode(_elem2);
+}
+
+function _getAbsoluteLeft1(_elem){
+  var _left = $doc.getBoxObjectFor(_elem).x;
+  var _parent = _elem;
+  while (_parent) {
+    if (_parent.scrollLeft > 0) {
+      _left = _left - _parent.scrollLeft;
+    }
+    _parent = _parent.parentNode;
+  }
+  return _left + $doc.body.scrollLeft + $doc.documentElement.scrollLeft;
 }
 
 function _getAbsoluteTop1(_elem){
-  var _top = 0;
-  while (_elem) {
-    _top += _elem.offsetTop - _elem.scrollTop;
-    var _parent = _elem.offsetParent;
-    if (_parent &&(_parent.tagName == 'BODY' && _elem.style.position == 'absolute')) {
-      return _top;
+  var _top = $doc.getBoxObjectFor(_elem).y;
+  var _parent = _elem;
+  while (_parent) {
+    if (_parent.scrollTop > 0) {
+      _top -= _parent.scrollTop;
     }
-    _elem = _parent;
+    _parent = _parent.parentNode;
   }
-  return _top + $doc.body.scrollTop;
+  return _top + $doc.body.scrollTop + $doc.documentElement.scrollTop;
 }
 
-function _DOMImplSafari(){
+function _getChildIndex1(_parent, _toFind){
+  var _count = 0, _child = _parent.firstChild;
+  while (_child) {
+    if (_child.isSameNode(_toFind)) {
+      return _count;
+    }
+    if (_child.nodeType == 1) {
+      ++_count;
+    }
+    _child = _child.nextSibling;
+  }
+  return -1;
 }
 
-_ = _DOMImplSafari.prototype = new _DOMImplStandard();
+function _isOrHasChild1(_parent, _child){
+  while (_child) {
+    if (_parent.isSameNode(_child)) {
+      return true;
+    }
+    _child = _child.parentNode;
+    if (_child.nodeType != 1) {
+      _child = null;
+    }
+  }
+  return false;
+}
+
+function _releaseCapture1(_elem){
+  if (_elem.isSameNode($wnd.__captureElem)) {
+    $wnd.__captureElem = null;
+  }
+}
+
+function _DOMImplMozilla(){
+}
+
+_ = _DOMImplMozilla.prototype = new _DOMImplStandard();
+_._compare0 = _compare1;
 _._getAbsoluteLeft0 = _getAbsoluteLeft1;
 _._getAbsoluteTop0 = _getAbsoluteTop1;
-_._typeName = 'com.google.gwt.user.client.impl.DOMImplSafari';
+_._getChildIndex0 = _getChildIndex1;
+_._isOrHasChild0 = _isOrHasChild1;
+_._releaseCapture0 = _releaseCapture1;
+_._typeName = 'com.google.gwt.user.client.impl.DOMImplMozilla';
 _._typeId = 0;
 function _doCreateXmlHTTPRequest(){
   return new XMLHttpRequest();
@@ -1403,46 +1412,40 @@ function _getToken1(){
 }
 
 function _init2(){
-  var _historyFrame = $doc.getElementById('__gwt_historyFrame');
-  if (!_historyFrame)
-    return false;
+  $wnd.__historyToken = '';
   var _hash = $wnd.location.hash;
   if (_hash.length > 0)
     $wnd.__historyToken = decodeURIComponent(_hash.substring(1));
-  else 
-    $wnd.__historyToken = '';
-  var _tokenElement = null;
-  if (_historyFrame.contentWindow) {
-    var _doc = _historyFrame.contentWindow.document;
-    _tokenElement = _doc?_doc.getElementById('__historyToken'):null;
-  }
-  if (_tokenElement)
-    $wnd.__historyToken = _tokenElement.value;
-  else 
-    _historyFrame.src = 'history.html?' + encodeURIComponent($wnd.__historyToken);
-  $wnd.__onHistoryChanged = function(_token){
+  $wnd.__checkHistory = function(){
+    var _token = '', _hash0 = $wnd.location.hash;
+    if (_hash0.length > 0)
+      _token = decodeURIComponent(_hash0.substring(1));
     if (_token != $wnd.__historyToken) {
       $wnd.__historyToken = _token;
       _onHistoryChanged1(_token);
     }
+    $wnd.setTimeout('__checkHistory()', 250);
   }
   ;
+  $wnd.__checkHistory();
   return true;
 }
 
 function _newItem1(_historyToken){
-  var _iframe = $doc.getElementById('__gwt_historyFrame');
-  _iframe.contentWindow.location.href = 'history.html?' + _historyToken;
+  if (_historyToken == '' || _historyToken == null) {
+    _historyToken = '#';
+  }
+  $wnd.location.hash = encodeURIComponent(_historyToken);
 }
 
-function _HistoryImplSafari(){
+function _HistoryImplStandard(){
 }
 
-_ = _HistoryImplSafari.prototype = new _HistoryImpl();
+_ = _HistoryImplStandard.prototype = new _HistoryImpl();
 _._getToken0 = _getToken1;
 _._init = _init2;
 _._newItem0 = _newItem1;
-_._typeName = 'com.google.gwt.user.client.impl.HistoryImplSafari';
+_._typeName = 'com.google.gwt.user.client.impl.HistoryImplStandard';
 _._typeId = 0;
 function _isVisible(_elem){
   return _elem.style.display != 'none';
@@ -4464,7 +4467,7 @@ _._typeName = 'com.google.gwt.xml.client.impl.ProcessingInstructionImpl';
 _._typeId = 54;
 function _$clinit11(){
   _$clinit11 = _nullMethod;
-  _impl4 = _$XMLParserImplSafari(new _XMLParserImplSafari());
+  _impl4 = _$XMLParserImplStandard(new _XMLParserImplStandard());
   return window;
 }
 
@@ -4592,6 +4595,20 @@ function _createDOMParser(){
   return new DOMParser();
 }
 
+function _getElementsByTagNameImpl0(_o, _tagName){
+  return _o.getElementsByTagNameNS('*', _tagName);
+}
+
+function _parseImpl0(_contents){
+  var _domParser = this._domParser;
+  var _result = _domParser.parseFromString(_contents, 'text/xml');
+  var _roottag = _result.documentElement;
+  if (_roottag.tagName == 'parsererror' && _roottag.namespaceURI == 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
+    throw new Error(_roottag.firstChild.data);
+  }
+  return _result;
+}
+
 function _$XMLParserImplStandard(_this$static){
   _$XMLParserImpl(_this$static);
   _$$init4(_this$static);
@@ -4606,38 +4623,9 @@ function _XMLParserImplStandard(){
 }
 
 _ = _XMLParserImplStandard.prototype = new _XMLParserImpl();
-_._typeName = 'com.google.gwt.xml.client.impl.XMLParserImplStandard';
-_._typeId = 0;
-function _getElementsByTagNameImpl0(_o, _tagName){
-  return _o.getElementsByTagName(_tagName);
-}
-
-function _parseImpl0(_contents){
-  var _domParser = this._domParser;
-  var _result = _domParser.parseFromString(_contents, 'text/xml');
-  var _parseerrors = _result.getElementsByTagName('parsererror');
-  if (_parseerrors.length > 0) {
-    var _err = _parseerrors.item(0);
-    var _safariErrStyle = 'white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black';
-    if (_err.getAttribute('style') == _safariErrStyle) {
-      throw new Error(_err.item(1).innerHTML);
-    }
-  }
-  return _result;
-}
-
-function _$XMLParserImplSafari(_this$static){
-  _$XMLParserImplStandard(_this$static);
-  return _this$static;
-}
-
-function _XMLParserImplSafari(){
-}
-
-_ = _XMLParserImplSafari.prototype = new _XMLParserImplStandard();
 _._getElementsByTagNameImpl = _getElementsByTagNameImpl0;
 _._parseImpl = _parseImpl0;
-_._typeName = 'com.google.gwt.xml.client.impl.XMLParserImplSafari';
+_._typeName = 'com.google.gwt.xml.client.impl.XMLParserImplStandard';
 _._typeId = 0;
 function _OutputStream(){
 }
@@ -4976,7 +4964,7 @@ _._typeName = 'java.lang.StringBuffer';
 _._typeId = 0;
 function _$clinit14(){
   _$clinit14 = _nullMethod;
-  _err0 = new _PrintStream();
+  _err = new _PrintStream();
   _out0 = new _PrintStream();
   return window;
 }
@@ -6086,7 +6074,7 @@ function _$populateFromFeed(_this$static, _feed){
           continue;
         _dayHeader = _$HTML0(new _HTML(), _$getDayHeaderHtml(_this$static, _day, _postsCount));
         _$addClickListener0(_dayHeader, _$FeedComposite$1(new _FeedComposite$1(), _this$static, _dayContainer, _dayHeader));
-        _visible = _dayCount == 0;
+        _visible = _dayCount <= 1;
         _$setVisibility(_this$static, _visible, _dayHeader, _dayContainer);
         _dayCount++;
         _$add1(_this$static._feedPanel, _dayHeader);
