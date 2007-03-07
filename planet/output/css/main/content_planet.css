@@ -37,7 +37,8 @@
 	a img {	border: 0px; }
 	a {color: #06c; text-decoration:none;}
 	a:hover {color: #666; text-decoration:underline;}
-	a:focus {color: #666; text-decoration:underline;}	
+	a:focus {color: #666; text-decoration:underline;}
+	a:visited {color: #666;}	
 	
 	table { border-collapse:collapse; width: 100%; margin-bottom: 0.5em; }
 	form { overflow:hidden; display: none; }
