@@ -15,6 +15,7 @@
 /* LAYOUT-ABHÄNGIGE ANPASSUNGEN ---------------------------------------------------------------------- */
 @media screen
 {
-/* Keine layoutabhängigen Anpassungen erforderlich */
-
+	/* bug 177470: IE problem with table widths */
+	div.post-contents table { width: 50% !important; margin-top: 0.5em! important;}
+	
 }

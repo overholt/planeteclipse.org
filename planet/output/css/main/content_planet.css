@@ -37,8 +37,7 @@
 	a img {	border: 0px; }
 	a {color: #06c; text-decoration:none;}
 	a:hover {color: #666; text-decoration:underline;}
-	a:focus {color: #666; text-decoration:underline;}
-	a:visited {color: #666;}	
+	a:focus {color: #666; text-decoration:underline;}	
 	
 	table { border-collapse:collapse; width: 100%; margin-bottom: 0.5em; }
 	form { overflow:hidden; display: none; }
@@ -72,10 +71,13 @@
 	#col2 div.col2_content ul  { margin:1em 0 1em 0; font-size: 1em; }
 	#col2 div.col2_content p   { margin:0; padding: 0.5em; font-size: 1em; }
 	
+	/** announcements */
+	#announcements { }
+	
 	/** error message */
-	div.error { padding-bottom: 1em; }
-	div.error span.errormessage { color: red; }
-	div.error span.errordetail  { color: #666;	padding: 1em; }
+	#error { padding-top: 1em; padding-bottom: 1em; display: none; }
+	#error span.errormessage { color: red; }
+	#error span.errordetail  { color: #666;	padding: 1em; }
 	
 	/** progress message */
 	span.progressmessage { color: #444; font-size: 0.8em; font-weight: normal; }
@@ -112,6 +114,7 @@
 	div.post-contents blockquote { line-height: 150%; margin: 1em !important; padding: 1em !important; }
 	div.post-contents pre { margin: 1em !important; padding: 1em !important; }
 	div.post-contents hr { margin-top: 1em !important; list-style: 1px solid; }
+	div.post-contents table { width: 50% !important; margin-top: 0.5em! important;}
 	
 	div.post-title span { font-size: 100%; }
 

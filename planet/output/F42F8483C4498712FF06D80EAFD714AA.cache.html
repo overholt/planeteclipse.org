@@ -5740,10 +5740,10 @@ function _getElementTextValue(_parent, _elementTag){
   var _elements, _firstChild;
   _elements = _parent._getElementsByTagName1(_elementTag);
   if (_elements._getLength() < 1)
-    return null;
+    return '<!-- empty -->';
   _firstChild = _$getFirstChild(_elements._item(0));
   if (null === _firstChild)
-    return null;
+    return '<!-- first child is null, length ' + _elements._getLength() + ' -->';
   return _$getNodeValue(_firstChild);
 }
 
@@ -5983,7 +5983,7 @@ function _$createContent(_this$static){
   var _panel, _text;
   _panel = _$FlowPanel(new _FlowPanel());
   _$add1(_panel, _$Image0(new _Image(), 'images/about.jpg'));
-  _text = _$HTML0(new _HTML(), 'Thank you for using the Planet Eclipse Feed Viewer. <br/>It was built using the Google Web Toolkit. <br/><br/><a href="http://wiki.eclipse.org/index.php/PlanetEclipseFeedViewer" target="_blank">Do you like it?</a>');
+  _text = _$HTML0(new _HTML(), 'Thank you for using the Planet Eclipse Feed Viewer. <br/>It was built using the Google Web Toolkit. <br/>The layout is based on <a href="http://www.yaml.de/" target="_blank">YAML</a>. <br/><br/><a href="http://wiki.eclipse.org/index.php/PlanetEclipseFeedViewer" target="_blank">Do you like it?</a>');
   _$setStyleName(_text, 'abouttext');
   _$add1(_panel, _text);
   _$add1(_panel, _$createButtons(_this$static));
