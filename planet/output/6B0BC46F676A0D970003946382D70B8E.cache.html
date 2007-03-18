@@ -365,7 +365,7 @@ function _$clinit0(){
   _$clinit0 = _nullMethod;
   _sEventPreviewStack = _$Vector(new _Vector());
   {
-    _impl = new _DOMImplMozilla();
+    _impl = new _DOMImplOpera();
     _impl._init();
   }
   return window;
@@ -1034,6 +1034,24 @@ function _eventGetTypeInt0(_evt){
   }
 }
 
+function _getAbsoluteLeft1(_elem){
+  var _left = 0;
+  while (_elem) {
+    _left += _elem.offsetLeft - _elem.scrollLeft;
+    _elem = _elem.offsetParent;
+  }
+  return _left + $doc.body.scrollLeft;
+}
+
+function _getAbsoluteTop1(_elem){
+  var _top = 0;
+  while (_elem) {
+    _top += _elem.offsetTop - _elem.scrollTop;
+    _elem = _elem.offsetParent;
+  }
+  return _top + $doc.body.scrollTop;
+}
+
 function _getAttribute1(_elem, _attr){
   var _ret = _elem[_attr];
   return _ret == null?null:String(_ret);
@@ -1097,6 +1115,8 @@ _._eventGetFromElement0 = _eventGetFromElement1;
 _._eventGetKeyCode0 = _eventGetKeyCode1;
 _._eventGetShiftKey0 = _eventGetShiftKey1;
 _._eventGetTypeInt = _eventGetTypeInt0;
+_._getAbsoluteLeft0 = _getAbsoluteLeft1;
+_._getAbsoluteTop0 = _getAbsoluteTop1;
 _._getAttribute0 = _getAttribute1;
 _._getElementById0 = _getElementById1;
 _._getEventsSunk0 = _getEventsSunk1;
@@ -1109,6 +1129,10 @@ _._setIntAttribute0 = _setIntAttribute1;
 _._setStyleAttribute0 = _setStyleAttribute1;
 _._typeName = 'com.google.gwt.user.client.impl.DOMImpl';
 _._typeId = 0;
+function _compare1(_elem1, _elem2){
+  return _elem1 == _elem2;
+}
+
 function _eventGetTarget1(_evt){
   return _evt.target?_evt.target:null;
 }
@@ -1123,6 +1147,18 @@ function _eventPreventDefault1(_evt){
 
 function _eventToString1(_evt){
   return _evt.toString();
+}
+
+function _getChildIndex1(_parent, _toFind){
+  var _count = 0, _child = _parent.firstChild;
+  while (_child) {
+    if (_child == _toFind)
+      return _count;
+    if (_child.nodeType == 1)
+      ++_count;
+    _child = _child.nextSibling;
+  }
+  return -1;
 }
 
 function _getFirstChild1(_elem){
@@ -1219,6 +1255,22 @@ function _insertChild1(_parent, _toAdd, _index){
   _parent.insertBefore(_toAdd, _before);
 }
 
+function _isOrHasChild1(_parent, _child){
+  while (_child) {
+    if (_parent == _child)
+      return true;
+    _child = _child.parentNode;
+    if (_child.nodeType != 1)
+      _child = null;
+  }
+  return false;
+}
+
+function _releaseCapture1(_elem){
+  if (_elem == $wnd.__captureElem)
+    $wnd.__captureElem = null;
+}
+
 function _setCapture1(_elem){
   $wnd.__captureElem = _elem;
 }
@@ -1257,98 +1309,29 @@ function _DOMImplStandard(){
 }
 
 _ = _DOMImplStandard.prototype = new _DOMImpl();
+_._compare0 = _compare1;
 _._eventGetTarget0 = _eventGetTarget1;
 _._eventGetToElement0 = _eventGetToElement1;
 _._eventPreventDefault0 = _eventPreventDefault1;
 _._eventToString0 = _eventToString1;
+_._getChildIndex0 = _getChildIndex1;
 _._getFirstChild0 = _getFirstChild1;
 _._getNextSibling0 = _getNextSibling1;
 _._getParent0 = _getParent1;
 _._init = _init1;
 _._insertChild0 = _insertChild1;
+_._isOrHasChild0 = _isOrHasChild1;
+_._releaseCapture0 = _releaseCapture1;
 _._setCapture0 = _setCapture1;
 _._sinkEvents0 = _sinkEvents1;
 _._toString4 = _toString7;
 _._typeName = 'com.google.gwt.user.client.impl.DOMImplStandard';
 _._typeId = 0;
-function _compare1(_elem1, _elem2){
-  if (!_elem1 && !_elem2) {
-    return true;
-  }
-   else if (!_elem1 || !_elem2) {
-    return false;
-  }
-  return _elem1.isSameNode(_elem2);
+function _DOMImplOpera(){
 }
 
-function _getAbsoluteLeft1(_elem){
-  var _left = $doc.getBoxObjectFor(_elem).x;
-  var _parent = _elem;
-  while (_parent) {
-    if (_parent.scrollLeft > 0) {
-      _left = _left - _parent.scrollLeft;
-    }
-    _parent = _parent.parentNode;
-  }
-  return _left + $doc.body.scrollLeft + $doc.documentElement.scrollLeft;
-}
-
-function _getAbsoluteTop1(_elem){
-  var _top = $doc.getBoxObjectFor(_elem).y;
-  var _parent = _elem;
-  while (_parent) {
-    if (_parent.scrollTop > 0) {
-      _top -= _parent.scrollTop;
-    }
-    _parent = _parent.parentNode;
-  }
-  return _top + $doc.body.scrollTop + $doc.documentElement.scrollTop;
-}
-
-function _getChildIndex1(_parent, _toFind){
-  var _count = 0, _child = _parent.firstChild;
-  while (_child) {
-    if (_child.isSameNode(_toFind)) {
-      return _count;
-    }
-    if (_child.nodeType == 1) {
-      ++_count;
-    }
-    _child = _child.nextSibling;
-  }
-  return -1;
-}
-
-function _isOrHasChild1(_parent, _child){
-  while (_child) {
-    if (_parent.isSameNode(_child)) {
-      return true;
-    }
-    _child = _child.parentNode;
-    if (_child.nodeType != 1) {
-      _child = null;
-    }
-  }
-  return false;
-}
-
-function _releaseCapture1(_elem){
-  if (_elem.isSameNode($wnd.__captureElem)) {
-    $wnd.__captureElem = null;
-  }
-}
-
-function _DOMImplMozilla(){
-}
-
-_ = _DOMImplMozilla.prototype = new _DOMImplStandard();
-_._compare0 = _compare1;
-_._getAbsoluteLeft0 = _getAbsoluteLeft1;
-_._getAbsoluteTop0 = _getAbsoluteTop1;
-_._getChildIndex0 = _getChildIndex1;
-_._isOrHasChild0 = _isOrHasChild1;
-_._releaseCapture0 = _releaseCapture1;
-_._typeName = 'com.google.gwt.user.client.impl.DOMImplMozilla';
+_ = _DOMImplOpera.prototype = new _DOMImplStandard();
+_._typeName = 'com.google.gwt.user.client.impl.DOMImplOpera';
 _._typeId = 0;
 function _doCreateXmlHTTPRequest(){
   return new XMLHttpRequest();
@@ -4467,7 +4450,7 @@ _._typeName = 'com.google.gwt.xml.client.impl.ProcessingInstructionImpl';
 _._typeId = 54;
 function _$clinit11(){
   _$clinit11 = _nullMethod;
-  _impl4 = _$XMLParserImplStandard(new _XMLParserImplStandard());
+  _impl4 = _$XMLParserImplOpera(new _XMLParserImplOpera());
   return window;
 }
 
@@ -4626,6 +4609,17 @@ _ = _XMLParserImplStandard.prototype = new _XMLParserImpl();
 _._getElementsByTagNameImpl = _getElementsByTagNameImpl0;
 _._parseImpl = _parseImpl0;
 _._typeName = 'com.google.gwt.xml.client.impl.XMLParserImplStandard';
+_._typeId = 0;
+function _$XMLParserImplOpera(_this$static){
+  _$XMLParserImplStandard(_this$static);
+  return _this$static;
+}
+
+function _XMLParserImplOpera(){
+}
+
+_ = _XMLParserImplOpera.prototype = new _XMLParserImplStandard();
+_._typeName = 'com.google.gwt.xml.client.impl.XMLParserImplOpera';
 _._typeId = 0;
 function _OutputStream(){
 }
@@ -5715,6 +5709,28 @@ _._typeName = 'org.eclipse.planet.viewer.client.FeedViewer$FeedResponseTextHandl
 _._typeId = 0;
 _._title = null;
 _._url = null;
+function _$createSubscription(_this$static, _subscriptionElement){
+  var _subscription;
+  _subscription = _$Subscription(new _Subscription(), _subscriptionElement);
+  if (null === _this$static._subscriptions)
+    _this$static._subscriptions = _$ArrayList(new _ArrayList());
+  _$add3(_this$static._subscriptions, _subscription);
+  return _subscription;
+}
+
+function _$Day(_this$static, _date){
+  _this$static._date = _date;
+  return _this$static;
+}
+
+function _Day(){
+}
+
+_ = _Day.prototype = new _Object();
+_._typeName = 'org.eclipse.planet.viewer.client.content.Day';
+_._typeId = 72;
+_._date = null;
+_._subscriptions = null;
 function _createFromXml(_feedContent){
   var _feedDom, _feedElement, _date, _feed, _days, _i, _dayElement, _dayDate, _day, _subscriptions, _j, _subscriptionElement, _subscription, _posts, _k, _postElement, _post, _e, _$e0;
   try {
@@ -5735,10 +5751,8 @@ function _createFromXml(_feedContent){
         _posts = _subscriptionElement._getElementsByTagName1('post');
         for (_k = 0; _k < _posts._getLength(); _k++) {
           _postElement = _dynamicCast(_posts._item(_k), 22);
-          _post = _$createItem(_feed, _postElement, _subscription);
-          if (null === _subscription._posts)
-            _subscription._posts = _$ArrayList(new _ArrayList());
-          _$add3(_subscription._posts, _post);
+          _post = _$createPost(_subscription, _postElement);
+          _$addPost(_feed, _post);
         }
       }
     }
@@ -5756,14 +5770,17 @@ function _createFromXml(_feedContent){
 }
 
 function _getElementTextValue(_parent, _elementTag){
-  var _elements, _firstChild;
+  var _elements, _node;
   _elements = _parent._getElementsByTagName1(_elementTag);
   if (_elements._getLength() < 1)
-    return '<!-- empty -->';
-  _firstChild = _$getFirstChild(_elements._item(0));
-  if (null === _firstChild)
-    return '<!-- first child is null, length ' + _elements._getLength() + ' -->';
-  return _$getNodeValue(_firstChild);
+    return null;
+  _node = _$getFirstChild(_elements._item(0));
+  if (null !== _node && null !== _$getNodeValue(_node))
+    return _$getNodeValue(_node);
+  _node = _elements._item(0);
+  if (null !== _node && null !== _$getNodeValue(_node))
+    return _$getNodeValue(_node);
+  return null;
 }
 
 function _$Feed(_this$static, _feedLastUpdated){
@@ -5773,16 +5790,14 @@ function _$Feed(_this$static, _feedLastUpdated){
 
 function _$createDay(_this$static, _date){
   var _day;
-  _day = _$Feed$Day(new _Feed$Day(), _this$static, _date);
+  _day = _$Day(new _Day(), _date);
   if (null === _this$static._days)
     _this$static._days = _$ArrayList(new _ArrayList());
   _$add3(_this$static._days, _day);
   return _day;
 }
 
-function _$createItem(_this$static, _postElement, _subscription){
-  var _post;
-  _post = _$Feed$Post(new _Feed$Post(), _this$static, _postElement, _subscription);
+function _$addPost(_this$static, _post){
   if (null === _this$static._items)
     _this$static._items = _$ArrayList(new _ArrayList());
   _$add3(_this$static._items, _post);
@@ -5798,31 +5813,24 @@ _._typeId = 0;
 _._days = null;
 _._items = null;
 _._lastUpdated = null;
-function _$createSubscription(_this$static, _subscriptionElement){
-  var _subscription;
-  _subscription = _$Feed$Subscription(new _Feed$Subscription(), _this$static._this$0, _subscriptionElement);
-  if (null === _this$static._subscriptions)
-    _this$static._subscriptions = _$ArrayList(new _ArrayList());
-  _$add3(_this$static._subscriptions, _subscription);
-  return _subscription;
-}
-
-function _$Feed$Day(_this$static, _this$0, _date){
-  _this$static._this$0 = _this$0;
-  _this$static._date = _date;
+function _$ParseException(_this$static, _message, _cause){
+  _$Exception1(_this$static, _message, _cause);
   return _this$static;
 }
 
-function _Feed$Day(){
+function _ParseException(){
 }
 
-_ = _Feed$Day.prototype = new _Object();
-_._typeName = 'org.eclipse.planet.viewer.client.content.Feed$Day';
-_._typeId = 72;
-_._date = null;
-_._subscriptions = null;
-function _$Feed$Post(_this$static, _this$0, _postElement, _subscription){
-  _this$static._this$0 = _this$0;
+_ = _ParseException.prototype = new _Exception();
+_._typeName = 'org.eclipse.planet.viewer.client.content.ParseException';
+_._typeId = 73;
+function _$getTitle(_this$static){
+  if (null !== _this$static._title)
+    return _this$static._title;
+  return '(missing title info; this could be a browser problem)';
+}
+
+function _$Post(_this$static, _postElement, _subscription){
   _this$static._subscription = _subscription;
   _this$static._id = _postElement._getAttribute4('id');
   _this$static._url = _postElement._getAttribute4('url');
@@ -5835,9 +5843,9 @@ function _$Feed$Post(_this$static, _this$0, _postElement, _subscription){
 
 function _$getTitleAsHtmlLink(_this$static, _newWindow){
   if (_newWindow)
-    return '<a href="' + _this$static._url + '" target="_blank">' + _this$static._title + '</a>';
+    return '<a href="' + _this$static._url + '" target="_blank">' + _$getTitle(_this$static) + '</a>';
   else 
-    return '<a href="' + _this$static._url + '">' + _this$static._title + '</a>';
+    return '<a href="' + _this$static._url + '">' + _$getTitle(_this$static) + '</a>';
 }
 
 function _$getAuthor(_this$static){
@@ -5848,12 +5856,12 @@ function _$getAuthor(_this$static){
   return 'unknown';
 }
 
-function _Feed$Post(){
+function _Post(){
 }
 
-_ = _Feed$Post.prototype = new _Object();
-_._typeName = 'org.eclipse.planet.viewer.client.content.Feed$Post';
-_._typeId = 73;
+_ = _Post.prototype = new _Object();
+_._typeName = 'org.eclipse.planet.viewer.client.content.Post';
+_._typeId = 74;
 _._author = null;
 _._content = null;
 _._date = null;
@@ -5861,8 +5869,7 @@ _._id = null;
 _._subscription = null;
 _._title = null;
 _._url = null;
-function _$Feed$Subscription(_this$static, _this$0, _subscriptionElement){
-  _this$static._this$0 = _this$0;
+function _$Subscription(_this$static, _subscriptionElement){
   _this$static._url = _subscriptionElement._getAttribute4('url');
   _this$static._title = _subscriptionElement._getAttribute4('title');
   _this$static._name = _subscriptionElement._getAttribute4('name');
@@ -5870,6 +5877,15 @@ function _$Feed$Subscription(_this$static, _this$0, _subscriptionElement){
   _this$static._faceWidth = _subscriptionElement._getAttribute4('faceWidth');
   _this$static._faceHeight = _subscriptionElement._getAttribute4('faceHeight');
   return _this$static;
+}
+
+function _$createPost(_this$static, _postElement){
+  var _post;
+  _post = _$Post(new _Post(), _postElement, _this$static);
+  if (null === _this$static._posts)
+    _this$static._posts = _$ArrayList(new _ArrayList());
+  _$add3(_this$static._posts, _post);
+  return _post;
 }
 
 function _$hasFace(_this$static){
@@ -5890,12 +5906,12 @@ function _$getFaceHtml(_this$static){
   return _personInfoHtml._toString0();
 }
 
-function _Feed$Subscription(){
+function _Subscription(){
 }
 
-_ = _Feed$Subscription.prototype = new _Object();
-_._typeName = 'org.eclipse.planet.viewer.client.content.Feed$Subscription';
-_._typeId = 74;
+_ = _Subscription.prototype = new _Object();
+_._typeName = 'org.eclipse.planet.viewer.client.content.Subscription';
+_._typeId = 75;
 _._faceHeight = null;
 _._faceUrl = null;
 _._faceWidth = null;
@@ -5903,17 +5919,6 @@ _._name = null;
 _._posts = null;
 _._title = null;
 _._url = null;
-function _$ParseException(_this$static, _message, _cause){
-  _$Exception1(_this$static, _message, _cause);
-  return _this$static;
-}
-
-function _ParseException(){
-}
-
-_ = _ParseException.prototype = new _Exception();
-_._typeName = 'org.eclipse.planet.viewer.client.content.ParseException';
-_._typeId = 75;
 function _createFromXml0(_subscriptionsXml){
   var _subscriptionsDom, _subscriptionsElement, _date, _subscriptions, _subscriptionsList, _i, _subscriptionElement;
   _subscriptionsDom = _parse(_subscriptionsXml);
@@ -5924,7 +5929,7 @@ function _createFromXml0(_subscriptionsXml){
   _subscriptionsList = _subscriptionsElement._getElementsByTagName1('subscription');
   for (_i = 0; _i < _subscriptionsList._getLength(); _i++) {
     _subscriptionElement = _dynamicCast(_subscriptionsList._item(_i), 22);
-    _$createItem0(_subscriptions, _subscriptionElement);
+    _$createItem(_subscriptions, _subscriptionElement);
   }
   return _subscriptions;
 }
@@ -5934,7 +5939,7 @@ function _$Subscriptions(_this$static, _feedLastUpdated){
   return _this$static;
 }
 
-function _$createItem0(_this$static, _itemElement){
+function _$createItem(_this$static, _itemElement){
   var _item;
   _item = _$Subscriptions$SubscriptionItem(new _Subscriptions$SubscriptionItem(), _this$static, _itemElement);
   if (null === _this$static._items)
@@ -6388,7 +6393,7 @@ function gwtOnLoad(_errFn, _modName){
   }
 }
 
-_typeIdArray = [{}, {2:1}, {2:1}, {2:1, 29:1}, {2:1, 23:1, 29:1}, {1:1}, {1:1, 4:1}, {1:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {25:1}, {25:1}, {25:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {3:1, 10:1, 13:1, 14:1, 15:1, 16:1}, {3:1, 10:1, 11:1, 13:1, 14:1, 15:1, 16:1}, {26:1}, {26:1}, {27:1}, {27:1}, {27:1}, {9:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {25:1}, {10:1, 12:1, 13:1, 14:1, 15:1, 16:1}, {6:1}, {2:1, 29:1}, {21:1}, {20:1, 21:1}, {20:1, 21:1}, {20:1, 21:1}, {18:1, 20:1, 21:1}, {18:1, 19:1, 20:1, 21:1}, {20:1, 21:1}, {2:1, 29:1}, {2:1, 29:1}, {20:1, 21:1}, {20:1, 21:1, 24:1}, {20:1, 21:1, 22:1}, {21:1}, {21:1}, {20:1, 21:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {8:1}, {2:1, 29:1}, {27:1}, {25:1}, {26:1}, {27:1}, {9:1}, {2:1, 29:1}, {5:1}, {7:1}, {30:1}, {32:1}, {31:1}, {2:1, 28:1}, {33:1}, {3:1, 10:1, 11:1, 13:1, 14:1, 15:1, 16:1}, {7:1}, {10:1, 14:1, 15:1, 16:1}, {7:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1, 34:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}];
+_typeIdArray = [{}, {2:1}, {2:1}, {2:1, 29:1}, {2:1, 23:1, 29:1}, {1:1}, {1:1, 4:1}, {1:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {25:1}, {25:1}, {25:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {3:1, 10:1, 13:1, 14:1, 15:1, 16:1}, {3:1, 10:1, 11:1, 13:1, 14:1, 15:1, 16:1}, {26:1}, {26:1}, {27:1}, {27:1}, {27:1}, {9:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 14:1, 15:1, 16:1}, {25:1}, {10:1, 12:1, 13:1, 14:1, 15:1, 16:1}, {6:1}, {2:1, 29:1}, {21:1}, {20:1, 21:1}, {20:1, 21:1}, {20:1, 21:1}, {18:1, 20:1, 21:1}, {18:1, 19:1, 20:1, 21:1}, {20:1, 21:1}, {2:1, 29:1}, {2:1, 29:1}, {20:1, 21:1}, {20:1, 21:1, 24:1}, {20:1, 21:1, 22:1}, {21:1}, {21:1}, {20:1, 21:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {2:1, 29:1}, {8:1}, {2:1, 29:1}, {27:1}, {25:1}, {26:1}, {27:1}, {9:1}, {2:1, 29:1}, {5:1}, {7:1}, {30:1}, {2:1, 28:1}, {32:1}, {31:1}, {33:1}, {3:1, 10:1, 11:1, 13:1, 14:1, 15:1, 16:1}, {7:1}, {10:1, 14:1, 15:1, 16:1}, {7:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1, 34:1}, {10:1, 14:1, 15:1, 16:1}, {10:1, 13:1, 14:1, 15:1, 16:1}];
 
 if ($wnd.__gwt_tryGetModuleControlBlock) {
   var $mcb = $wnd.__gwt_tryGetModuleControlBlock(location.search);
