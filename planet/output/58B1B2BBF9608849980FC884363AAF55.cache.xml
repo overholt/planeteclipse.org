@@ -6,6 +6,8 @@
 	<rebind-decision in="com.google.gwt.xml.client.impl.XMLParserImpl" out="com.google.gwt.xml.client.impl.XMLParserImplIE6"/>
 	<rebind-decision in="com.google.gwt.user.client.impl.HistoryImpl" out="com.google.gwt.user.client.impl.HistoryImplIE6"/>
 	<rebind-decision in="com.google.gwt.user.client.ui.impl.FormPanelImpl" out="com.google.gwt.user.client.ui.impl.FormPanelImplIE6"/>
+	<rebind-decision in="com.google.gwt.user.client.ui.impl.ClippedImageImpl" out="com.google.gwt.user.client.ui.impl.ClippedImageImplIE6"/>
 	<rebind-decision in="org.eclipse.planet.viewer.client.FeedViewer" out="org.eclipse.planet.viewer.client.FeedViewer"/>
+	<rebind-decision in="com.google.gwt.user.client.ui.impl.FocusImpl" out="com.google.gwt.user.client.ui.impl.FocusImplIE6"/>
 	<rebind-decision in="com.google.gwt.user.client.ui.impl.PopupImpl" out="com.google.gwt.user.client.ui.impl.PopupImplIE6"/>
 </cache-entry>
