@@ -7,7 +7,7 @@
         <TMPL_IF link>
         htmlUrl="<TMPL_VAR link ESCAPE="HTML">"
         </TMPL_IF>
-        title="<TMPL_IF message><TMPL_VAR message ESCAPE="HTML"><TMPL_ELSE><TMPL_IF title_plain><TMPL_VAR title_plain ESCAPE="HTML"></TMPL_IF><TMPL_UNLESS title><TMPL_VAR name ESCAPE="HTML"></TMPL_UNLESS></TMPL_IF>"
+        title="<TMPL_IF title><TMPL_VAR title ESCAPE="HTML"><TMPL_ELSE><TMPL_IF title_plain><TMPL_VAR title_plain ESCAPE="HTML"></TMPL_IF><TMPL_UNLESS title><TMPL_VAR name ESCAPE="HTML"></TMPL_UNLESS></TMPL_IF>"
         <TMPL_IF message>
         message="<TMPL_VAR message ESCAPE="HTML">"
         </TMPL_IF>

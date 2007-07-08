@@ -39,6 +39,7 @@
 				>
 				<TMPL_IF title>
 				<title<TMPL_IF title_language> lang="<TMPL_VAR title_language ESCAPE="HTML">"</TMPL_IF>><TMPL_VAR title ESCAPE="HTML"></title>
+				<post-title<TMPL_IF title_language> lang="<TMPL_VAR title_language ESCAPE="HTML">"</TMPL_IF>><TMPL_VAR title ESCAPE="HTML"></post-title>
 				</TMPL_IF>
 				<content-plain<TMPL_IF content_language> lang="<TMPL_VAR content_language ESCAPE="HTML">"</TMPL_IF>>
 					<![CDATA[<TMPL_VAR content ESCAPE="NONE">]]>
