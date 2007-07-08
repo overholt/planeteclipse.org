@@ -821,7 +821,7 @@ function vG(d,a){var b,c;b=d.dc(a);if(b.hc()<1)return null;c=Bw(b.ad(0));if(null
 function qG(){}
 _=qG.prototype=new zz();_.De=tJ+'Feed';_.Ce=0;_.a=null;_.b=null;function xG(c,b,a){Dy(c,b,a);return c;}
 function wG(){}
-_=wG.prototype=new By();_.De=tJ+'ParseException';_.Ce=76;function AG(c,a,b){c.d=b;a.vb('id');c.f=a.vb('url');c.c=a.vb('date');c.a=a.vb('author');c.e=vG(a,'title');c.b=vG(a,'content-plain');return c;}
+_=wG.prototype=new By();_.De=tJ+'ParseException';_.Ce=76;function AG(c,a,b){c.d=b;a.vb('id');c.f=a.vb('url');c.c=a.vb('date');c.a=a.vb('author');c.e=vG(a,'post-title');c.b=vG(a,'content-plain');return c;}
 function CG(a){if(null!==a.a)return a.a;if(null!==a.d)return a.d.d;return 'unknown';}
 function EG(a){if(null!==a.e)return a.e;return '(missing title info; this could be a browser problem)';}
 function DG(b,a){if(a)return '<a href="'+b.f+'" target="_blank">'+EG(b)+'<\/a>';else return '<a href="'+b.f+'">'+EG(b)+'<\/a>';}
@@ -834,7 +834,7 @@ function FG(){}
 _=FG.prototype=new zz();_.De=tJ+'Subscription';_.Ce=78;_.a=null;_.b=null;_.c=null;_.d=null;_.e=null;_.f=null;_.g=null;function kH(c,b){var a;a=hH(new gH(),b,c);if(null===c.a)c.a=fD(new eD());gD(c.a,a);return a;}
 function lH(h){var a,b,c,d,e,f,g;e=Fu(h);f=e.Db();bv(f);a=f.vb('lastUpdated');d=new fH();g=f.dc('subscription');for(b=0;b<g.hc();b++){c=Ab(g.ad(b),22);kH(d,c);}return d;}
 function fH(){}
-_=fH.prototype=new zz();_.De=tJ+'Subscriptions';_.Ce=0;_.a=null;function hH(c,a,b){c.b=a.vb('name');c.d=a.vb('url');c.a=a.vb('htmlUrl');c.c=a.vb('title');a.vb('faceUrl');a.vb('faceWidth');a.vb('faceHeight');return c;}
+_=fH.prototype=new zz();_.De=tJ+'Subscriptions';_.Ce=0;_.a=null;function hH(c,a,b){c.b=a.vb('name');c.d=a.vb('url');c.a=a.vb('htmlUrl');c.c=a.vb('title');a.vb('faceUrl');a.vb('faceWidth');a.vb('faceHeight');a.vb('message');return c;}
 function gH(){}
 _=gH.prototype=new zz();_.De=tJ+'Subscriptions$SubscriptionItem';_.Ce=79;_.a=null;_.b=null;_.c=null;_.d=null;function rH(a){wk(a);Ak(a,'About the Planet Eclipse Feed Viewer');uH(a);Ck(a,'400px');vq(a,'300px');return a;}
 function tH(b){var a;a=ul(new tl());rs(a,'Buttons');vl(a,yj(new rj(),'Close',oH(new nH(),b)));return a;}
@@ -866,7 +866,7 @@ _=fI.prototype=new qr();_.De=vJ+'ListItem';_.Ce=85;function sI(a){a.a=BI(new AI(
 function tI(a){sI(a);qk(a,a.a);return a;}
 function uI(a){while(a.a.a.c>0)aJ(a.a,a.a.a.c-1);}
 function wI(b,a){Fe(pk(b),'Loading...');if(!wf(y()+a.b,a))Fe(pk(b),'An error occurred while trying to fetch the subscriptions from the server. Either the resource is not available on the server or there are connection problems.');}
-function xI(g,f){var a,b,c,d,e;a='Subscriptions';if(null!==f){d=f.a;if(null!==d&&d.te()>0){for(e=FB(d);yB(e);){c=Ab(zB(e),35);b=dA(new cA());if(null!==c.d)b.u('<a href="'+c.d+'" title="subscribe" target="_blank"><img src="images/feed-icon-10x10.png" alt="(feed)"><\/a> ');if(null!==c.a)b.u('<a href="'+c.a+'" title="'+c.c+'" target="_blank">'+c.b+'<\/a>');else b.u(c.b);CI(g.a,iI(new fI(),b.xe()));}a+=' ('+d.te()+')';}else CI(g.a,iI(new fI(),'No subscriptions available!'));}else CI(g.a,iI(new fI(),'No subscriptions available!'));zI(g,a);}
+function xI(g,f){var a,b,c,d,e;a='Subscriptions';if(null!==f){d=f.a;if(null!==d&&d.te()>0){for(e=FB(d);yB(e);){c=Ab(zB(e),35);b=dA(new cA());if(null!==c.d)b.u('<a href="'+c.d+'" title="subscribe" target="_blank"><img src="images/feed-icon-10x10.png" alt="(feed)"><\/a> ');if(null!==c.a){b.u('<a href="'+c.a+'" title="'+c.c+'" target="_blank">'+c.b+'<\/a>');}else{b.u(c.b);}CI(g.a,iI(new fI(),b.xe()));}a+=' ('+d.te()+')';}else CI(g.a,iI(new fI(),'No subscriptions available!'));}else CI(g.a,iI(new fI(),'No subscriptions available!'));zI(g,a);}
 function yI(a){uI(a);wI(a,oI(new nI(),'subscriptions.xml',a));}
 function zI(c,b){var a;a=je('subscriptions_headline');if(null!==a)Fe(a,b);}
 function mI(){}
