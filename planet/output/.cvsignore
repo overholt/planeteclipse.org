@@ -6,3 +6,6 @@ rss20.xml
 .arch-inventory
 rss11.xml
 foafroll.xml
+posts.xml
+subscriptions.xml
+atom.xml
