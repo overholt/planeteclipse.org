@@ -5,7 +5,6 @@
 	<rebind-decision in="com.google.gwt.user.client.impl.DOMImpl" out="com.google.gwt.user.client.impl.DOMImplMozillaOld"/>
 	<rebind-decision in="com.google.gwt.xml.client.impl.XMLParserImpl" out="com.google.gwt.xml.client.impl.XMLParserImplStandard"/>
 	<rebind-decision in="com.google.gwt.user.client.impl.HistoryImpl" out="com.google.gwt.user.client.impl.HistoryImplMozilla"/>
-	<rebind-decision in="com.google.gwt.user.client.ui.ListBox.Impl" out="com.google.gwt.user.client.ui.ListBox.Impl"/>
 	<rebind-decision in="com.google.gwt.user.client.ui.impl.FormPanelImpl" out="com.google.gwt.user.client.ui.impl.FormPanelImpl"/>
 	<rebind-decision in="com.google.gwt.user.client.ui.impl.ClippedImageImpl" out="com.google.gwt.user.client.ui.impl.ClippedImageImpl"/>
 	<rebind-decision in="org.eclipse.planet.viewer.client.FeedViewer" out="org.eclipse.planet.viewer.client.FeedViewer"/>

@@ -122,8 +122,4 @@
 	div.post-footer div a { text-decoration: none; color: #999; }
 	div.post-footer div a:hover { color: inherit; text-decoration: underline; }
 
-	/** unhappy subscriptions */
-	li.unhappy { font-weight: lighter; }
-	li.unhappy a { color: #666; text-decoration:none; }
-	
 }
