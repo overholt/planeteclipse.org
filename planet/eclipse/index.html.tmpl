@@ -9,9 +9,9 @@
 
 		<title><TMPL_VAR name></title>
 
-		<link href="/planet-new/css/main/new.css" rel="stylesheet" type="text/css"/>
+		<link href="/planet/css/planet.css" rel="stylesheet" type="text/css"/>
 		<!--[if lte IE 7]>
-		<link href="/planet-new/css/explorer/ie6fixes.css" rel="stylesheet" type="text/css" />
+		<link href="/planet/css/ie6fixes.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 
 		<link rel="alternate" type="application/rss+xml" title="Planet Eclipse News Feed (RSS)" href="rss20.xml" />
@@ -21,17 +21,38 @@
 		<!-- #header: begin header area -->
 		<div id="header">
 			<div id="header-graphic" class="eclipse-main">
-				<a href="/"><img src="/planet-new/images/planet_header.jpg"></a><h1>Eclipse</h1>	
+				<a href="/"><img src="/planet/images/planet_header.jpg"></a><h1>Eclipse</h1>	
 			</div>
 			<div id="header-global-holder" class="eclipse-main-global">
 				<div id="header-icons">
-					<a href="http://www.eclipse.org"><img src="/planet-new/images/icon_org.png" width="28" height="28" alt="Eclipse Foundation" title="Eclipse Foundation" /></a>					
-					<a href="http://www.eclipseplugincentral.com"><img src="/planet-new/images/icon_plugin.png" width="28" height="28" alt="Eclipse Plugin Central" title="Eclipse Plugin Central" /></a>
-					<a href="http://live.eclipse.org"><img src="/planet-new/images/icon_live.png" width="28" height="28" alt="Eclipse Live" title="Eclipse Live" /></a>
+					<a href="http://www.eclipse.org"><img src="/planet/images/icon_org.png" width="28" height="28" alt="Eclipse Foundation" title="Eclipse Foundation" /></a>					
+					<a href="http://www.eclipseplugincentral.com"><img src="/planet/images/icon_plugin.png" width="28" height="28" alt="Eclipse Plugin Central" title="Eclipse Plugin Central" /></a>
+					<a href="http://live.eclipse.org"><img src="/planet/images/icon_live.png" width="28" height="28" alt="Eclipse Live" title="Eclipse Live" /></a>
 				</div>
 			</div>
 		</div>
 		<!-- #header: end -->
+		<!-- #nav: begin navigation area -->
+		<!--
+		<div id="header-menu">
+			<div id="header-nav">
+				<!-- the feeds list get placed here as unordered list -->
+				<!--
+				<ul>
+					<li class="first"><a href="/planet/" title="Open Planet Eclipse">Main</a></li>
+					<li><a href="/planet/eclipsecon/" title="Open Planet EclipseCon">EclipseCon</a></li>
+				</ul>
+			</div>
+			<div id="header-utils">
+				<!-- this is not used yet -->
+				<!-- 
+				<ul>
+					<li class="rss_feed first"><a href="/rss20.xml" target="_blank"><img src="/planet/images/rss_btn.gif" alt="RSS" height="16" width="16" border="0" class="rss_icon" /></a></li>
+				</ul>
+			</div>	
+		</div>
+		-->
+		<!-- #nav: end -->		
 		<!-- #sidebar: begin sidebar area -->
 		<div id="sidebar" float="right">
 			<!-- <div class="col2_content">
@@ -46,18 +67,18 @@
 				Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.
 				<table>
 					<tr>
-						<td><a href="rss10.xml"><img alt="RSS 1.0" src="/planet-new/images/rss10.png" /></a></td>
-						<td><a href="rss20.xml"><img alt="RSS 2.0" src="/planet-new/images/rss20.png" /></a></td>
+						<td><a href="rss10.xml"><img alt="RSS 1.0" src="/planet/images/rss10.png" /></a></td>
+						<td><a href="rss20.xml"><img alt="RSS 2.0" src="/planet/images/rss20.png" /></a></td>
 					</tr>
 					<tr>
-						<td><a href="atom.xml"><img alt="Atom" src="/planet-new/images/atom.png" /></a></td>
-						<td><a href="opml.xml"><img alt="OPML" src="/planet-new/images/opml.png" /></a></td>
+						<td><a href="atom.xml"><img alt="Atom" src="/planet/images/atom.png" /></a></td>
+						<td><a href="opml.xml"><img alt="OPML" src="/planet/images/opml.png" /></a></td>
 					</tr>
 				</table>
 				</p>
 				<p>
 				Looking for an RSS Newsreader?  Try RSSOwl, it is built on Eclipse!
-				<a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="/planet-new/images/rssowl.gif" style="border:0;" width="80" height="15" alt="Get RSSOwl" /></a>
+				<a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="/planet/images/rssowl.gif" style="border:0;" width="80" height="15" alt="Get RSSOwl" /></a>
 				</p>
 				<p>
 				Last updated: <TMPL_VAR date> (UTC)
@@ -67,7 +88,7 @@
 				</p>
 				<p>
 				Powered by:<br>
-				<a href="http://www.planetplanet.org/"><img src="/planet-new/images/planet.png" width="80" height="15" alt="Planet" border="0" /></a>
+				<a href="http://www.planetplanet.org/"><img src="/planet/images/planet.png" width="80" height="15" alt="Planet" border="0" /></a>
 				</p>
 			</div>
 			<div id="about" class="col2_content">
@@ -81,11 +102,11 @@
 				<TMPL_LOOP Channels>
 					<TMPL_IF message>
 					<li styles="unhappy<TMPL_IF __FIRST__> first</TMPL_IF>">
-						<a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet-new/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a class="unhappy" <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a>
+						<a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a class="unhappy" <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a>
 					</li>
 					<TMPL_ELSE>
 					<li styles="happy">
-						<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet-new/images/feed-icon-10x10.png" alt="(feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
+						<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
 					</li>
 					</TMPL_IF>
 				</TMPL_LOOP>
