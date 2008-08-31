@@ -14,14 +14,14 @@
 		<link href="/planet/css/ie6fixes.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 
-		<link rel="alternate" type="application/rss+xml" title="Planet Eclipse News Feed (RSS)" href="rss20.xml" />
-		<link rel="alternate" type="application/atom+xml" title="Planet Eclipse News Feed (Atom)" href="atom.xml" />
+		<link rel="alternate" type="application/rss+xml" title="<TMPL_VAR name> (RSS)" href="rss20.xml" />
+		<link rel="alternate" type="application/atom+xml" title="<TMPL_VAR name> (Atom)" href="atom.xml" />
 	</head>
 	<body>
 		<!-- #header: begin header area -->
 		<div id="header">
 			<div id="header-graphic" class="eclipse-main">
-				<a href="/"><img src="/planet/images/planet_header.jpg"></a><h1>Eclipse</h1>	
+				<a href="<TMPL_VAR link>"><img src="/planet/images/planet_header.jpg"></a><h1><TMPL_VAR name></h1>	
 			</div>
 			<div id="header-global-holder" class="eclipse-main-global">
 				<div id="header-icons">
