@@ -12,7 +12,7 @@ cp -f eclipse/planetuniverse.ini eclipse/config_planetuniverse.ini
 # add feeds to planet eclipse
 cat eclipse/feeds/community.ini >> eclipse/config_planeteclipse.ini
 
-# add feed to planet universe
+# add feeds to planet universe
 cat eclipse/feeds/community.ini >> eclipse/config_planetuniverse.ini
 cat eclipse/feeds/ecosystem.ini >> eclipse/config_planetuniverse.ini
 
