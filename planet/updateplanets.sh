@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # 
 # update all planets
 #
 
-PLANETARGS = ""
+PLANETARGS=""
 
 if [ -n $1 ]; then
-	PLANETARGS = $1
+	PLANETARGS=$1
 fi
  
 cd /home/apps/planet
