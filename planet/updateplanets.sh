@@ -3,6 +3,12 @@
 # update all planets
 #
 
+PLANETARGS = ""
+
+if [ -n $1 ]; then
+	PLANETARGS = $1
+fi
+ 
 cd /home/apps/planet
 
 # generate configuration files
@@ -17,7 +23,7 @@ cat eclipse/feeds/community.ini >> eclipse/config_planetuniverse.ini
 cat eclipse/feeds/ecosystem.ini >> eclipse/config_planetuniverse.ini
 
 # update universe first (this will fill the cache)
-./planet.py -x eclipse/config_planetuniverse.ini
+./planet.py -x $PLANETARGS eclipse/config_planetuniverse.ini
 
 # update planet from cache
-./planet.py -o eclipse/config_planeteclipse.ini
+./planet.py -o $PLANETARGS eclipse/config_planeteclipse.ini
