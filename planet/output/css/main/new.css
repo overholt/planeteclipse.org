@@ -31,9 +31,9 @@
 
 	a img {	border: 0px; }
 	a {color: #06c; text-decoration:none;}
-	a:hover {text-decoration:underline;}
-	a:focus {text-decoration:underline;}
-	/* (see bug 305505) a:visited {color: #666;}*/
+	a:hover {color: #06c; text-decoration:underline;}
+	a:focus {color: #06c; text-decoration:underline;}
+	a:visited {color: #06c; text-decoration:none;}
 
 	#body {
 	padding:10px;
