@@ -34,11 +34,11 @@ s.parentNode.insertBefore(ga, s);
 		<!-- #header: begin header area -->
 		<div id="header">
 			<div id="header-graphic" class="eclipse-main">
-				<a href="<TMPL_VAR link>"><img src="/planet/images/planet_header.jpg"></a><h1><TMPL_VAR name></h1>	
+				<a href="<TMPL_VAR link>"><img src="/planet/images/planet_header.jpg"></a><h1><TMPL_VAR name></h1>
 			</div>
 			<div id="header-global-holder" class="eclipse-main-global">
 				<div id="header-icons">
-					<a href="http://www.eclipse.org"><img src="/planet/images/icon_org.png" width="28" height="28" alt="Eclipse Foundation" title="Eclipse Foundation" /></a>					
+					<a href="http://www.eclipse.org"><img src="/planet/images/icon_org.png" width="28" height="28" alt="Eclipse Foundation" title="Eclipse Foundation" /></a>
 					<a href="http://www.eclipseplugincentral.com"><img src="/planet/images/icon_plugin.png" width="28" height="28" alt="Eclipse Plugin Central" title="Eclipse Plugin Central" /></a>
 					<a href="http://live.eclipse.org"><img src="/planet/images/icon_live.png" width="28" height="28" alt="Eclipse Live" title="Eclipse Live" /></a>
 				</div>
@@ -58,17 +58,17 @@ s.parentNode.insertBefore(ga, s);
 			</div>
 			<div id="header-utils">
 				<!-- this is not used yet -->
-				<!-- 
+				<!--
 				<ul>
 					<li class="rss_feed first"><a href="/rss20.xml" target="_blank"><img src="/planet/images/rss_btn.gif" alt="RSS" height="16" width="16" border="0" class="rss_icon" /></a></li>
 				</ul>
-			</div>	
+			</div>
 		</div>
 		-->
-		<!-- #nav: end -->		
+		<!-- #nav: end -->
 		<!-- #sidebar: begin sidebar area -->
 		<div id="sidebar" float="right">
-			<!-- 
+			<!--
 			<div class="col2_content">
 				<h3>Events</h3>
 				<p>
@@ -111,21 +111,27 @@ s.parentNode.insertBefore(ga, s);
 				<p>If you would like your blog added to the feed, please have a look at our <a href="http://wiki.eclipse.org/index.php/PlanetEclipse#Guidelines" title="Read the Planet Eclipse guideline" target="_blank">guidelines</a> and then open a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&component=PlanetEclipse.org" title="Submit your feed" target="_blank">request</a> in the Eclipse Bugzilla with your feed specific information.</p>
 			</div>
 			<div id="subscriptions" class="col2_content">
-				<h3 id="subscriptions_headline">Subscriptions</h3>
+				<h3 id="subscriptions_headline">Active Subscriptions</h3>
+				<ul id="subscriptions_list">
+				<TMPL_LOOP Channels>
+					<TMPL_UNLESS message>
+					<li styles="happy<TMPL_IF __FIRST__> first</TMPL_IF>">
+						<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
+					</li>
+					</TMPL_UNLESS>
+				</TMPL_LOOP>
+				</ul>
+				<h3 id="subscriptions_headline">Inactive Subscriptions</h3>
 				<ul id="subscriptions_list">
 				<TMPL_LOOP Channels>
 					<TMPL_IF message>
 					<li styles="unhappy<TMPL_IF __FIRST__> first</TMPL_IF>">
 						<a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a class="unhappy" <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a>
 					</li>
-					<TMPL_ELSE>
-					<li styles="happy">
-						<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
-					</li>
 					</TMPL_IF>
 				</TMPL_LOOP>
 				</ul>
-			</div>		
+			</div>
 		</div>
 		<!-- #sidebar: end -->
 		<!-- #body: begin body area -->
@@ -147,7 +153,7 @@ s.parentNode.insertBefore(ga, s);
 					<div id="day_<TMPL_VAR __PASS__>">
 						<h2 class="date" id="day_header_<TMPL_VAR __PASS__>"><TMPL_VAR new_date> <span class="count" id="day_count_<TMPL_VAR __PASS__>"></span></h2>
 					</div>
-					<div id="day_group_<TMPL_VAR __PASS__>"> ### start new day group 
+					<div id="day_group_<TMPL_VAR __PASS__>"> ### start new day group
 				</TMPL_IF>
 						<table class="entry">
 							<tr><td class="person-info">
@@ -182,8 +188,8 @@ s.parentNode.insertBefore(ga, s);
 		<!-- #footer: begin footer area -->
 		<div id="footer">
 			<p>
-			Created and maintained by the Planet Eclipse Admins. 
-			Hosted by the Eclipse Foundation <small>(<a href="http://www.eclipse.org/legal/privacy.php">Privacy Policy</a>, <a href="http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a>)</small>. 
+			Created and maintained by the Planet Eclipse Admins.
+			Hosted by the Eclipse Foundation <small>(<a href="http://www.eclipse.org/legal/privacy.php">Privacy Policy</a>, <a href="http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a>)</small>.
 			</p>
 		</div>
 		<!-- #footer: end -->
