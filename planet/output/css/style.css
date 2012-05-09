@@ -842,7 +842,7 @@ a:link,a:visited,a:active{color:#333333;}
 a:hover{text-decoration:none;}
 table{margin-bottom:1em;}table td{padding:0.3em;}
 .navbar .brand{color:#ffffff;}
-.navbar-inner{background:url("../img/header-bg2.jpg") left no-repeat #234558;}
+.navbar-inner{background:url("../img/header-bg2.jpg") top left no-repeat #234558;filter:none;}
 .navbar-fixed-top .navbar-inner{padding:0 1em;}
 .navbar .nav>li>a,.navbar .in .dropdown-menu a{color:#ffffff;}
 .navbar .nav>li>a:hover,.navbar .dropdown-menu a:hover{background:#4c296e;}
