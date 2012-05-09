@@ -76,12 +76,12 @@
 								<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_VAR title></a>
 							</h1>
 							<aside class="moreinfo visible-phone">
-							<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a>
+							<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank"><TMPL_VAR channel_name></a>
 						</aside>
 						</header>
 						<TMPL_VAR content>
 					</section>
-					<aside class="moreinfo hidden-phone">
+					<aside class="moreinfo">
 						<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a>
 					</aside>
 				</article>
