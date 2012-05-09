@@ -1,197 +1,191 @@
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="author" content="PlanetEclipse.org" />
-		<meta name="keywords" content="Planet, Eclipse" />
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="PlanetEclipse.org" />
+<meta name="description" content="Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors. ">
+<meta name="keywords" content="Planet, Eclipse" />
+<meta name="viewport" content="width=device-width">
 
-		<title><TMPL_VAR name></title>
+<title><TMPL_VAR name></title>
 
-		<link href="/planet/css/planet.css" rel="stylesheet" type="text/css"/>
-		<!--[if lte IE 7]>
-		<link href="/planet/css/ie6fixes.css" rel="stylesheet" type="text/css" />
-		<![endif]-->
+<link href="<TMPL_VAR link>css/style.css" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="<TMPL_VAR name> (RSS)" href="rss20.xml" />
+<link rel="alternate" type="application/atom+xml" title="<TMPL_VAR name> (Atom)" href="atom.xml" />
 
-		<link rel="alternate" type="application/rss+xml" title="<TMPL_VAR name> (RSS)" href="rss20.xml" />
-		<link rel="alternate" type="application/atom+xml" title="<TMPL_VAR name> (Atom)" href="atom.xml" />
-	<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-910670-6']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript';
-ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
-'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-	</head>
-	<body>
-		<!-- #header: begin header area -->
-		<div id="header">
-			<div id="header-graphic" class="eclipse-main">
-				<a href="<TMPL_VAR link>"><img src="/planet/images/planet_header.jpg"></a><h1><TMPL_VAR name></h1>
-			</div>
-			<div id="header-global-holder" class="eclipse-main-global">
-				<div id="header-icons">
-					<a href="http://www.eclipse.org"><img src="/planet/images/icon_org.png" width="28" height="28" alt="Eclipse Foundation" title="Eclipse Foundation" /></a>
-					<a href="http://www.eclipseplugincentral.com"><img src="/planet/images/icon_plugin.png" width="28" height="28" alt="Eclipse Plugin Central" title="Eclipse Plugin Central" /></a>
-					<a href="http://live.eclipse.org"><img src="/planet/images/icon_live.png" width="28" height="28" alt="Eclipse Live" title="Eclipse Live" /></a>
-				</div>
-			</div>
-		</div>
-		<!-- #header: end -->
-		<!-- #nav: begin navigation area -->
-		<!--
-		<div id="header-menu">
-			<div id="header-nav">
-				<!-- the feeds list get placed here as unordered list -->
-				<!--
-				<ul>
-					<li class="first"><a href="/planet/" title="Open Planet Eclipse">Main</a></li>
-					<li><a href="/planet/eclipsecon/" title="Open Planet EclipseCon">EclipseCon</a></li>
-				</ul>
-			</div>
-			<div id="header-utils">
-				<!-- this is not used yet -->
-				<!--
-				<ul>
-					<li class="rss_feed first"><a href="/rss20.xml" target="_blank"><img src="/planet/images/rss_btn.gif" alt="RSS" height="16" width="16" border="0" class="rss_icon" /></a></li>
-				</ul>
-			</div>
-		</div>
-		-->
-		<!-- #nav: end -->
-		<!-- #sidebar: begin sidebar area -->
-		<div id="sidebar" float="right">
-			<!--
-			<div class="col2_content">
-				<h3>Events</h3>
-				<p>
-				<center><a href="http://eclipse.org/go/EC_BANNER@PLANET"><img height="125" border="0" width="125" alt="EclipseCon 2009" src="http://www.eclipsecon.org/2009/static/image125x125.php"/></a></center>
-				</p>
-			</div>
-			-->
-			<div class="col2_content">
-				<h3>Planet Eclipse</h3>
-				<p>
-				Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.
-				<table>
-					<tr>
-						<td><a href="rss10.xml"><img alt="RSS 1.0" src="/planet/images/rss10.png" /></a></td>
-						<td><a href="rss20.xml"><img alt="RSS 2.0" src="/planet/images/rss20.png" /></a></td>
-					</tr>
-					<tr>
-						<td><a href="atom.xml"><img alt="Atom" src="/planet/images/atom.png" /></a></td>
-						<td><a href="opml.xml"><img alt="OPML" src="/planet/images/opml.png" /></a></td>
-					</tr>
-				</table>
-				</p>
-				<p>
-				Looking for an RSS Newsreader?  Try RSSOwl, it is built on Eclipse!
-				<a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="/planet/images/rssowl.gif" style="border:0;" width="80" height="15" alt="Get RSSOwl" /></a>
-				</p>
-				<p>
-				Last updated: <TMPL_VAR date> (UTC)
-				</p>
-				<p>
-				Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins" title="The Planet Eclipse Admins" target="_blank">admins</a>.
-				</p>
-				<p>
-				Powered by:<br>
-				<a href="http://www.planetplanet.org/"><img src="/planet/images/planet.png" width="80" height="15" alt="Planet" border="0" /></a>
-				</p>
-			</div>
-			<div id="about" class="col2_content">
-				<h3>Your Blog</h3>
-				<p>If you would like your blog added to the feed, please have a look at our <a href="http://wiki.eclipse.org/index.php/PlanetEclipse#Guidelines" title="Read the Planet Eclipse guideline" target="_blank">guidelines</a> and then open a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&component=PlanetEclipse.org" title="Submit your feed" target="_blank">request</a> in the Eclipse Bugzilla with your feed specific information.</p>
-			</div>
-			<div id="subscriptions" class="col2_content">
-				<h3 id="subscriptions_headline">Active Subscriptions</h3>
-				<ul id="subscriptions_list">
-				<TMPL_LOOP Channels>
-					<TMPL_UNLESS message>
-					<li styles="happy<TMPL_IF __FIRST__> first</TMPL_IF>">
-						<a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
+<script src="<TMPL_VAR link>js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+			</a> 
+			<a class="brand" href="<TMPL_VAR link>"><span><TMPL_VAR name></span></a>
+			<div class="nav-collapse">
+				<ul class="nav pull-right">
+					<li><a data-toggle="modal" href="#modalabout"><i class="icon-info-sign icon-white"></i> About</a></li>
+					<li><a data-toggle="modal" href="#modaladd"><i class="icon-plus icon-white"></i> Add your blog</a></li>
+					<li><a href="http://eclipse.org/donate/" target="_blank"><i class="icon-star icon-white"></i> Friends of Eclipse</a></li>
+				
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bookmark icon-white"></i> Links<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://eclipse.org/" target="_blank"><i class="icon-home"></i> Eclipse.org</a></li>
+							<li><a href="http://marketplace.eclipse.org/" target="_blank"><i class="icon-shopping-cart"></i> Eclipse Marketplace</a></li>
+							<li><a href="http://live.eclipse.org/" target="_blank"><i class="icon-facetime-video"></i> Eclipse Live</a></li>
+						</ul>
 					</li>
-					</TMPL_UNLESS>
-				</TMPL_LOOP>
 				</ul>
-				<h3 id="subscriptions_headline">Inactive Subscriptions</h3>
-				<ul id="subscriptions_list">
-				<TMPL_LOOP Channels>
-					<TMPL_IF message>
-					<li styles="unhappy<TMPL_IF __FIRST__> first</TMPL_IF>">
-						<a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a class="unhappy" <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a>
-					</li>
-					</TMPL_IF>
-				</TMPL_LOOP>
-				</ul>
-			</div>
+			</div><!--/.nav-collapse -->
 		</div>
-		<!-- #sidebar: end -->
-		<!-- #body: begin body area -->
-		<div id="body">
-			<div id="headline">
-			<h1>Welcome to <TMPL_VAR name></h1>
-				<!--
-				<p><em><TMPL_VAR name> is a rich browser application which uses JavaScript to provide additional features. Unfortunately, it also requires a recent browser (eg. IE &gt;= 7, FireFox &gt;= 2). You can try out the advanced version <a href="index.html" title="Open <TMPL_VAR name>.">here</a>.</em></p>
-				-->
-			</div>
-			<div id="error"></div>
-			<div id="feedcontent">
-				<div class="maincontent" style="width: 100%;">
-				<TMPL_LOOP Items>
+	</div>
+</div>
+<div class="container-fluid">
+	<section class="row-fluid" id="main-container">	
+		  <ul class="nav nav-tabs">
+   			 <li class="active"><a href="#main-content" data-toggle="tab">Latest Posts</a></li>
+    		<li><a href="#blogs" data-toggle="tab">Blogs</a></li>
+    	</ul>
+	
+	<div class="tab-content">
+		<div class="tab-pane active" id="main-content">
+			<TMPL_LOOP Items>
 				<TMPL_IF new_date>
-					<TMPL_UNLESS __FIRST__>
-					</div> ### end current day group
-					</TMPL_UNLESS>
-					<div id="day_<TMPL_VAR __PASS__>">
-						<h2 class="date" id="day_header_<TMPL_VAR __PASS__>"><TMPL_VAR new_date> <span class="count" id="day_count_<TMPL_VAR __PASS__>"></span></h2>
-					</div>
-					<div id="day_group_<TMPL_VAR __PASS__>"> ### start new day group
-				</TMPL_IF>
-						<table class="entry">
-							<tr><td class="person-info">
-								<a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank">
-								<TMPL_IF channel_face>
-								<img class="face" src="/planet/images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="<TMPL_VAR channel_name>"><br>
-								</TMPL_IF>
-								<TMPL_VAR channel_name></a>
-							</td>
-							<td class="homeitem" width="100%">
-								<TMPL_IF title>
-								<h3 class="post-title"><a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_VAR title></a></h3>
-								</TMPL_IF>
-								<div class="post-contents">
-									<p>
-									<TMPL_VAR content>
-									</p>
-								</div>
-								<div class="post-footer">
-									<div><a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF><TMPL_VAR date></a></div>
-								</div>
-							</td></tr>
-						</table>
-					<TMPL_IF __LAST__>
-					</div> ### end last day group
-					</TMPL_IF>
-				</TMPL_LOOP>
-				</div>
-			</div>
-		</div>
-		<!-- #body: end -->
-		<!-- #footer: begin footer area -->
-		<div id="footer">
-			<p>
-			Created and maintained by the Planet Eclipse Admins.
-			Hosted by the Eclipse Foundation <small>(<a href="http://www.eclipse.org/legal/privacy.php">Privacy Policy</a>, <a href="http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a>)</small>.
-			</p>
-		</div>
-		<!-- #footer: end -->
-	</body>
+					<div class="date"><TMPL_VAR new_date></div>
+				</TMPL_UNLESS>	
+				<article>		
+					
+					<aside class="author hidden-phone">
+						<a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank"> <TMPL_IF channel_face> <img class="face" src="/planet/images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="<TMPL_VAR channel_name>"><br></TMPL_IF> <TMPL_VAR channel_name></a>
+					</aside>
+					
+					<section>
+						<header>
+							<h1>
+								<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_VAR title></a>
+							</h1>
+							<aside class="moreinfo visible-phone">
+							<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a>
+						</aside>
+						</header>
+						<TMPL_VAR content>
+					</section>
+					<aside class="moreinfo hidden-phone">
+						<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a>
+					</aside>
+				</article>
+			</TMPL_LOOP>
+		</div><!-- /#main-content -->
+		
+		<div id="blogs" class="tab-pane">
+			<div class="row-fluid">
+			
+			<h2>Active Blogs</h2>
+							<ul class="subscriptions_list happy">
+								<TMPL_LOOP Channels> <TMPL_UNLESS message>
+									<li><a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> 
+										<a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
+									</li>
+								</TMPL_UNLESS> </TMPL_LOOP>
+							</ul>
+						
+					
+				
+				</div><!-- /.row-fluid -->
+				<div class="row-fluid">
+			
+				<h2>Inactive Blogs</h2>
+							<ul class="unhappy subscriptions_list">
+								<TMPL_LOOP Channels> <TMPL_IF message>
+								<li><a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a></li>
+								</TMPL_IF> </TMPL_LOOP>
+							</ul>
+
+				
+			</div><!-- /.row-fluid -->
+		</div><!-- /#blogs -->
+	</div><!-- /#tab-content -->
+	</section>
+</div><!-- /container -->
+
+<footer class="container-fluid">
+	<div id="copyright">
+		<img src="img/eclipse.png" alt="Eclipse Logo">Created and maintained by the Planet Eclipse Admins.<br />Hosted by the Eclipse Foundation <span>(<a href="http://www.eclipse.org/legal/privacy.php">Privacy Policy</a>, <a href="http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a>)</span>.
+	</div>
+</footer>
+
+
+<div class="modal hide" id="modalabout">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>About Planet Eclipse</h3>
+	</div>
+	<div class="modal-body">
+		<p>Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.</p>
+		<table>
+			<tbody>
+				<tr>
+					<td><a href="rss10.xml"><img alt="RSS 1.0" src="http://www.planeteclipse.org/planet/images/rss10.png"></a></td>
+					<td><a href="rss20.xml"><img alt="RSS 2.0" src="http://www.planeteclipse.org/planet/images/rss20.png"></a></td>
+				</tr>
+				<tr>
+					<td><a href="atom.xml"><img alt="Atom" src="http://www.planeteclipse.org/planet/images/atom.png"></a></td>
+					<td><a href="opml.xml"><img alt="OPML" src="http://www.planeteclipse.org/planet/images/opml.png"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<p>Looking for an RSS Newsreader? Try RSSOwl, it is built on Eclipse! <a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="http://www.planeteclipse.org/planet/images/rssowl.gif"  alt="Get RSSOwl" height="15" width="80"></a></p>
+		<p>Last updated: April 26, 2012 06:53 PM (UTC)</p>
+		<p> Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins" title="The Planet Eclipse Admins" target="_blank">admins</a>.</p>
+		<p>Powered by:<br> <a href="http://www.planetplanet.org/"><img src="http://www.planeteclipse.org/planet/images/planet.png" alt="Planet" height="15" width="80"></a></p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
+
+<div class="modal hide" id="modaladd">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>Add your Blog</h3>
+	</div>
+	<div class="modal-body">
+		<p>If you would like your blog added to the feed, please have a look at our <a href="http://wiki.eclipse.org/index.php/PlanetEclipse#Guidelines" title="Read the Planet Eclipse guideline" target="_blank">guidelines</a> and then open a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&amp;component=PlanetEclipse.org" title="Submit your feed" target="_blank">request</a> in the Eclipse Bugzilla with your feed specific information.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>	
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+	window.jQuery || document.write('<script src="<TMPL_VAR link>js/libs/jquery-1.7.2.min.js"><\/script>')
+</script>
+<script src="<TMPL_VAR link>js/libs/bootstrap/bootstrap.min.js"></script>
+<script src="<TMPL_VAR link>js/plugins.js"></script>
+<script src="<TMPL_VAR link>js/script.js"></script>
+
+<script>
+	var _gaq = [ [ '_setAccount', 'UA-910670-6' ], [ '_trackPageview' ] ];
+	(function(d, t) {
+		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g, s)
+	}(document, 'script'));
+</script>
+
+</body>
 </html>
+
+
