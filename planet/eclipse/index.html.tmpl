@@ -1,191 +1,397 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="author" content="PlanetEclipse.org" />
-<meta name="description" content="Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors. ">
-<meta name="keywords" content="Planet, Eclipse" />
-<meta name="viewport" content="width=device-width">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title><TMPL_VAR name></title>
+    <meta name="author" content="PlanetEclipse.org" />
+    <meta name="description" content="Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.">
+    <meta name="keywords" content="Planet, Eclipse" />
 
-<link href="<TMPL_VAR link>css/style.css" rel="stylesheet" type="text/css" />
-<link rel="alternate" type="application/rss+xml" title="<TMPL_VAR name> (RSS)" href="rss20.xml" />
-<link rel="alternate" type="application/atom+xml" title="<TMPL_VAR name> (Atom)" href="atom.xml" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700,300,600,100" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="https://www.eclipse.org/eclipse.org-common/themes/solstice/public/images/favicon.ico"/>
+    <link rel="alternate" type="application/rss+xml" title="<TMPL_VAR name> (RSS)" href="rss20.xml" />
+    <link rel="alternate" type="application/atom+xml" title="<TMPL_VAR name> (Atom)" href="atom.xml" />
 
-<script src="<TMPL_VAR link>js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
-</head>
-<body>
-<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-<div class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span>
-			</a> 
-			<a class="brand" href="<TMPL_VAR link>"><span><TMPL_VAR name></span></a>
-			<div class="nav-collapse">
-				<ul class="nav pull-right">
-					<li><a data-toggle="modal" href="#modalabout"><i class="icon-info-sign icon-white"></i> About</a></li>
-					<li><a data-toggle="modal" href="#modaladd"><i class="icon-plus icon-white"></i> Add your blog</a></li>
-					<li><a href="http://eclipse.org/donate/" target="_blank"><i class="icon-star icon-white"></i> Friends of Eclipse</a></li>
-				
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bookmark icon-white"></i> Links<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="http://eclipse.org/" target="_blank"><i class="icon-home"></i> Eclipse.org</a></li>
-							<li><a href="http://marketplace.eclipse.org/" target="_blank"><i class="icon-shopping-cart"></i> Eclipse Marketplace</a></li>
-							<li><a href="http://www.youtube.com/user/EclipseFdn" target="_blank"><i class="icon-facetime-video"></i> Eclipse YouTube Channel</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
-</div>
-<div class="container-fluid">
-	<section class="row-fluid" id="main-container">	
-		  <ul class="nav nav-tabs">
-   			 <li class="active"><a href="#main-content" data-toggle="tab">Latest Posts</a></li>
-    		<li><a href="#blogs" data-toggle="tab">Blogs</a></li>
-    	</ul>
-	
-	<div class="tab-content">
-		<div class="tab-pane active" id="main-content">
-			<TMPL_LOOP Items>
-				<TMPL_IF new_date>
-					<div class="date"><TMPL_VAR new_date></div>
-				</TMPL_UNLESS>	
-				<article>		
-					
-					<aside class="author hidden-phone">
-						<a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank"> <TMPL_IF channel_face> <img class="face" src="/planet/images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="<TMPL_VAR channel_name>"><br></TMPL_IF> <TMPL_VAR channel_name></a>
-					</aside>
-					
-					<section>
-						<header>
-							<h1>
-								<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_VAR title></a>
-							</h1>
-							<aside class="moreinfo visible-phone">
-								<a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank"><TMPL_VAR channel_name></a>
-							</aside>
-						</header>
-						<TMPL_VAR content>
-					</section>
-					<aside class="moreinfo">
-						<a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a>
-					</aside>
-				</article>
-			</TMPL_LOOP>
-		</div><!-- /#main-content -->
-		
-		<div id="blogs" class="tab-pane">
-			<div class="row-fluid">
-			
-			<h2>Active Blogs</h2>
-							<ul class="subscriptions_list happy">
-								<TMPL_LOOP Channels> <TMPL_UNLESS message>
-									<li><a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a> 
-										<a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
-									</li>
-								</TMPL_UNLESS> </TMPL_LOOP>
-							</ul>
-						
-					
-				
-				</div><!-- /.row-fluid -->
-				<div class="row-fluid">
-			
-				<h2>Inactive Blogs</h2>
-							<ul class="unhappy subscriptions_list">
-								<TMPL_LOOP Channels> <TMPL_IF message>
-								<li><a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a> <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a></li>
-								</TMPL_IF> </TMPL_LOOP>
-							</ul>
+    <title><TMPL_VAR name></title>
+    <meta property="og:title" content="PlanetEclipse.org" />
+    <meta property="og:description" content="Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors." />
+    <meta property="og:image" content="https://www.eclipse.org/eclipse.org-common/themes/Nova/images/eclipse.png" />
 
-				
-			</div><!-- /.row-fluid -->
-		</div><!-- /#blogs -->
-	</div><!-- /#tab-content -->
-	</section>
-</div><!-- /container -->
+    <link rel="stylesheet" href="https://www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/styles.min.css" type="text/css" />
+    <link rel="stylesheet" href="<TMPL_VAR link>css/style.css" type="text/css" />
 
-<footer class="container-fluid">
-	<div id="copyright">
-		<img src="img/eclipse.png" alt="Eclipse Logo">Created and maintained by the Planet Eclipse Admins.<br />Hosted by the Eclipse Foundation <span>(<a href="http://www.eclipse.org/legal/privacy.php">Privacy Policy</a>, <a href="http://www.eclipse.org/legal/termsofuse.php">Terms of Use</a>)</span>.
-	</div>
-</footer>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="" id="body_solstice">
+    <a class="sr-only" href="#content">Skip to main content</a>
+    <div class="thin-header">
+      <header role="banner">
+        <div class="container">
+          <div id="row-logo-search">
+            <div id="header-left">
+              <div class="row">
+                <div class="hidden-xs col-sm-6">
+                  <a href="<TMPL_VAR link>"><img class="logo-eclipse-default" alt="Eclipse.org logo" src="<TMPL_VAR link>img/planeteclipse-logo.png"></a>
+                </div>
+                <div id="main-menu" class="navbar col-sm-18 yamm">
+                  <div id="navbar-collapse-1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      <li>
+                        <a data-toggle="modal" href="#modalabout">
+                          <i class="fa fa-question-circle orange"></i> About
+                        </a>
+                      </li>
+                      <li>
+                        <a data-toggle="modal" href="#modaladd">
+                          <i class="fa fa-plus orange"></i> Add your blog
+                        </a>
+                      </li>
+                      <li>
+                        <a href="http://eclipse.org/donate/" target="_blank">
+                          <i class="fa fa-star orange"></i> Friends of Eclipse
+                        </a>
+                      </li>
+                      <li class="dropdown visible-xs">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Eclipse <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a target="_self" href="https://www.eclipse.org/downloads/">Download</a></li>
+                          <li><a target="_self" href="https://www.eclipse.org/users/">Getting Started</a></li>
+                          <li><a target="_self" href="https://www.eclipse.org/membership/">Members</a></li>
+                          <li><a target="_self" href="https://www.eclipse.org/projects/">Projects</a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown visible-xs">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Community <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="http://marketplace.eclipse.org">Marketplace</a></li>
+                          <li><a href="http://events.eclipse.org">Events</a></li>
+                          <li><a href="http://www.planeteclipse.org/">Planet Eclipse</a></li>
+                          <li><a href="https://eclipse.org/community/eclipse_newsletter/">Newsletter</a></li>
+                          <li><a href="https://www.youtube.com/user/EclipseFdn">Videos</a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown visible-xs">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Participate <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="https://bugs.eclipse.org/bugs/">Report a Bug</a></li>
+                          <li><a href="https://eclipse.org/forums/">Forums</a></li>
+                          <li><a href="https://eclipse.org/mail/">Mailing Lists</a></li>
+                          <li><a href="https://wiki.eclipse.org/">Wiki</a></li>
+                          <li><a href="https://wiki.eclipse.org/IRC">IRC</a></li>
+                          <li><a href="https://eclipse.org/contribute/">How to Contribute</a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown visible-xs">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Working Groups <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="http://wiki.eclipse.org/Auto_IWG">Automotive</a></li>
+                          <li><a href="http://iot.eclipse.org">Internet of Things</a></li>
+                          <li><a href="http://locationtech.org">LocationTech</a></li>
+                          <li><a href="http://lts.eclipse.org">Long-Term Support</a></li>
+                          <li><a href="http://polarsys.org">PolarSys</a></li>
+                          <li><a href="http://science.eclipse.org">Science</a></li>
+                        </ul>
+                      </li>
+                      <!-- More -->
+                      <li class="dropdown hidden-xs">
+                        <a data-toggle="dropdown" class="dropdown-toggle">More<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <div class="yamm-content">
+                              <div class="row">
+                                <ul class="col-sm-6 list-unstyled">
+                                  <li><p><strong>Eclipse</strong></p></li>
+                                  <li><a target="_self" href="https://www.eclipse.org/downloads/">Download</a></li>
+                                  <li><a target="_self" href="https://www.eclipse.org/users/">Getting Started</a></li>
+                                  <li><a target="_self" href="https://www.eclipse.org/membership/">Members</a></li>
+                                  <li><a target="_self" href="https://www.eclipse.org/projects/">Projects</a></li>
+                                </ul>
+                                <ul class="col-sm-6 list-unstyled">
+                                  <li><p><strong>Community</strong></p></li>
+                                  <li><a href="http://marketplace.eclipse.org">Marketplace</a></li>
+                                  <li><a href="http://events.eclipse.org">Events</a></li>
+                                  <li><a href="http://www.planeteclipse.org/">Planet Eclipse</a></li>
+                                  <li><a href="https://eclipse.org/community/eclipse_newsletter/">Newsletter</a></li>
+                                  <li><a href="https://www.youtube.com/user/EclipseFdn">Videos</a></li>
+                                </ul>
+                                <ul class="col-sm-6 list-unstyled">
+                                  <li><p><strong>Participate</strong></p></li>
+                                  <li><a href="https://bugs.eclipse.org/bugs/">Report a Bug</a></li>
+                                  <li><a href="https://eclipse.org/forums/">Forums</a></li>
+                                  <li><a href="https://eclipse.org/mail/">Mailing Lists</a></li>
+                                  <li><a href="https://wiki.eclipse.org/">Wiki</a></li>
+                                  <li><a href="https://wiki.eclipse.org/IRC">IRC</a></li>
+                                  <li><a href="https://eclipse.org/contribute/">How to Contribute</a></li>
+                                </ul>
+                                <ul class="col-sm-6 list-unstyled">
+                                  <li><p><strong>Working Groups</strong></p></li>
+                                  <li><a href="http://wiki.eclipse.org/Auto_IWG">Automotive</a></li>
+                                  <li><a href="http://iot.eclipse.org">Internet of Things</a></li>
+                                  <li><a href="http://locationtech.org">LocationTech</a></li>
+                                  <li><a href="http://lts.eclipse.org">Long-Term Support</a></li>
+                                  <li><a href="http://polarsys.org">PolarSys</a></li>
+                                  <li><a href="http://science.eclipse.org">Science</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a href="<TMPL_VAR link>" class="navbar-brand visible-xs"><img src="<TMPL_VAR link>img/planeteclipse-logo.png" alt="Eclipse.org logo" width="166" class="logo-eclipse-default"/></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section id="breadcrumb" class="defaut-breadcrumbs hidden-print">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li><a href="https://www.eclipse.org/">Home</a></li>
+            <li><a href="https://www.eclipse.org/community/">Community</a></li>
+            <li class="active">Planet Eclipse</li>
+          </ol>
+        </div>
+      </section>
+    </div>
+    <main role="main" class="background-grey">
+      <div class="container background-image-none" id="novaContent">
+        <!-- Start of content area -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#main-content" data-toggle="tab">Latest Posts</a></li>
+          <li><a href="#blogs" data-toggle="tab">Blogs</a></li>
+        </ul>
+        <div class="tab-content background-white">
+          <div class="tab-pane active" id="main-content">
+            <TMPL_LOOP Items>
+              <TMPL_IF new_date>
+                <h2 class="date h2 page-header margin-top-0"><TMPL_VAR new_date></h2>
+              </TMPL_UNLESS>
+              <div class="media">
+                <a class="pull-left text-center" href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">" target="_blank">
+                  <TMPL_IF channel_face>
+                    <img class="face" src="/planet/images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="<TMPL_VAR channel_name>"/><br/>
+                  </TMPL_IF>
+                  <TMPL_VAR channel_name>
+                </a>
+                <div class="media-body">
+                  <h1 class="media-heading">
+                    <a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_VAR title></a>
+                  </h1>
+                  <p class="moreinfo margin-bottom-20">
+                    <small><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></small>
+                  </p>
+                  <div class="media-body-content">
+                    <TMPL_VAR content>
+                  </div>
+                  <hr class="margin-bottom-5"/>
+                  <p class="moreinfo text-right">
+                     <small><a href="<TMPL_VAR link ESCAPE="HTML">" title="Open blog <TMPL_VAR title ESCAPE="HTML">." target="_blank"><TMPL_IF author>by <TMPL_VAR author> at </TMPL_IF> <TMPL_VAR date></a> </small>
+                  </p>
+                </div>
+              </div>
+            </TMPL_LOOP>
+          </div><!-- /#main-content -->
+          <div id="blogs" class="tab-pane">
+            <div class="row-fluid">
+              <h2 class="page-header margin-top-0">Blogs</h2>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Active Blogs
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <ul class="list-unstyled list-channels">
+                        <TMPL_LOOP Channels>
+                          <TMPL_UNLESS message>
+                            <li>
+                              <a href="<TMPL_VAR url ESCAPE="HTML">" title="subscribe"><img src="/planet/images/feed-icon-10x10.png" alt="(feed)" /></a>
+                              <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="Open <TMPL_VAR title_plain ESCAPE="HTML">." target="_blank"><TMPL_VAR name></a>
+                            </li>
+                          </TMPL_UNLESS>
+                        </TMPL_LOOP>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Inactive Blogs
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="list-unstyled list-inline list-channels">
+                        <TMPL_LOOP Channels>
+                          <TMPL_IF message>
+                            <li>
+                              <a href="<TMPL_VAR url ESCAPE="HTML">" title="<TMPL_VAR message ESCAPE="HTML">"><img src="/planet/images/feed-inactive-icon-10x10.png" alt="(inactive feed)" /></a>
+                              <a <TMPL_IF link>href="<TMPL_VAR link ESCAPE="HTML">" </TMPL_IF>title="<TMPL_VAR message ESCAPE="HTML">" target="_blank"><TMPL_VAR name></a>
+                            </li>
+                          </TMPL_IF>
+                        </TMPL_LOOP>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.row-fluid -->
+          </div><!-- /#blogs -->
+        </div><!-- /.tab-content -->      </div>
+    </main> <!-- /#main-content-container-row -->
 
+    <div class="modal fade" id="modalabout" tabindex="-1" role="dialog" aria-labelledby="modalaboutLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">About Planet Eclipse</h4>
+          </div>
+          <div class="modal-body">
+            <p>Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.</p>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><a href="rss10.xml"><img alt="RSS 1.0" src="<TMPL_VAR link>images/rss10.png"></a></td>
+                  <td><a href="rss20.xml"><img alt="RSS 2.0" src="<TMPL_VAR link>images/rss20.png"></a></td>
+                </tr>
+                <tr>
+                  <td><a href="atom.xml"><img alt="Atom" src="<TMPL_VAR link>images/atom.png"></a></td>
+                  <td><a href="opml.xml"><img alt="OPML" src="<TMPL_VAR link>images/opml.png"></a></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Looking for an RSS Newsreader? Try RSSOwl, it is built on Eclipse! <a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="<TMPL_VAR link>images/rssowl.gif"  alt="Get RSSOwl" height="15" width="80"></a></p>
+            <p>Last updated: April 26, 2012 06:53 PM (UTC)</p>
+            <p> Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins" title="The Planet Eclipse Admins" target="_blank">admins</a>.</p>
+            <p>Powered by:<br> <a href="http://www.planetplanet.org/"><img src="<TMPL_VAR link>images/planet.png" alt="Planet" height="15" width="80"></a></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="modal hide" id="modalabout">
-	<div class="modal-header">
-		<button class="close" data-dismiss="modal">×</button>
-		<h3>About Planet Eclipse</h3>
-	</div>
-	<div class="modal-body">
-		<p>Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.</p>
-		<table>
-			<tbody>
-				<tr>
-					<td><a href="rss10.xml"><img alt="RSS 1.0" src="http://www.planeteclipse.org/planet/images/rss10.png"></a></td>
-					<td><a href="rss20.xml"><img alt="RSS 2.0" src="http://www.planeteclipse.org/planet/images/rss20.png"></a></td>
-				</tr>
-				<tr>
-					<td><a href="atom.xml"><img alt="Atom" src="http://www.planeteclipse.org/planet/images/atom.png"></a></td>
-					<td><a href="opml.xml"><img alt="OPML" src="http://www.planeteclipse.org/planet/images/opml.png"></a></td>
-				</tr>
-			</tbody>
-		</table>
-		<p>Looking for an RSS Newsreader? Try RSSOwl, it is built on Eclipse! <a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="http://www.planeteclipse.org/planet/images/rssowl.gif"  alt="Get RSSOwl" height="15" width="80"></a></p>
-		<p>Last updated: April 26, 2012 06:53 PM (UTC)</p>
-		<p> Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins" title="The Planet Eclipse Admins" target="_blank">admins</a>.</p>
-		<p>Powered by:<br> <a href="http://www.planetplanet.org/"><img src="http://www.planeteclipse.org/planet/images/planet.png" alt="Planet" height="15" width="80"></a></p>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>
+    <div class="modal fade" id="modaladd" tabindex="-1" role="dialog" aria-labelledby="modaladdLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Add your blog</h4>
+            </div>
+            <div class="modal-body">
+             <p>If you would like your blog added to the feed, please have a look at our <a href="http://wiki.eclipse.org/index.php/PlanetEclipse#Guidelines" title="Read the Planet Eclipse guideline" target="_blank">guidelines</a> and then open a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&amp;component=PlanetEclipse.org" title="Submit your feed" target="_blank">request</a> in the Eclipse Bugzilla with your feed specific information.</p>
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="modal hide" id="modaladd">
-	<div class="modal-header">
-		<button class="close" data-dismiss="modal">×</button>
-		<h3>Add your Blog</h3>
-	</div>
-	<div class="modal-body">
-		<p>If you would like your blog added to the feed, please have a look at our <a href="http://wiki.eclipse.org/index.php/PlanetEclipse#Guidelines" title="Read the Planet Eclipse guideline" target="_blank">guidelines</a> and then open a <a href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Community&amp;component=PlanetEclipse.org" title="Submit your feed" target="_blank">request</a> in the Eclipse Bugzilla with your feed specific information.</p>
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
-</div>	
-	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>
-	window.jQuery || document.write('<script src="<TMPL_VAR link>js/libs/jquery-1.7.2.min.js"><\/script>')
-</script>
-<script src="<TMPL_VAR link>js/libs/bootstrap/bootstrap.min.js"></script>
-<script src="<TMPL_VAR link>js/plugins.js"></script>
-<script src="<TMPL_VAR link>js/script.js"></script>
+    <p id="back-to-top">
+      <a class="visible-xs" href="#top">Back to the top</a>
+    </p>
+    <footer role="contentinfo" id="page-footer">
+      <div class="container">
+        <div class="row">
+          <section id="footer-eclipse-foundation" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-6 col-md-offset-0 hidden-print">
+            <h2 class="section-title">Eclipse Foundation</h2>
+            <ul class="nav">
+              <li><a href="https://eclipse.org/org/">About us</a></li>
+              <li><a href="https://eclipse.org/org/foundation/contact.php">Contact Us</a></li>
+              <li><a href="https://eclipse.org/donate">Donate</a></li>
+              <li><a href="https://eclipse.org/org/documents/">Governance</a></li>
+              <li><a href="https://eclipse.org/artwork/">Logo and Artwork</a></li>
+              <li><a href="https://eclipse.org/org/foundation/directors.php">Board of Directors</a></li>
+            </ul>
+          </section>
+          <section id="footer-legal" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-6 col-md-offset-0 hidden-print ">
+            <h2 class="section-title">Legal</h2>
+            <ul class="nav">
+              <li><a href="https://eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+              <li><a href="https://eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+              <li><a href="https://eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+              <li><a href="https://eclipse.org/org/documents/epl-v10.php">Eclipse Public License </a></li>
+              <li><a href="https://eclipse.org/legal/">Legal Resources </a></li>
+            </ul>
+          </section>
+          <section id="footer-useful-links" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-6 col-md-offset-0 hidden-print">
+            <h2 class="section-title">Useful Links</h2>
+            <ul class="nav">
+              <li><a href="https://bugs.eclipse.org/bugs/">Report a Bug</a></li>
+              <li><a href="//help.eclipse.org/">Documentation</a></li>
+              <li><a href="https://eclipse.org/contribute/">How to Contribute</a></li>
+              <li><a href="https://eclipse.org/mail/">Mailing Lists</a></li>
+              <li><a href="https://eclipse.org/forums/">Forums</a></li>
+              <li><a href="//marketplace.eclipse.org">Marketplace</a></li>
+            </ul>
+          </section>
+          <section id="footer-other" class="col-xs-offset-1 col-xs-11 col-sm-7 col-md-6 col-md-offset-0 hidden-print">
+            <h2 class="section-title">Other</h2>
+            <ul class="nav">
+               <li><a href="https://eclipse.org/ide/">IDE and Tools</a></li>
+              <li><a href="https://eclipse.org/projects">Community of Projects</a></li>
+              <li><a href="https://eclipse.org/org/workinggroups/">Working Groups</a></li>
+            </ul>
+            <ul class="list-inline social-media">
+              <li><a href="https://twitter.com/EclipseFdn"><i class="fa fa-twitter-square"></i></a></li>
+              <li><a href="https://plus.google.com/+Eclipse"><i class="fa fa-google-plus-square"></i></a></li>
+              <li><a href="https://www.facebook.com/eclipse.org"><i class="fa fa-facebook-square"></i> </a></li>
+              <li><a href="https://www.youtube.com/user/EclipseFdn"><i class="fa fa-youtube-square"></i></a></li>
+            </ul>
+          </section>
+          <div id="copyright"  class="col-xs-offset-1 col-sm-14 col-md-24 col-md-offset-0">
+            <div>
+              <span class="hidden-print"><img src="https://eclipse.org/eclipse.org-common/themes/solstice/public/images/logo/eclipse-logo-bw-800x188.png" alt="Eclipse.org black and white logo" width="166" height="39" id="logo-eclipse-white"/></span>
+              <p id="copyright-text">
+                Created and maintained by the Planet Eclipse Admins.<br/>
+                Copyright &copy; 2014 The Eclipse Foundation. All Rights Reserved.
+              </p>
+            </div>
+          </div>
+          <a href="#" class="scrollup">Back to the top</a>
+        </div>
+      </div>
+    </footer>
 
-<script>
-	var _gaq = [ [ '_setAccount', 'UA-910670-6' ], [ '_trackPageview' ] ];
-	(function(d, t) {
-		var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-		g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g, s)
-	}(document, 'script'));
-</script>
-
-</body>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://eclipse.org/eclipse.org-common/themes/solstice/public/javascript/main.min.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-910670-6']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
 </html>
-
-
