@@ -18,7 +18,7 @@
     <meta property="og:description" content="Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors." />
     <meta property="og:image" content="//www.eclipse.org/eclipse.org-common/themes/solstice/public/images/logo/eclipse.png" />
     <link rel="stylesheet" href="//www.eclipse.org/eclipse.org-common/themes/solstice/public/stylesheets/styles.min.css" type="text/css" />
-    <link rel="stylesheet" href="<TMPL_VAR link>css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/planet/css/style.css" type="text/css" />
   </head>
   <body class="" id="body_solstice">
     <a class="sr-only" href="#content">Skip to main content</a>
@@ -27,7 +27,7 @@
         <div class="row" id="header-row">
           <div class="hidden-xs col-sm-6 col-md-6 col-lg-5" id="header-left">
             <div class="wrapper-logo-default">
-              <a href="<TMPL_VAR link>"><img class="logo-eclipse-default hidden-xs padding-top-10 padding-bottom-10" alt="Eclipse.org logo" src="<TMPL_VAR link>img/planeteclipse-logo.png"></a>
+              <a href="<TMPL_VAR link>"><img class="logo-eclipse-default hidden-xs padding-top-10 padding-bottom-10" alt="Eclipse.org logo" src="/planet/img/planeteclipse-logo.png"></a>
             </div>
           </div>
           <div class="col-sm-18 col-md-18 col-lg-19" id="main-menu-wrapper">
@@ -158,7 +158,7 @@
                 </button>
                 <div class="wrapper-logo-mobile"> 
                   <a href="<TMPL_VAR link>" class="navbar-brand visible-xs">
-                  <img src="<TMPL_VAR link>img/planeteclipse-logo.png" alt="Eclipse.org logo" width="166" class="logo-eclipse-default"/>
+                  <img src="/planet/img/planeteclipse-logo.png" alt="Eclipse.org logo" width="166" class="logo-eclipse-default"/>
                   </a>
                 </div>
               </div>
@@ -169,17 +169,19 @@
     </header>
     <section id="breadcrumb" class="default-breadcrumbs hidden-print">
       <div class="container">
-        <div class="col-xs-24">
+        <div class="col-xs-15">
           <ol class="breadcrumb">
             <li><a href="https://www.eclipse.org/">Home</a></li>
             <li><a href="https://www.eclipse.org/community/">Community</a></li>
             <li class="active">Planet Eclipse</li>
           </ol>
         </div>
+        <div class="col-xs-9 margin-top-20 text-right">
+          <a href="https://twitter.com/EclipsePlanet" class="twitter-follow-button" data-show-count="false">Follow @EclipsePlanet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
       </div>
     </section>
-    </div>
-    <main role="main" class="background-grey">
+    <main role="main" class="background-grey no-promo">
       <div class="container background-image-none" id="novaContent">
         <!-- Start of content area -->
         <ul class="nav nav-tabs">
@@ -349,19 +351,19 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <td><a href="rss10.xml"><img alt="RSS 1.0" src="<TMPL_VAR link>images/rss10.png"></a></td>
-                  <td><a href="rss20.xml"><img alt="RSS 2.0" src="<TMPL_VAR link>images/rss20.png"></a></td>
+                  <td><a href="rss10.xml"><img alt="RSS 1.0" src="/planet/images/rss10.png"></a></td>
+                  <td><a href="rss20.xml"><img alt="RSS 2.0" src="/planet/images/rss20.png"></a></td>
                 </tr>
                 <tr>
-                  <td><a href="atom.xml"><img alt="Atom" src="<TMPL_VAR link>images/atom.png"></a></td>
-                  <td><a href="opml.xml"><img alt="OPML" src="<TMPL_VAR link>images/opml.png"></a></td>
+                  <td><a href="atom.xml"><img alt="Atom" src="/planet/images/atom.png"></a></td>
+                  <td><a href="opml.xml"><img alt="OPML" src="/planet/images/opml.png"></a></td>
                 </tr>
               </tbody>
             </table>
-            <p>Looking for an RSS Newsreader? Try RSSOwl, it is built on Eclipse! <a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="<TMPL_VAR link>images/rssowl.gif"  alt="Get RSSOwl" height="15" width="80"></a></p>
+            <p>Looking for an RSS Newsreader? Try RSSOwl, it is built on Eclipse! <a href="http://www.rssowl.org/" title="Get RSSOwl - Free RSS / RDF / Atom Newsreader."><img src="/planet/images/rssowl.gif"  alt="Get RSSOwl" height="15" width="80"></a></p>
             <p>Last updated: April 26, 2012 06:53 PM (UTC)</p>
             <p> Maintained by the Planet Eclipse <a href="http://wiki.eclipse.org/index.php/PlanetEclipseAdmins" title="The Planet Eclipse Admins" target="_blank">admins</a>.</p>
-            <p>Powered by:<br> <a href="http://www.planetplanet.org/"><img src="<TMPL_VAR link>images/planet.png" alt="Planet" height="15" width="80"></a></p>
+            <p>Powered by:<br> <a href="http://www.planetplanet.org/"><img src="/planet/images/planet.png" alt="Planet" height="15" width="80"></a></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -386,7 +388,6 @@
       </div>
     </div>
     <a class="visible-xs" href="#top">Back to the top</a>
-    </p>
     <footer role="contentinfo" id="solstice-footer">
       <div class="container">
         <div class="row">
