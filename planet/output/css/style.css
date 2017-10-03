@@ -40,6 +40,12 @@ h1{
   font-size:24px;
 }
 
+// Fix posts with large images
+.media-body-content img{
+  max-width: 100%;
+  height: auto;
+}
+
 .media-body-content h1{
   font-size:22px;
 }
@@ -57,3 +63,4 @@ h1{
 .media-body-content h6{
   font-size:15px;
 }
+
