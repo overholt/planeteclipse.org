@@ -16,12 +16,12 @@
   font-style:normal
 }
 
-.thin-header #header-left .logo-eclipse-default{
-  max-width: 198px;
+#body_solstice{
+  background:#fafafa;
 }
 
-#main-menu .dropdown-menu{
-  max-width: 740px;
+#header-row{
+  padding-bottom:10px;
 }
 
 .media .pull-left{
