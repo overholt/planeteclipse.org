@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: planeteclipse-org
+  namespace: webapps
+spec:
+  selector:
+    matchLabels:
+      app: planeteclipse-org
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: planeteclipse-org
+        environment: production
+    spec:
+      containers:
+      - name: nginx
+        image: eclipsefdn/nginx:stable-alpine@sha256:bf036b821b469ca13f6e320b73558c2d7e36b3d1967a9eb2aca96d21744995b6
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: planet-www
+          mountPath: /usr/share/nginx/html
+        resources:
+          limits:
+            cpu: '2'
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 512Mi
+      - name: planet-venus
+        image: eclipsefdn/planet-venus:latest@sha256:3429840331ec4cfe3c35973d3b661fea42d7d89a7c3a72cea2c19ef214ad18b3
+        volumeMounts:
+        - name: planet-www
+          mountPath: /var/planet/www
+        - name: planet-cache
+          mountPath: /var/planet/cache
+        - name: planet-config
+          mountPath: /var/planet/config
+        resources:
+          limits:
+            cpu: '2'
+            memory: 512Mi
+          requests:
+            cpu: 50m
+            memory: 512Mi
+      initContainers:
+      - name: clean-volume
+        image: busybox
+        command:
+        - rm
+        - "-rf"
+        - "/var/planet/config/*"
+        volumeMounts:
+        - name: planet-config
+          mountPath: "/var/planet/config"
+      - name: git-clone
+        image: alpine/git
+        command:
+        - git
+        - clone
+        - "https://github.com/EclipseFdn/planeteclipse.org.git"
+        - "/var/planet/config"
+        volumeMounts:
+        - name: planet-config
+          mountPath: "/var/planet/config"
+      volumes:
+      - name: planet-www
+        emptyDir: {}
+      - name: planet-cache
+        emptyDir: {}
+      - name: planet-config
+        emptyDir: {}
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: planeteclipse-org
+  namespace: webapps
+spec:
+  ports:
+  - name: "http"
+    port: 80
+    protocol: "TCP"
+    targetPort: 8080
+  selector:
+    app: planeteclipse-org
+    environment: production
+---
+apiVersion: "route.openshift.io/v1"
+kind: "Route"
+metadata:
+  name: planeteclipse-org
+  namespace: webapps
+  annotations:
+    haproxy.router.openshift.io/timeout: 20s
+spec:
+  host: "planeteclipse.org"
+  path: "/"
+  port:
+    targetPort: "http"
+  tls:
+    insecureEdgeTerminationPolicy: "Redirect"
+    termination: "edge"
+  to:
+    kind: "Service"
+    name: planeteclipse-org
+    weight: 100
