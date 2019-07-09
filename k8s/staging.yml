@@ -47,19 +47,6 @@ spec:
           requests:
             cpu: 50m
             memory: 512Mi
-      initContainers:
-      - name: git-clone
-        image: alpine/git
-        command:
-        - git
-        - clone
-        - "-b"
-        - "staging"
-        - "https://github.com/EclipseFdn/planeteclipse.org"
-        - "/var/planet/config"
-        volumeMounts:
-        - name: planet-config
-          mountPath: "/var/planet/config"
       volumes:
       - name: planet-www
         emptyDir: {}
@@ -67,3 +54,38 @@ spec:
         emptyDir: {}
       - name: planet-config
         emptyDir: {}
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: planeteclipse-org
+  namespace: webapps
+spec:
+  ports:
+  - name: "http"
+    port: 80
+    protocol: "TCP"
+    targetPort: 8080
+  selector:
+    app: planeteclipse-org
+    environment: staging
+---
+apiVersion: "route.openshift.io/v1"
+kind: "Route"
+metadata:
+  name: planeteclipse-org
+  namespace: webapps
+  annotations:
+    haproxy.router.openshift.io/timeout: 20s
+spec:
+  host: "ci-staging.eclipse.org"
+  path: "/planet"
+  port:
+    targetPort: "http"
+  tls:
+    insecureEdgeTerminationPolicy: "Redirect"
+    termination: "edge"
+  to:
+    kind: "Service"
+    name: planeteclipse-org
+    weight: 100

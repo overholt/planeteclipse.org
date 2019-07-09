@@ -4,7 +4,6 @@ services:
     build: .
     volumes:
       - static-content:/var/planet/www
-      - ./:/var/planet/planeteclipse.org
   nginx:
     image: nginx
     ports:
