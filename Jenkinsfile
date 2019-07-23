@@ -32,6 +32,7 @@ pipeline {
     APP_NAME = 'planeteclipse-org'
     NAMESPACE = 'foundation-internal-webdev-apps'
     IMAGE_NAME = 'eclipsefdn/planeteclipse.org'
+    CONTAINER_NAME = 'planet-venus'
     ENVIRONMENT = environmentFromBranch(env.BRANCH_NAME)
     GIT_COMMIT_SHORT = sh(
       script: "printf \$(git rev-parse --short ${GIT_COMMIT})",
