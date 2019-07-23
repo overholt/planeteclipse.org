@@ -34,14 +34,14 @@ spec:
             memory: 512Mi
         livenessProbe:
           httpGet:
-            path: /planet
+            path: /planet/
             port: 8080
           initialDelaySeconds: 900
           periodSeconds: 10
           timeoutSeconds: 5
         readinessProbe:
           httpGet:
-            path: /planet
+            path: /planet/
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 3
