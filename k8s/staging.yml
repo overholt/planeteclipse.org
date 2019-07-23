@@ -2,12 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: staging-planeteclipse-org
-  namespace: webapps
+  namespace: foundation-internal-webdev-apps
 spec:
   selector:
     matchLabels:
       app: planeteclipse-org
+      environment: staging
   replicas: 1
+  progressDeadlineSeconds: 1200
   template:
     metadata:
       labels:
@@ -16,50 +18,65 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: eclipsefdn/nginx:stable-alpine
+        image: eclipsefdn/nginx:stable-alpine-for-staging
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
         volumeMounts:
         - name: planet-www
-          mountPath: /usr/share/nginx/html
+          mountPath: /usr/share/nginx/html/staging
         resources:
           limits:
-            cpu: '2'
-            memory: 512Mi
+            cpu: '1'
+            memory: 256Mi
           requests:
-            cpu: 200m
-            memory: 512Mi
+            cpu: 50m
+            memory: 128Mi
+        livenessProbe:
+          # cannot use http probe because / and below are protected by auth_basic
+          exec:
+            command:
+            - test 
+            - -f
+            - /usr/share/nginx/html/staging/index.html
+          initialDelaySeconds: 900
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          # cannot use http probe because / and below are protected by auth_basic
+          exec:
+            command:
+            - test 
+            - -f
+            - /usr/share/nginx/html/staging/index.html
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 5
       - name: planet-venus
-        image: eclipsefdn/planet-venus:latest
-        imagePullPolicy: Always
+        image: eclipsefdn/planeteclipse.org:latest
         volumeMounts:
         - name: planet-www
           mountPath: /var/planet/www
         - name: planet-cache
           mountPath: /var/planet/cache
-        - name: planet-config
-          mountPath: /var/planet/config
         resources:
           limits:
-            cpu: '2'
-            memory: 512Mi
+            cpu: '1'
+            memory: 256Mi
           requests:
             cpu: 50m
-            memory: 512Mi
+            memory: 256Mi
       volumes:
       - name: planet-www
         emptyDir: {}
       - name: planet-cache
         emptyDir: {}
-      - name: planet-config
-        emptyDir: {}
 ---
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: planeteclipse-org
-  namespace: webapps
+  name: staging-planeteclipse-org
+  namespace: foundation-internal-webdev-apps
 spec:
   ports:
   - name: "http"
@@ -74,12 +91,12 @@ apiVersion: "route.openshift.io/v1"
 kind: "Route"
 metadata:
   name: planeteclipse-org
-  namespace: webapps
+  namespace: foundation-internal-webdev-apps
   annotations:
     haproxy.router.openshift.io/timeout: 20s
 spec:
-  host: "ci-staging.eclipse.org"
-  path: "/planet"
+  host: "planeteclipse.org"
+  path: "/staging"
   port:
     targetPort: "http"
   tls:
@@ -87,5 +104,5 @@ spec:
     termination: "edge"
   to:
     kind: "Service"
-    name: planeteclipse-org
+    name: staging-planeteclipse-org
     weight: 100

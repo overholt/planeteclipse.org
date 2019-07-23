@@ -2,12 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: planeteclipse-org
-  namespace: webapps
+  namespace: foundation-internal-webdev-apps
 spec:
   selector:
     matchLabels:
       app: planeteclipse-org
+      environment: production
   replicas: 2
+  progressDeadlineSeconds: 1200
   template:
     metadata:
       labels:
@@ -16,12 +18,13 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: eclipsefdn/nginx:stable-alpine@sha256:bf036b821b469ca13f6e320b73558c2d7e36b3d1967a9eb2aca96d21744995b6
+        image: eclipsefdn/nginx:stable-alpine
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         volumeMounts:
         - name: planet-www
-          mountPath: /usr/share/nginx/html
+          mountPath: /usr/share/nginx/html/planet
         resources:
           limits:
             cpu: '2'
@@ -29,15 +32,27 @@ spec:
           requests:
             cpu: 200m
             memory: 512Mi
+        livenessProbe:
+          httpGet:
+            path: /planet
+            port: 8080
+          initialDelaySeconds: 900
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /planet
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          timeoutSeconds: 5
       - name: planet-venus
-        image: eclipsefdn/planet-venus:latest@sha256:3429840331ec4cfe3c35973d3b661fea42d7d89a7c3a72cea2c19ef214ad18b3
+        image: eclipsefdn/planeteclipse.org:latest
         volumeMounts:
         - name: planet-www
           mountPath: /var/planet/www
         - name: planet-cache
           mountPath: /var/planet/cache
-        - name: planet-config
-          mountPath: /var/planet/config
         resources:
           limits:
             cpu: '2'
@@ -50,14 +65,12 @@ spec:
         emptyDir: {}
       - name: planet-cache
         emptyDir: {}
-      - name: planet-config
-        emptyDir: {}
 ---
 apiVersion: "v1"
 kind: "Service"
 metadata:
   name: planeteclipse-org
-  namespace: webapps
+  namespace: foundation-internal-webdev-apps
 spec:
   ports:
   - name: "http"
@@ -72,12 +85,12 @@ apiVersion: "route.openshift.io/v1"
 kind: "Route"
 metadata:
   name: planeteclipse-org
-  namespace: webapps
+  namespace: foundation-internal-webdev-apps
   annotations:
     haproxy.router.openshift.io/timeout: 20s
 spec:
   host: "planeteclipse.org"
-  path: "/"
+  path: "/planet"
   port:
     targetPort: "http"
   tls:
