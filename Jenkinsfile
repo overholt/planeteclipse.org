@@ -60,7 +60,7 @@ pipeline {
   }
 
   stages {
-    stage('Build and push image') {
+    stage('Build docker image') {
       agent {
         label 'docker-build'
       }
