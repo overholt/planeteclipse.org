@@ -1,7 +1,5 @@
 # planeteclipse.org
 
-This is a fork of https://git.eclipse.org/r/#/admin/projects/planeteclipse.org/planeteclipse.org to address some issues that are being discussed via Bug [510733](https://bugs.eclipse.org/bugs/show_bug.cgi?id=510733) - Make Planet Eclipse processing a Jenkins job
-
 The [planeteclipse.org](https://planeteclipse.org) website is generated with [Planet Venus](https://github.com/rubys/venus).
 
 Planet Eclipse is a window into the world, work and lives of Eclipse hackers and contributors.
